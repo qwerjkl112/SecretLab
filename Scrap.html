@@ -1,0 +1,86 @@
+Mentor
+------
+companyName
+companyResponsiblities
+jobTitle
+interests (table)
+yearsEmployed
+yearsProfession
+affliation
+resources(table)
+tcAfflication (table)
+numCandidate (?)
+prevJobs
+education
+degree
+pursingDegree
+otherInfo
+
+
+Mentee
+------
+employmentType
+*resource (table)
+education
+degree
+*interest (table)
+tcAfflication
+
+
+Algorithm
+---------
+Interest +30
+Resource +60
+tcAfflication +10
+
+<script>
+  var _userType_selector = document.querySelector("select");
+  var _connector_form = document.getElementById("connector_form");
+  var _candidate_form = document.getElementById("candidate_form");
+
+  _connector_form.style.display = (_userType_selector.value === "Mentor") ? "block" : "none";
+  _candidate_form.style.display = (_userType_selector.value === "Mentee") ? "block" : "none";
+
+  _userType_selector.addEventListener("change", function() {
+    var value = _userType_selector.value;
+    if(value === "Mentor") {
+      _connector_form.style.display = "block";
+      _candidate_form.style.display = "none";
+    } else if (value === "Mentee") {
+      _candidate_form.style.display = "block";
+      _connector_form.style.display = 'none';
+    }
+  });
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.input[type=checkbox], input[type=radio] {
+    margin-left: 10px;
+    margin-right:5px;
+}
+</style>
+<script type="text/javascript">
+  var _userType_selector = document.querySelector("#userType");
+  var _connector_form = document.getElementById("connector_form");
+  var _candidate_form = document.getElementById("candidate_form");
+
+  _connector_form.style.display = (_userType_selector.value === "0") ? "block" : "none";
+  _candidate_form.style.display = (_userType_selector.value === "1") ? "block" : "none";
+
+  _userType_selector.addEventListener("change", function() {
+
+    var value = _userType_selector.value;
+    if(value === "0") {
+      _connector_form.style.display = "block";
+      _candidate_form.style.display = "none";
+    } else if (value === "1") {
+      _candidate_form.style.display = "block";
+      _connector_form.style.display = 'none';
+    }
+  });
+</script>
+
