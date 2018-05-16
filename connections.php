@@ -20,11 +20,14 @@ function connections_table() {
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <?php foreach ($rows as $row) { ?>
-		      <tr>
+		      <?php foreach ($rows as $row) { 
+		      	$cid = $row->connectionid; ?>
+		      <tr <?php 
+		      		if(strtotime($row->lastConnected) < strtotime("-30 day"))
+		      		echo "class='warning'"; ?>>
 		        <td> 
 		          Connection Id:
-		          <a href=""><?php echo $row->connectionid; ?></a><br>
+		          <a href=""><?php echo $cid; ?></a><br>
 		          Mentor Name:
 		          <a href="#"><?php echo $row->mentorName; ?></a><br>
 		          Mentee Name:
@@ -39,16 +42,17 @@ function connections_table() {
 		        <td> 
 		          <form action="" method="post">
 		          	<button type="submit" class="btn btn-default" name="delete_connection">
-		          	<input type="hidden" name="connectionid" <?php echo "value=".$row->connectionid;?>>
+		          	<input type="hidden" name="connectionid" <?php echo "value=".$cid;?>>
 		          	<span class="glyphicon glyphicon-remove" ></span> Deactivate Connection </button>
 		          </form>
 		        </td>
 		        <td>
-		        	<form action="../connection-detail" method="post">
+		          <form action="" method="post">
 		          	<button type="submit" class="btn btn-default" name="connection_detail">
-		          	<input type="hidden" name="connectionid" <?php echo "value=".$row->connectionid;?>>
-		          	<span class="glyphicon glyphicon-remove" ></span> Connection Detail </button>
-		          </td>
+		          	<input type="hidden" name="connectionid" <?php echo "value=".$cid;?>>
+		          	<span class="glyphicon glyphicon-info-sign" ></span> View Comments </button>
+			      </form>
+		         </td>
 		      </tr>
 			<?php } ?>
 		    </tbody>

@@ -49,7 +49,7 @@ function profiles_list() {
 
             </tr>
             <?php foreach ($rows as $row) { ?>
-                <tr>
+                <tr <?php if($row->status === 'Pending Review'){ echo "class='warning'"; } ?>>
                     <td class="manage-column ss-list-width"><?php echo $row->ID; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  

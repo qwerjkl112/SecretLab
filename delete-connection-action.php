@@ -2,6 +2,7 @@
 
 if(isset($_POST['delete_connection'])){
     $connectionId = $_POST["connectionid"];
+    // echo "connectionid = " . $connectionId;
 	deleteConnection($connectionId);
 	
 }
