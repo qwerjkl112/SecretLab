@@ -7,8 +7,8 @@ if(isset($_POST['findMatch'])){
 function findPotentialMatches(){
 	global $wpdb;
     $table_name = "users";
-    $menteesList = $wpdb->get_results("SELECT * FROM $table_name WHERE `matchStatus` = 0 AND `UserType` = 0 ");
-    $mentorsList = $wpdb->get_results("SELECT * FROM $table_name WHERE `matchStatus` = 0 AND `UserType` = 1");
+    $menteesList = $wpdb->get_results("SELECT * FROM $table_name WHERE `UserType` = 0 ");
+    $mentorsList = $wpdb->get_results("SELECT * FROM $table_name WHERE `UserType` = 1 ");
 
     $arrScore  = array();
     $arrMentor = array();
@@ -35,7 +35,8 @@ function findPotentialMatches(){
     for($i = 0; $i < $size; $i++) {
     	// echo "score is " . $arrScore[$i] . " mentor id is " . $arrMentor[$i] . " mentee id is " . $arrMentee[$i];
     	$check = $wpdb->get_results("SELECT * FROM `PotentialConnections` WHERE `mentorId` =  $arrMentor[$i] AND `menteeId` = $arrMentee[$i]");
-    	if(sizeof($check) == 0){
+        $check2 = $wpdb->get_results("SELECT * FROM `Connections` WHERE `mentorId` =  $arrMentor[$i] AND `menteeId` = $arrMentee[$i]");
+    	if(sizeof($check) == 0 && sizeof($check2) == 0){
 	    	$wpdb->insert(
 	            "PotentialConnections", //table
 	            array(

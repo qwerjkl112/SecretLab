@@ -20,13 +20,13 @@ function deleteConnection($connectionId){
     $mentorId = $result->mentorId;
     $menteeId = $result->menteeId;
 
-    $wpdb->query(
-        "
-        UPDATE `Users`
-        SET matchStatus = 0
-        WHERE ID = $mentorId OR ID = $menteeId
-        "
-    );
+    // $wpdb->query(
+    //     "
+    //     UPDATE `Users`
+    //     SET matchStatus = 0
+    //     WHERE ID = $mentorId OR ID = $menteeId
+    //     "
+    // );
 
     $wpdb->delete(
             "Feedbacks", //table

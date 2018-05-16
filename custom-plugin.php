@@ -49,5 +49,6 @@ require_once(ROOTDIR . 'login-action.php');
 require_once(ROOTDIR . 'connections.php');
 require_once(ROOTDIR . 'potential-connection.php');
 require_once(ROOTDIR . 'profile-connection.php');
+require_once(ROOTDIR . 'connection-details.php');
 // require_once(ROOTDIR . 'schools-update.php');
 

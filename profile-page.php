@@ -16,7 +16,7 @@ function profile_page() {
                     <b><?php echo $row->firstname; echo " " . $row->lastname;?></b>
                     <div id="user_info">
                         Status: <?php echo $row->status; ?> 
-                        Match: <?php echo $row->matchStatus; ?>
+                        <!-- Match: <?php echo $row->matchStatus; ?> -->
                         Type: <?php echo $row->userType; ?> 
                     </div>
                     <div>

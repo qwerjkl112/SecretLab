@@ -12,7 +12,8 @@ function profile_connection() {
   				<strong>Welcome</strong> <?php echo $_SESSION['login_user']?>
 			</div>
 			<?php
-	        $rows = $wpdb->get_results("SELECT `connectionid`, `mentorId`, `menteeId`, `createdDate`, `lastConnected` FROM `Connections` WHERE `mentorId` = $profileId OR `menteeId` = $profileId");
+	        $rows = $wpdb->get_results("SELECT `connectionid`, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName`, `createdDate`, `lastConnected`,`menteeId`,`menteeId` FROM Connections INNER JOIN Users on Connections.mentorId=Users.ID INNER JOIN Users Users2 on Connections.menteeId=Users2.ID WHERE `mentorId` = $profileId OR `menteeId` = $profileId ");
+
 	        $myFeedbacks = $wpdb->get_results("SELECT * FROM `Feedbacks` WHERE `ReceiverId` = $profileId");
 	        $TCFeedBacks = $wpdb->get_results("SELECT * FROM `TC_Feedbacks` WHERE `profileId` = $profileId");
 
@@ -42,9 +43,9 @@ function profile_connection() {
 		          Connection Id:
 		          <a href="#"><?php echo $row->connectionid; ?></a><br>
 		          Mentor Name:
-		          <a href="#"><?php echo $row->mentorId; ?></a><br>
+		          <a href="#"><?php echo $row->mentorName; ?></a><br>
 		          Mentee Name:
-		          <a href="#"><?php echo $row->menteeId; ?></a><br>
+		          <a href="#"><?php echo $row->menteeName; ?></a><br>
 		        </td>
 		        <td> 
 		          Date Connected:

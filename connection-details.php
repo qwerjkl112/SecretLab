@@ -1,12 +1,16 @@
 <?php
 
-require_once ( 'connection-details.php' );
+if(isset($_POST['connection_detail'])){
+   $connectionId = $_POST["connectionid"];
+   // echo "hihihi" . $connectionId;
+	connections_details($connectionId);
+}
 
-function connections_table() {
+function connections_details($connectionId) {
 
 	global $wpdb;
-        $table_name = "users";
-        $rows = $wpdb->get_results("SELECT Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName`, `connectionid`, `mentorId`, `menteeId`, `createdDate`, `lastConnected` FROM `Connections` INNER JOIN Users on Connections.mentorId=Users.ID INNER JOIN Users Users2 on Connections.menteeId=Users2.ID ");
+        $table_name = "Connections";
+        $rows = $wpdb->get_results("SELECT * FROM $table_name WHERE 1 ");
 	?>
 
 		<div class="container">
@@ -16,7 +20,6 @@ function connections_table() {
 		        <th>Connection</th>
 		        <th>Last Checked In</th>
 		        <th>Delete</th>
-		        <th>Details</th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -24,7 +27,7 @@ function connections_table() {
 		      <tr>
 		        <td> 
 		          Connection Id:
-		          <a href=""><?php echo $row->connectionid; ?></a><br>
+		          <a href="#"><?php echo $row->connectionid; ?></a><br>
 		          Mentor Name:
 		          <a href="#"><?php echo $row->mentorName; ?></a><br>
 		          Mentee Name:
@@ -43,12 +46,6 @@ function connections_table() {
 		          	<span class="glyphicon glyphicon-remove" ></span> Deactivate Connection </button>
 		          </form>
 		        </td>
-		        <td>
-		        	<form action="../connection-detail" method="post">
-		          	<button type="submit" class="btn btn-default" name="connection_detail">
-		          	<input type="hidden" name="connectionid" <?php echo "value=".$row->connectionid;?>>
-		          	<span class="glyphicon glyphicon-remove" ></span> Connection Detail </button>
-		          </td>
 		      </tr>
 			<?php } ?>
 		    </tbody>
@@ -58,4 +55,4 @@ function connections_table() {
 <?php
 }
 
-add_shortcode('connections', 'connections_table');
+add_shortcode('connections-details', 'connections_details');

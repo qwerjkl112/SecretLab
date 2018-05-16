@@ -22,13 +22,13 @@ function createConnection($mentorId, $menteeId){
             array('%d', '%d', '%s', '%s') //data format  
     );
 
-    $wpdb->query(
-        "
-        UPDATE `Users`
-        SET matchStatus = 1
-        WHERE ID = $mentorId OR ID = $menteeId
-        "
-    );
+    // $wpdb->query(
+    //     "
+    //     UPDATE `Users`
+    //     SET matchStatus = 1
+    //     WHERE ID = $mentorId OR ID = $menteeId
+    //     "
+    // );
 
     $check = $wpdb->get_results("SELECT * FROM `PotentialConnections` WHERE `mentorId` =  $mentorId AND `menteeId` = $menteeId");
     if(sizeof($check) > 0) {
@@ -39,5 +39,5 @@ function createConnection($mentorId, $menteeId){
 
 function deletePotentialConnection($mentorId, $menteeId) {
     global $wpdb;
-    $wpdb->query(" DELETE FROM `PotentialConnections` WHERE mentorId = $mentorId OR menteeId = $menteeId ");
+    $wpdb->query(" DELETE FROM `PotentialConnections` WHERE mentorId = $mentorId AND menteeId = $menteeId ");
 }
