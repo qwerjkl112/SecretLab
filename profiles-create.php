@@ -11,13 +11,14 @@ function profile_create() {
         <h2>Add New Profile</h2>
         <?php if (isset($message)): ?><div class="updated"><p><?php echo $message; ?></p></div><?php endif; ?>
         <form method="post" action="../list" id="registration-form" novalidate="">
+            <p>Register</p>
             <!-- BASIC INFO -->
             <div class="form-group row">
                 <label for="userType" class="col-sm-2 col-form-label">I am applying for </label>
                 <div class="col-sm-10">
                     <select class="form-control" name="userType" id="userType">
-                        <option value="0">Mentee</option>
-                        <option value="1">Mentor</option>
+                        <option value="0">Mentor</option>
+                        <option value="1">Mentee</option>
                     </select>
                 </div>
             </div>
@@ -67,95 +68,97 @@ function profile_create() {
 
             <div class="form-group row">
                 <label for="tcAffiliation" class="col-sm-2 col-form-label">Please tell us your affiliation with Tuesday's Children.</label>
+                
                 <div class="col-sm-10">
-                    <div class="radio">
-                        <label><input type="radio" name="tcAffiliation" value="0" required>9/11 Family Member</label>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation" value="0" required>9/11 Family Member</label>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" name="tcAffiliation" value="1" required>First Responder/First Responder Family Member</label>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation" value="1" required>First Responder/First Responder Family Member</label>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" name="tcAffiliation" value="2" required>Military</label>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation" value="2" required>Military</label>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" name="tcAffiliation" value="3" required>Volunteer</label>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation" value="3" required>Volunteer</label>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" name="tcAffiliation" value="4" required>Prefer not to answer</label>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation" value="4" required>Prefer not to answer</label>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" name="tcAffiliation" value="5" required>Other</label>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation" value="5" required>Other</label>
                     </div>
                 </div>
             </div> 
 
             <div class="form-group row">
-                    <label for="interest" class="col-sm-2 col-form-label">Which industries do you feel comfortable advising youth in?</label>
-                    <div class="col-sm-10">
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="0" required>Finance</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="1" required>Non Profit</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="2" required>Human resource</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="3" required>Retail</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="4" required>Law</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="5" required>Media</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="6" required>Education</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="7" required>Publishing</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="8" required>Journaling</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="9" required>Advertising</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="10" required>Marketing</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="11" required>PR</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="12" required>Technology</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="interest" value="13" required>Other</label>
-                        </div>
+                <label for="interest" class="col-sm-2 col-form-label">Interest</label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="0" required>Finance</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="1"  required>Non Profit</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="2"  required>Human resource</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="3"  required>Retail</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="4"  required>Law</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="5"  required>Media</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="6"  required>Education</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="7"  required>Publishing</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="8"  required>Journaling</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="9"  required>Advertising</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="10"  required>Marketing</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="11"  required>PR</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="12"  required>Technology</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="interest" value="13"  required>Other</label>
                     </div>
                 </div>
+            </div>
+                        
                 <div class="form-group row">
                     <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
                     <div class="col-sm-10">
-                        <div class="radio">
-                            <label><input type="radio" name="resource" value="0" required>Resume Writing</label>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="resource" value="0" required>Resume Writing</label>
                         </div>
-                        <div class="radio">
-                            <label><input type="radio" name="resource" value="1" required>Networking</label>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="resource" value="1" required>Networking</label>
                         </div>
-                        <div class="radio">
-                            <label><input type="radio" name="resource" value="2" required>Career Advancement</label>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="resource" value="2" required>Career Advancement</label>
                         </div>
-                        <div class="radio">
-                            <label><input type="radio" name="resource" value="3" required>Career Change</label>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="resource" value="3" required>Career Change</label>
                         </div>
-                        <div class="radio">
-                            <label><input type="radio" name="resource" value="4" required>General Professional Help</label>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="resource" value="4" required>General Professional Help</label>
                         </div>
-                        <div class="radio">
-                            <label><input type="radio" name="resource" value="5" required>Other</label>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="resource" value="5" required>Other</label>
                         </div>
                     </div>
                 </div>
