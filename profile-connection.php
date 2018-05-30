@@ -12,7 +12,7 @@ function profile_connection() {
   				<strong>Welcome</strong> <?php echo $_SESSION['login_user']?>
 			</div>
 			<?php
-	        $rows = $wpdb->get_results("SELECT `connectionid`, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName`, `createdDate`, `lastConnected`,`menteeId`,`menteeId` FROM Connections INNER JOIN Users on Connections.mentorId=Users.ID INNER JOIN Users Users2 on Connections.menteeId=Users2.ID WHERE `mentorId` = $profileId OR `menteeId` = $profileId ");
+	        $rows = $wpdb->get_results("SELECT `connectionid`, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName`, `createdDate`, `lastConnected`,`menteeId`,`mentorId` FROM Connections INNER JOIN Users on Connections.mentorId=Users.ID INNER JOIN Users Users2 on Connections.menteeId=Users2.ID WHERE `mentorId` = $profileId OR `menteeId` = $profileId ");
 
 	        $myFeedbacks = $wpdb->get_results("SELECT * FROM `Feedbacks` WHERE `ReceiverId` = $profileId");
 	        $TCFeedBacks = $wpdb->get_results("SELECT * FROM `TC_Feedbacks` WHERE `profileId` = $profileId");
@@ -68,7 +68,7 @@ function profile_connection() {
 			        <input type="radio" name="Rating" value="5"/>
 			        <label>5</label>
 			        <div class="form-group">
-					  <label for="comment">Comment:</label>
+					  <label for="comment">Feedback:</label>
 					  <textarea class="form-control" rows="2" id="comment" name="Description"></textarea>
 					</div>
 		          	<button type="submit" class="btn btn-default" name="leave_feedback">
@@ -112,7 +112,7 @@ function profile_connection() {
 			      <h5 class="mb-1">Sender: <?php echo $feedback->SenderId; ?></h5>
 			      <small>Rating : <?php echo $feedback->Rating; ?></small>
 			    </div>
-			    <p class="mb-1">Comment: <?php echo $feedback->Description; ?></p>
+			    <p class="mb-1">Feedback: <?php echo $feedback->Description; ?></p>
 			    <small>From:  <?php echo $feedback->ReceiverId; ?></small>
 			    <small>Date:  <?php echo $feedback->dateCommented; ?></small>
 

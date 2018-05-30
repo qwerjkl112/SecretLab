@@ -41,10 +41,10 @@ function potential_connections_table() {
           </td>
           <td> 
             <span style="font-size: 100%"<?php 
-              if($row->matchScore == '100'){
+              if($row->matchScore >= '75'){
                 echo 'class="label label-success"';
               }
-              else if($row->matchScore == '60'){
+              else if($row->matchScore >= '50'){
                 echo 'class="label label-warning"';
               }
               else {

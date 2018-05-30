@@ -17,8 +17,8 @@ function profile_create() {
                 <label for="userType" class="col-sm-2 col-form-label">I am applying for </label>
                 <div class="col-sm-10">
                     <select class="form-control" name="userType" id="userType">
-                        <option value="0">Mentor</option>
-                        <option value="1">Mentee</option>
+                        <option value="0">Mentee</option>
+                        <option value="1">Mentor</option>
                     </select>
                 </div>
             </div>
@@ -71,22 +71,22 @@ function profile_create() {
                 
                 <div class="col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation" value="0" required>9/11 Family Member</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="0" required>9/11 Family Member</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation" value="1" required>First Responder/First Responder Family Member</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="1" required>First Responder/First Responder Family Member</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation" value="2" required>Military</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="2" required>Military</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation" value="3" required>Volunteer</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="3" required>Volunteer</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation" value="4" required>Prefer not to answer</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="4" required>Prefer not to answer</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation" value="5" required>Other</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="5" required>Other</label>
                     </div>
                 </div>
             </div> 
@@ -95,46 +95,46 @@ function profile_create() {
                 <label for="interest" class="col-sm-2 col-form-label">Interest</label>
                 <div class="col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="0" required>Finance</label>
+                        <label><input type="checkbox" name="interest[]" value="0" required>Finance</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="1"  required>Non Profit</label>
+                        <label><input type="checkbox" name="interest[]" value="1"  required>Non Profit</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="2"  required>Human resource</label>
+                        <label><input type="checkbox" name="interest[]" value="2"  required>Human resource</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="3"  required>Retail</label>
+                        <label><input type="checkbox" name="interest[]" value="3"  required>Retail</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="4"  required>Law</label>
+                        <label><input type="checkbox" name="interest[]" value="4"  required>Law</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="5"  required>Media</label>
+                        <label><input type="checkbox" name="interest[]" value="5"  required>Media</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="6"  required>Education</label>
+                        <label><input type="checkbox" name="interest[]" value="6"  required>Education</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="7"  required>Publishing</label>
+                        <label><input type="checkbox" name="interest[]" value="7"  required>Publishing</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="8"  required>Journaling</label>
+                        <label><input type="checkbox" name="interest[]" value="8"  required>Journaling</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="9"  required>Advertising</label>
+                        <label><input type="checkbox" name="interest[]" value="9"  required>Advertising</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="10"  required>Marketing</label>
+                        <label><input type="checkbox" name="interest[]" value="10"  required>Marketing</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="11"  required>PR</label>
+                        <label><input type="checkbox" name="interest[]" value="11"  required>PR</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="12"  required>Technology</label>
+                        <label><input type="checkbox" name="interest[]" value="12"  required>Technology</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" value="13"  required>Other</label>
+                        <label><input type="checkbox" name="interest[]" value="13"  required>Other</label>
                     </div>
                 </div>
             </div>
@@ -143,22 +143,22 @@ function profile_create() {
                     <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
                     <div class="col-sm-10">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="resource" value="0" required>Resume Writing</label>
+                            <label><input type="checkbox" name="resource[]" value="0" required>Resume Writing</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="resource" value="1" required>Networking</label>
+                            <label><input type="checkbox" name="resource[]" value="1" required>Networking</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="resource" value="2" required>Career Advancement</label>
+                            <label><input type="checkbox" name="resource[]" value="2" required>Career Advancement</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="resource" value="3" required>Career Change</label>
+                            <label><input type="checkbox" name="resource[]" value="3" required>Career Change</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="resource" value="4" required>General Professional Help</label>
+                            <label><input type="checkbox" name="resource[]" value="4" required>General Professional Help</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="resource" value="5" required>Other</label>
+                            <label><input type="checkbox" name="resource[]" value="5" required>Other</label>
                         </div>
                     </div>
                 </div>

@@ -26,6 +26,40 @@ if(isset($_POST['register'])){
     $employmentType = $_POST["employmentType"];
     $degree = $_POST["degree"];
 
+    $tcAffiliationBitMask = 0;
+    $interestBitMask = 0;
+    $resourceBitMask = 0;
+
+    if(!empty($tcAffiliation)){
+        $N = count($tcAffiliation);
+        for($i = 0; $i < $N; $i++) {
+            if((int) $tcAffiliation[$i] == 4) { $tcAffiliationBitMask = 0; break;}
+            if((int) $tcAffiliation[$i] == 5) { break;}
+            $tcAffiliationBitMask += pow(2, (int) $tcAffiliation[$i]);
+
+        }
+    }
+    if(!empty($interest)){
+        $N = count($interest);
+        for($i = 0; $i < $N; $i++) {
+            if((int) $interest[$i] == 13) { break;}
+            $interestBitMask += pow(2, (int) $interest[$i]);
+        }
+    }
+    if(!empty($resource)){
+        $N = count($resource);
+        for($i = 0; $i < $N; $i++) {
+            if((int) $resource[$i] == 5) { break;}
+            $resourceBitMask += pow(2, (int) $resource[$i]);
+        }
+    }
+     echo "tc bitmask to " . $tcAffiliationBitMask . "";
+     echo "interest bitmask to " . $interestBitMask . "";
+     echo "resource bitmask to " . $resourceBitMask . "";
+
+
+
+
     //insert
     global $wpdb;
     $table_name = "Users";
@@ -47,9 +81,9 @@ if(isset($_POST['register'])){
                 'companyName' => $companyName, 
                 'jobTitle' => $jobTitle, 
                 'jobResponisibility' => $jobResponisibility, 
-                'interest' => $interest, 
-                'resource' => $resource, 
-                'tcAffiliation' => $tcAffiliation, 
+                'interest' => $interest[0], 
+                'resource' => $resource[0], 
+                'tcAffiliation' => $tcAffiliation[0], 
                 'yearsProfession' => $yearsProfession, 
                 'numCandidate' => $numCandidate,                
                 'prevJobs' => $prevJobs, 
@@ -57,7 +91,10 @@ if(isset($_POST['register'])){
                 'otherInfo' => $otherInfo, 
                 'companyAddress' => $companyAddress, 
                 'employmentType' => $employmentType,
-                'otherDegree' => $otherDegree), 
+                'otherDegree' => $otherDegree,
+                'TCAffiliationBitMask'=> $tcAffiliationBitMask,
+                'InterestsBitMask' => $interestBitMask,
+                'ResourcesBitMask' =>$resourceBitMask),
             array('%s', '%s') //data format  
     );
 
