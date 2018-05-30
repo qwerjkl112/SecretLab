@@ -26,6 +26,10 @@ if(isset($_POST['register'])){
     $employmentType = $_POST["employmentType"];
     $degree = $_POST["degree"];
 
+    $tcAffiliation_other = $_POST["tcAffiliation_other"];
+    $interest_other = $_POST["interest_other"];
+    $resource_other = $_POST["resource_other"];
+
     $tcAffiliationBitMask = 0;
     $interestBitMask = 0;
     $resourceBitMask = 0;
@@ -56,6 +60,9 @@ if(isset($_POST['register'])){
      echo "tc bitmask to " . $tcAffiliationBitMask . "";
      echo "interest bitmask to " . $interestBitMask . "";
      echo "resource bitmask to " . $resourceBitMask . "";
+     echo "afflication " . $tcAffiliation_other . "";
+     echo "interest " . $interest_other . "";
+     echo "resource " . $resource_other . "";
 
 
 

@@ -86,7 +86,8 @@ function profile_create() {
                         <label><input type="checkbox" name="tcAffiliation[]" value="4" required>Prefer not to answer</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="5" required>Other</label>
+                        <label><input type="checkbox" onclick="otherToggle(this)" name="tcAffiliation" value="5" required>Other</label>
+                        <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
                     </div>
                 </div>
             </div> 
@@ -134,34 +135,36 @@ function profile_create() {
                         <label><input type="checkbox" name="interest[]" value="12"  required>Technology</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="13"  required>Other</label>
+                        <label><input type="checkbox" name="interest" onclick="otherToggle(this);" value="13"  required>Other</label>
+                        <input type="text" name="interest_other" id="interest_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
                     </div>
                 </div>
             </div>
                         
-                <div class="form-group row">
-                    <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
-                    <div class="col-sm-10">
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="resource[]" value="0" required>Resume Writing</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="resource[]" value="1" required>Networking</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="resource[]" value="2" required>Career Advancement</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="resource[]" value="3" required>Career Change</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="resource[]" value="4" required>General Professional Help</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="resource[]" value="5" required>Other</label>
-                        </div>
+            <div class="form-group row">
+                <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="0" required>Resume Writing</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="1" required>Networking</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="2" required>Career Advancement</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="3" required>Career Change</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="4" required>General Professional Help</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource" value="5" onclick="otherToggle(this)"  required>Other</label>
+                        <input type="text" name="resource_other" id="resource_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
                     </div>
                 </div>
+            </div>
 
                 <!-- MENTOR QUESTIONS -->
             <div id="connector_form">
@@ -249,6 +252,9 @@ function profile_create() {
                     <div class="col-sm-10">
                         <textarea class="form-control" rows="5" name="otherInfo" id="otherInfo"></textarea>
                     </div>
+                    <div class="col-xs-3">
+                        <input type="text" name="resource" class="form-control" id="resource" style="display:none">
+                    </div>
                 </div>
             </div>
                 <!-- MENTEE QUESTIONS -->
@@ -286,6 +292,19 @@ function profile_create() {
             </div>
         </form>
     </div>
+    <script>
+        function otherToggle (event) {
+            var other_input = document.getElementById(event.name + '_other');
+            if (event.checked) {
+                other_input.style.display = "inline-block";
+                other_input.setAttribute('required',true);
+            }
+            else {
+                other_input.style.display = "none";
+                other_input.removeAttribute('required');
+            }
+        }
+    </script>
     <?php
 }
 

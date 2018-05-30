@@ -117,7 +117,56 @@ function profile_page() {
                                         <label><input type="checkbox" name="interest" value="12" disabled required <?php echo ($row->interest == 'Technology') ? 'checked' : '' ?>>Technology</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="interest" value="13" disabled required <?php echo ($row->interest == 'Other') ? 'checked' : '' ?>>Other</label>
+                                        <label><input type="checkbox" onclick="toggle(this);" name="interest" value="13" disabled required <?php echo ($row->interest == 'Other') ? 'checked' : '' ?>>Other</label>
+                                        <input type="text" name="interest_other" id="interest_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="tcAffiliation" class="col-sm-2 col-form-label">Please tell us your affiliation with Tuesday's Children.</label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="tcAffiliation" value="0" disabled required <?php echo ($row->tcAffiliation == '9/11 Family Member') ? 'checked' : '' ?>>9/11 Family Member</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="tcAffiliation" value="1" disabled required <?php echo ($row->tcAffiliation == 'First Responder/First Responder Family Member') ? 'checked' : '' ?>>First Responder/First Responder Family Member</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="tcAffiliation" value="2" disabled required <?php echo ($row->tcAffiliation == 'Military') ? 'checked' : '' ?>>Military</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="tcAffiliation" value="3" disabled required <?php echo ($row->tcAffiliation == 'Volunteer') ? 'checked' : '' ?>>Volunteer</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="tcAffiliation" value="4" disabled required <?php echo ($row->tcAffiliation == 'Prefer not to answer') ? 'checked' : '' ?>>Prefer not to answer</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="tcAffiliation" onclick="toggle(this);"  value="5" disabled required <?php echo ($row->tcAffiliation == 'Other') ? 'checked' : '' ?>>Other</label>
+                                        <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="resource" value="0" disabled required <?php echo ($row->resource == 'Resume Writing') ? 'checked' : '' ?>>Resume Writing</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="resource" value="1" disabled required <?php echo ($row->resource == 'Networking') ? 'checked' : '' ?>>Networking</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="resource" value="2" disabled required <?php echo ($row->resource == 'Career Advancement') ? 'checked' : '' ?>>Career Advancement</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="resource" value="3" disabled required <?php echo ($row->resource == 'Career Change') ? 'checked' : '' ?>>Career Change</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="resource" value="4" disabled required <?php echo ($row->resource == 'General Professional Help') ? 'checked' : '' ?>>General Professional Help</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="resource" onclick="toggle(this);" value="5" disabled required <?php echo ($row->resource == 'Other') ? 'checked' : '' ?>>Other</label>
+                                        <input type="text" name="resource_other" class="form-control" id="resource_other" style="display:none">
                                     </div>
                                 </div>
                             </div>
@@ -162,24 +211,24 @@ function profile_page() {
                             <div class="form-group row">
                                 <label for="yearsEmployed" class="col-sm-2 col-form-label">Years employed by current profession </label>
                                 <div class="col-sm-10" id="yearsEmployed">
-                                    <div class="form-check">
-                                        <input type="checkbox" value="< 1 year" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '<1 year') ? 'checked' : '' ?>>
+                                    <div class="form-radio">
+                                        <input type="radio" value="< 1 year" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '<1 year') ? 'checked' : '' ?>>
                                         <label class="form-check-label"> < 1 year</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" value="1 - 3 years" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '1 - 3 years') ? 'checked' : '' ?>>
+                                        <input type="radio" value="1 - 3 years" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '1 - 3 years') ? 'checked' : '' ?>>
                                         <label class="form-check-label"> 1 - 3 years</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" value="3 - 5 years" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '3 - 5 years') ? 'checked' : '' ?>>
+                                        <input type="radio" value="3 - 5 years" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '3 - 5 years') ? 'checked' : '' ?>>
                                         <label class="form-check-label"> 3 - 5 years</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" value="5 - 10 years" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '5 - 10 years') ? 'checked' : '' ?>>
+                                        <input type="radio" value="5 - 10 years" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '5 - 10 years') ? 'checked' : '' ?>>
                                         <label class="form-check-label"> 5 - 10 years</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" value="10+" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '10+') ? 'checked' : '' ?>>
+                                        <input type="radio" value="10+" name="yearsEmployed" class="form-check-input" disabled <?php echo ($row->yearsProfession == '10+') ? 'checked' : '' ?>>
                                         <label class="form-check-label"> 10+</label>
                                     </div>
                                 </div>
@@ -234,6 +283,17 @@ function profile_page() {
                 </div>
             </div>
             <script type="text/javascript">
+                function toggle (event) {
+                    var other_input = document.getElementById(event.name + '_other');
+                    if (event.checked) {
+                        other_input.style.display = "inline-block";
+                        other_input.setAttribute('required',true);
+                    }
+                    else {
+                        other_input.style.display = "none";
+                        other_input.removeAttribute('required');
+                    }
+                }
                 $(document).ready(function() {
                     $("#edit_profile_btn").click(function (event) {
                         var inputs = $("#profile__body").find(":input");
