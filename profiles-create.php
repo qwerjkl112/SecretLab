@@ -71,22 +71,24 @@ function profile_create() {
                 
                 <div class="col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="0" required>9/11 Family Member</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="0">9/11 Family Member</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="1" required>First Responder/First Responder Family Member</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="1">First Responder/First Responder Family Member</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="2" required>Military</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="2">Military</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="3" required>Volunteer</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="3">Volunteer</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="4" required>Prefer not to answer</label>
+                        <label><input type="checkbox" name="tcAffiliation[]" value="4">Prefer not to answer</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" onclick="otherToggle(this)" name="tcAffiliation" value="5" required>Other</label>
+                        <label><input type="checkbox" onclick="otherToggle(this)" name="tcAffiliation[]" value="5">Other</label>
+                    </div>
+                    <div>
                         <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
                     </div>
                 </div>
@@ -96,46 +98,48 @@ function profile_create() {
                 <label for="interest" class="col-sm-2 col-form-label">Interest</label>
                 <div class="col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="0" required>Finance</label>
+                        <label><input type="checkbox" name="interest[]" value="0">Finance</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="1"  required>Non Profit</label>
+                        <label><input type="checkbox" name="interest[]" value="1">Non Profit</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="2"  required>Human resource</label>
+                        <label><input type="checkbox" name="interest[]" value="2">Human resource</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="3"  required>Retail</label>
+                        <label><input type="checkbox" name="interest[]" value="3">Retail</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="4"  required>Law</label>
+                        <label><input type="checkbox" name="interest[]" value="4">Law</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="5"  required>Media</label>
+                        <label><input type="checkbox" name="interest[]" value="5">Media</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="6"  required>Education</label>
+                        <label><input type="checkbox" name="interest[]" value="6">Education</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="7"  required>Publishing</label>
+                        <label><input type="checkbox" name="interest[]" value="7">Publishing</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="8"  required>Journaling</label>
+                        <label><input type="checkbox" name="interest[]" value="8">Journaling</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="9"  required>Advertising</label>
+                        <label><input type="checkbox" name="interest[]" value="9">Advertising</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="10"  required>Marketing</label>
+                        <label><input type="checkbox" name="interest[]" value="10">Marketing</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="11"  required>PR</label>
+                        <label><input type="checkbox" name="interest[]" value="11">PR</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="12"  required>Technology</label>
+                        <label><input type="checkbox" name="interest[]" value="12">Technology</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest" onclick="otherToggle(this);" value="13"  required>Other</label>
+                        <label><input type="checkbox" name="interest[]" onclick="otherToggle(this);" value="13">Other</label>
+                    </div>
+                    <div>
                         <input type="text" name="interest_other" id="interest_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
                     </div>
                 </div>
@@ -145,24 +149,26 @@ function profile_create() {
                 <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
                 <div class="col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="0" required>Resume Writing</label>
+                        <label><input type="checkbox" name="resource[]" value="0">Resume Writing</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="1" required>Networking</label>
+                        <label><input type="checkbox" name="resource[]" value="1">Networking</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="2" required>Career Advancement</label>
+                        <label><input type="checkbox" name="resource[]" value="2">Career Advancement</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="3" required>Career Change</label>
+                        <label><input type="checkbox" name="resource[]" value="3">Career Change</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="4" required>General Professional Help</label>
+                        <label><input type="checkbox" name="resource[]" value="4">General Professional Help</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="resource" value="5" onclick="otherToggle(this)"  required>Other</label>
+                        <label><input type="checkbox" name="resource[]" value="5" onclick="otherToggle(this);">Other</label>
+                    </div> 
+                    <div>
                         <input type="text" name="resource_other" id="resource_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div>
+                    </div> 
                 </div>
             </div>
 
@@ -294,7 +300,7 @@ function profile_create() {
     </div>
     <script>
         function otherToggle (event) {
-            var other_input = document.getElementById(event.name + '_other');
+            var other_input = document.getElementById(event.name.replace('[]','') + '_other');
             if (event.checked) {
                 other_input.style.display = "inline-block";
                 other_input.setAttribute('required',true);
@@ -304,6 +310,187 @@ function profile_create() {
                 other_input.removeAttribute('required');
             }
         }
+        $('#registration-form').bootstrapValidator({
+            fields: {
+                firstname: {
+                    validators: {
+                            stringLength: {
+                            min: 2,
+                        },
+                            notEmpty: {
+                            message: 'Please supply your first name'
+                        }
+                    }
+                },
+                lastname: {
+                    validators: {
+                        stringLength: {
+                            min: 2,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your last name'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your email address'
+                        },
+                        emailAddress: {
+                            message: 'Please supply a valid email address'
+                        }
+                    }
+                },
+                phonenumber: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your phone number'
+                        },
+                        phone: {
+                            country: 'US',
+                            message: 'Please supply a vaild phone number with area code'
+                        }
+                    }
+                },
+                username: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply a username'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        stringLength: {
+                            min: 8,
+                        },
+                        notEmpty: {
+                            message: 'Password must be at least 8 characters'
+                        }
+                    }
+                },
+                'interest[]': {
+                    validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 interest'
+                        }
+                    }
+                },
+                'resource[]': {
+                    validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 resource'
+                        }
+                    }
+                },
+                'tcAffiliation[]': {
+                    validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 option'
+                        }
+                    }
+                },
+                companyName: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your company name'
+                        }
+                    }
+                },
+                companyAddress: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your company address'
+                        }
+                    }
+                },
+                jobTitle: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your job title'
+                        }
+                    }
+                },
+                professions: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your professions'
+                        }
+                    }
+                },
+                education: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your education'
+                        }
+                    }
+                },
+                jobResponisibility: {
+                    validators: {
+                        stringLength: {
+                            min: 10,
+                            max: 200,
+                            message:'Please enter at least 10 characters and no more than 200'
+                        },
+                        notEmpty: {
+                            message: 'Please supply a description of your job responsibilities'
+                        }
+                    }
+                },
+
+                otherInfo: {
+                    validators: {
+                        stringLength: {
+                            min: 10,
+                            max: 200,
+                            message:'Please enter at least 10 characters and no more than 200'
+                        },
+                        notEmpty: {
+                            message: 'Please supply other info'
+                        }
+                    }
+                }
+            }})
+            .on('success.form.bv', function(e) {
+                $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                    $('#contact_form').data('bootstrapValidator').resetForm();
+
+                // Prevent form submission
+                e.preventDefault();
+
+                // Get the form instance
+                var $form = $(e.target);
+
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                    console.log(result);
+                }, 'json');
+            })
     </script>
     <?php
 }
