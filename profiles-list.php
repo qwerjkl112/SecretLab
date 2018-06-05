@@ -20,7 +20,7 @@ function profiles_list() {
         <?php
         global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, UserType.`description` AS `userType`, Interests.`description` as `interest`, Resources.`description` as `resources`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN usertype on Users.userType=UserType.typeId INNER JOIN interests on Users.interest=Interests.interest_id INNER JOIN resources on Users.resource=Resources.resourcesId");
+        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, UserType.`description` AS `userType`, Interests.`description` as `interest`, Resources.`description` as `resources`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN UserType on Users.userType=UserType.typeId INNER JOIN Interests on Users.interest=Interests.interest_id INNER JOIN Resources on Users.resource=Resources.resourcesId");
         ?>
 
         <b>Create Connection</b>
@@ -32,20 +32,23 @@ function profiles_list() {
             <input type='submit' name='create_connection' value='Create Connection' class='button'>
         </form>
         <br>
-        <table class='table table-striped'>
+        <label>Search:</label>
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
+        <table class='table table-striped' id='profile_table'>
             <tr class="info">
-                <th class="manage-column ss-list-width">ID</th>
-                <th class="manage-column ss-list-width">Username</th>
-                <th class="manage-column ss-list-width">Full Name</th>
-                <th class="manage-column ss-list-width">Type of Member</th>
-                <th class="manage-column ss-list-width">Interest</th>
-                <th class="manage-column ss-list-width">Resource</th>
-                <th class="manage-column ss-list-width">Status</th>
-                <th class="manage-column ss-list-width">Job Title</th>
-                <th class="manage-column ss-list-width">Job Responsibility</th>
-                <th class="manage-column ss-list-width">Deactivate User</th>
-                <th class="manage-column ss-list-width">Approve User</th>
-                <th class="manage-column ss-list-width">Request Feedback</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(0)">ID</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(1)">Username</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(2)">Full Name</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(3)">Type of Member</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(4)">Interest</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(5)">Resource</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(6)">Status</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(7)">Job Title</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(8)">Job Responsibility</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(9)">Deactivate User</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(10)">Approve User</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(11)">Request Feedback</th>
 
             </tr>
             <?php foreach ($rows as $row) { ?>
@@ -88,6 +91,73 @@ function profiles_list() {
             <?php } ?>
         </table>
     </div>
+    <script>
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("profile_table");
+            switching = true;
+            //Set the sorting direction to ascending:
+            dir = "asc"; 
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.getElementsByTagName("TR");
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch= true;
+                    break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                    }
+                }
+                }
+                if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;      
+                } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+                }
+            }
+        }
+
+
+        $( document ).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#profile_table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    
+    </script>
     <?php
 }
 add_shortcode('list', 'profiles_list');
