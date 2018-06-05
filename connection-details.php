@@ -20,7 +20,7 @@ function connections_details($connectionId) {
  			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 		    	<div class="d-flex w-100 justify-content-between">
 			      <h5 class="mb-1">Sender: <?php echo $feedback->sender; ?></h5>
-			      <small>Rating : <?php echo $feedback->Rating; ?></small>
+			      <!-- <small>Rating : <?php echo $feedback->Rating; ?></small> -->
 			    </div>
 			    <p class="mb-1">Comment: <?php echo $feedback->Description; ?></p>
 			    <small>To:  <?php echo $feedback->receiver; ?></small>

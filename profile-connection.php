@@ -14,7 +14,7 @@ function profile_connection() {
 			<?php
 	        $rows = $wpdb->get_results("SELECT `connectionid`, users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName`, `createdDate`, `lastConnected`,`menteeId`,`mentorId` FROM connections INNER JOIN users on connections.mentorId=users.ID INNER JOIN users users2 on connections.menteeId=users2.ID WHERE `mentorId` = $profileId OR `menteeId` = $profileId ");
 
-	        $myFeedbacks = $wpdb->get_results("SELECT * FROM `feedbacks` WHERE `ReceiverId` = $profileId");
+	        $myFeedbacks = $wpdb->get_results("SELECT *, users.`firstname` as `sender`, users2.`firstname` AS `receiver` FROM `feedbacks` INNER JOIN users on feedbacks.SenderId=users.ID INNER JOIN users users2 on feedbacks.ReceiverId=users2.ID WHERE `ReceiverId` = $profileId");
 	        $TCFeedBacks = $wpdb->get_results("SELECT * FROM `tc_feedbacks` WHERE `profileId` = $profileId");
 
 	        $userType = '0';
@@ -55,19 +55,9 @@ function profile_connection() {
 		        <td> 
 		          <br>
 		          <form action="" method="post">
-		          	<span> Rating: </span>
-		          	<input type="radio" name="Rating" value="1"/>
-			        <label>1</label>
-			        <input type="radio" name="Rating" value="2"/>
-			        <label>2</label>
-			        <input type="radio" name="Rating" value="3"/>
-			        <label>3</label>
-			        <input type="radio" name="Rating" value="4"/>
-			        <label>4</label>
-			        <input type="radio" name="Rating" value="5"/>
-			        <label>5</label>
+		          	<input type="hidden" name="Rating" <?php echo "value=".$profileId;?>>
 			        <div class="form-group">
-					  <label for="comment">Feedback:</label>
+					  <label for="comment">Please provide any comments or feedbacks to Tuesday's Children admin:</label>
 					  <textarea class="form-control" rows="2" id="comment" name="Description"></textarea>
 					</div>
 		          	<button type="submit" class="btn btn-default" name="leave_feedback">
@@ -108,11 +98,11 @@ function profile_connection() {
 			<?php foreach ($myFeedbacks as $feedback) { ?>
  			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 		    	<div class="d-flex w-100 justify-content-between">
-			      <h5 class="mb-1">Sender: <?php echo $feedback->SenderId; ?></h5>
-			      <small>Rating : <?php echo $feedback->Rating; ?></small>
+			      <h5 class="mb-1">Sender: <?php echo $feedback->sender; ?></h5>
+			      <!-- <small>Rating : <?php echo $feedback->Rating; ?></small> -->
 			    </div>
 			    <p class="mb-1">Feedback: <?php echo $feedback->Description; ?></p>
-			    <small>From:  <?php echo $feedback->ReceiverId; ?></small>
+			    <small>From:  <?php echo $feedback->receiver; ?></small>
 			    <small>Date:  <?php echo $feedback->dateCommented; ?></small>
 
 		  	</a>				

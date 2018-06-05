@@ -1,8 +1,8 @@
 <?php
 
-if(isset($_POST['delete_user'])){
+if(isset($_POST['deactivate_user'])){
 	$profileId = $_POST["profileId"];
-	deleteUser($profileId);
+	deactivateUser($profileId);
 	
 }
 
@@ -19,15 +19,17 @@ if(isset($_POST['request_feedback'])){
     
 }
 
-function deleteUser($profileId){
+function deactivateUser($profileId){
     global $wpdb;
-	$wpdb->delete(
-            "users", //table
-            array('ID' => $profileId), 
-            array('%d') //data format  
+	$wpdb->query(
+        "
+        UPDATE `users`
+        SET status = 'Deactivated User'
+        WHERE ID = $profileId
+        "
     );
 
-    echo "<div class='alert alert-success'> <strong>Success!</strong> Member has been deleted! </div>";
+    echo "<div class='alert alert-success'> <strong>Success!</strong> Member has been deactivated! </div>";
 }
 	
 

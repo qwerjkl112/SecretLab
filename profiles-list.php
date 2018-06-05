@@ -49,7 +49,8 @@ function profiles_list() {
 
             </tr>
             <?php foreach ($rows as $row) { ?>
-                <tr <?php if($row->status === 'Pending Review'){ echo "class='warning'"; } ?>>
+                <tr <?php if($row->status === 'Pending Review'){ echo "class='danger'"; }
+                else if($row->status === 'Deactivated User'){ echo "class='warning'";} ?>>
                     <td class="manage-column ss-list-width"><?php echo $row->ID; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
@@ -61,7 +62,7 @@ function profiles_list() {
                     <td class="manage-column ss-list-width"><?php echo $row->jobResponisibility; ?></td> 
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">
-                        <button type="submit" class="btn btn-default" name="delete_user">
+                        <button type="submit" class="btn btn-default" name="deactivate_user">
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
                         <span class="glyphicon glyphicon-remove" ></span> Deactivate User </button>
                         </form>

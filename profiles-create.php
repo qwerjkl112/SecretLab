@@ -10,7 +10,7 @@ function profile_create() {
     <div class="wrap">
         <h2>Add New Profile</h2>
         <?php if (isset($message)): ?><div class="updated"><p><?php echo $message; ?></p></div><?php endif; ?>
-        <form method="post" action="../list" id="registration-form" novalidate="">
+        <form method="post" action=".." id="registration-form" novalidate="">
             <p>Register</p>
             <!-- BASIC INFO -->
             <div class="form-group row">
