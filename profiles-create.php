@@ -34,24 +34,36 @@ function profile_create() {
                     <input type="text" name = "lastname" class="form-control" id="lastname" placeholder="Last Name" required>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="email" name = "email" class="form-control" id="email" placeholder="Email" required>
-                </div>
-            </div>
+
             <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-10">
                     <input type="text" name = "username" class="form-control" id="username" placeholder="Username" required>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
                     <input type="password" name="password" class="form-control" id="password" required>
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" name = "email" class="form-control" id="email" placeholder="Email" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="date_of_birth" class="col-sm-2 col-form-label">Date of Birth</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" name="dob" id="date_of_birth" placeholder="Date of Birth" required>
+                </div>
+            </div>
+
+            
             <div class="form-group row">
                 <label for="phonenumber" class="col-sm-2 col-form-label">Phone Number</label>
                 <div class="col-sm-10">
@@ -60,9 +72,29 @@ function profile_create() {
             </div> 
 
             <div class="form-group row">
-                <label for="date_of_birth" class="col-sm-2 col-form-label">Date of Birth</label>
+                <label for="resource" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="dob" id="date_of_birth" placeholder="Date of Birth" required>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="0">Resume Writing</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="1">Networking</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="2">Career Advancement</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="3">Career Change</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="4">General Professional Help</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="5" onclick="otherToggle(this);">Other</label>
+                    </div> 
+                    <div>
+                        <input type="text" name="resource_other" id="resource_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
+                    </div> 
                 </div>
             </div>
 
@@ -145,35 +177,10 @@ function profile_create() {
                 </div>
             </div>
                         
-            <div class="form-group row">
-                <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
-                <div class="col-sm-10">
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="0">Resume Writing</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="1">Networking</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="2">Career Advancement</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="3">Career Change</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="4">General Professional Help</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="5" onclick="otherToggle(this);">Other</label>
-                    </div> 
-                    <div>
-                        <input type="text" name="resource_other" id="resource_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div> 
-                </div>
-            </div>
+            
 
                 <!-- MENTOR QUESTIONS -->
-            <div id="connector_form">
+            <div id="mentor_form">
                 <div class="form-group row">
                     <label for="companyName" class="col-sm-2 col-form-label">Company Name</label>
                     <div class="col-sm-10">
@@ -199,6 +206,18 @@ function profile_create() {
                     </div>
                 </div>
                 
+                <div class="form-group row">
+                    <label for="yearsEmployed" class="col-sm-2 col-form-label">Years in current employeer</label>
+                    <div class="col-sm-10">
+                        <select name="yearsEmployed" class="form-control" id="yearsEmployed" >
+                            <option><1 year</option>
+                            <option>1 - 3 years</option>
+                            <option>3 - 5 years</option>
+                            <option>5 - 10 years</option>
+                            <option>10+</option>
+                        </select>
+                    </div>
+                </div> 
             
                 <div class="form-group row">
                     <label for="yearsProfession" class="col-sm-2 col-form-label">Years in current profession</label>
@@ -264,7 +283,7 @@ function profile_create() {
                 </div>
             </div>
                 <!-- MENTEE QUESTIONS -->
-            <div id="candidate_form">
+            <div id="mentee_form">
                 <div class="form-group row">
                     <label for="employmentType" class="col-sm-2 col-form-label">Are you: </label>
                     <div class="col-sm-10">
@@ -276,6 +295,41 @@ function profile_create() {
                         </select>
                     </div>
                 </div> 
+
+                <div class="form-group row">
+                    <label for="currentEducation" class="col-sm-2 col-form-label">Are you: </label>
+                    <div class="col-sm-10">
+                        <select name="currentEducation" class="form-control" id="currentEducation">
+                            <option>In High School</option>
+                            <option>In college</option>
+                            <option>In the workforce/post college</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div> 
+
+                <div id="education_form">
+                    <div class="form-group row">
+                        <label for="college" class="col-sm-2 col-form-label">What college did you attend?</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="college" id="college" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="locationCollege" class="col-sm-2 col-form-label">Where is your school located?</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="locationCollege" id="locationCollege" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="graduationDate" class="col-sm-2 col-form-label">What is your anticipated graduation Date?</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="graduationDate" id="graduationDate" required>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
                
                 <div class="form-group row">
                     <label for="degree" class="col-sm-2 col-form-label">What is the highest grade or level of school you have completed? Example: If you are currently in college, you would select High School or GED</label>
@@ -299,6 +353,47 @@ function profile_create() {
         </form>
     </div>
     <script>
+    
+        $( document ).ready(function() {
+            var _userType_selector = $("#userType");
+            var _mentor_form = $("#mentor_form");
+            var _mentee_form = $("#mentee_form");
+
+            if (_userType_selector.val() === "1") {
+                _mentor_form.css('display', 'block');
+                _mentee_form.css('display', 'none');
+                $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
+            }
+            else {
+                _mentee_form.css('display', 'block');
+                _mentor_form.css('display', 'none');
+                $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
+            }
+
+            _userType_selector.change(function() {
+                var value = _userType_selector.val();
+                if(value === "1") {
+                    // User selected type Mentor
+                    _mentor_form.css('display', 'block');
+                    _mentee_form.css('display', 'none');
+                    $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
+                } else if (value === "0") {
+                    // User selected type Mentee
+                    _mentee_form.css('display', 'block');
+                    _mentor_form.css('display', 'none');
+                    $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
+                }
+            });
+
+            $('#currentEducation').change(function(){
+                if ($('#currentEducation').val() === 'In High School' || $('#currentEducation').val() === 'In college'){
+                    $('#education_form').css('display','block');
+                }
+                else{
+                    $('#education_form').css('display','none');
+                }
+            })
+        });
         function otherToggle (event) {
             var other_input = document.getElementById(event.name.replace('[]','') + '_other');
             if (event.checked) {
