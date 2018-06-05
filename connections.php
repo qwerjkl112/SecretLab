@@ -6,7 +6,7 @@ function connections_table() {
 
 	global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName`, `connectionid`, `mentorId`, `menteeId`, `createdDate`, `lastConnected` FROM `Connections` INNER JOIN Users on Connections.mentorId=Users.ID INNER JOIN Users Users2 on Connections.menteeId=Users2.ID ");
+        $rows = $wpdb->get_results("SELECT users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName`, `connectionid`, `mentorId`, `menteeId`, `createdDate`, `lastConnected` FROM `connections` INNER JOIN users on connections.mentorId=users.ID INNER JOIN users users2 on connections.menteeId=users2.ID ");
 	?>
 
 		<div class="container">

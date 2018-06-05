@@ -12,7 +12,7 @@ if(isset($_POST['leave_feedback'])){
 function leaveFeedback($senderId, $receiverId, $rating, $connectionId, $Description){
     global $wpdb;
     $myDate = date('m/d/Y');
-    $table_name = "Feedbacks";
+    $table_name = "feedbacks";
 	$wpdb->insert(
             $table_name, //table
             array('SenderId' => $senderId, 'ReceiverId' => $receiverId, 'Rating' => $rating, 'Description' => $Description, 'dateCommented' => $myDate, 'connectionId' => $connectionId), 
@@ -21,7 +21,7 @@ function leaveFeedback($senderId, $receiverId, $rating, $connectionId, $Descript
 
     $wpdb->query(
         $wpdb->prepare("
-        UPDATE `Connections`
+        UPDATE `connections`
         SET lastConnected = %s
         WHERE connectionId = %d
         ",

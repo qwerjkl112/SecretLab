@@ -25,7 +25,7 @@ function profile_page() {
         if(isset($_SESSION['login_user'])){
             $username = $_SESSION['login_user'];
             global $wpdb;
-            $row = $wpdb->get_row("SELECT *, Interests.`description` AS `interest`, UserType.`description` AS `userType` FROM Users INNER JOIN UserType on Users.userType=UserType.typeId INNER JOIN Interests on Users.interest=Interests.interest_id WHERE username = '$username'");
+            $row = $wpdb->get_row("SELECT *, interests.`description` AS `interest`, UserType.`description` AS `userType` FROM Users INNER JOIN usertype on Users.userType=UserType.typeId INNER JOIN interests on Users.interest=interests.interest_id WHERE username = '$username'");
             ?>
             <div id="profile__header"> 
                 <img id="user_img" />

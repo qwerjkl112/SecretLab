@@ -11,7 +11,7 @@ if(isset($_POST['login'])){
 
 function chckusername($username, $password){
 	global $wpdb;
-    $result = $wpdb->get_row("SELECT * FROM USERS WHERE `username` = '$username' and `password` = '$password'");
+    $result = $wpdb->get_row("SELECT * FROM users WHERE `username` = '$username' and `password` = '$password'");
     if ($result != null) {
     	$_SESSION['login_user'] = $username;
         $_SESSION['id'] = $result->ID;

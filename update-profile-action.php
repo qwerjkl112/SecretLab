@@ -16,7 +16,7 @@ if (isset($_POST['updateProfile'])) {
 
 function updateProfile($profileId){
     if (isset($_POST['update'])) {
-    $table_name = "Users";
+    $table_name = "users";
     $wpdb->update(
             $table_name, //table
             array('ID' => $id), //data

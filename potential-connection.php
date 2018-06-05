@@ -5,7 +5,7 @@ function potential_connections_table() {
 
   global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT *, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName` FROM `PotentialConnections` INNER JOIN Users on PotentialConnections.mentorId=Users.ID INNER JOIN Users Users2 on PotentialConnections.menteeId=Users2.ID ");
+        $rows = $wpdb->get_results("SELECT *, users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName` FROM `potentialconnections` INNER JOIN users on potentialconnections.mentorId=users.ID INNER JOIN users users2 on potentialconnections.menteeId=users2.ID ");
   
   ?>
   <b>Create Connection</b>

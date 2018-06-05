@@ -22,7 +22,7 @@ if(isset($_POST['request_feedback'])){
 function deleteUser($profileId){
     global $wpdb;
 	$wpdb->delete(
-            "Users", //table
+            "users", //table
             array('ID' => $profileId), 
             array('%d') //data format  
     );
@@ -35,7 +35,7 @@ function approveuser($profileId){
     global $wpdb;
     $wpdb->query(
         "
-        UPDATE `Users`
+        UPDATE `users`
         SET status = 'Approved Member'
         WHERE ID = $profileId
         "
@@ -47,7 +47,7 @@ function approveuser($profileId){
 function requestFeedback($profileId, $description){
     global $wpdb;
     $myDate = date('m/d/Y');
-    $table_name = "TC_Feedbacks";
+    $table_name = "tc_feedbacks";
     $wpdb->insert(
             $table_name, //table
             array('profileId' => $profileId, 'Description' => $description, 'createdDate' => $myDate), 

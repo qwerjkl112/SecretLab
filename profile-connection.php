@@ -12,18 +12,17 @@ function profile_connection() {
   				<strong>Welcome</strong> <?php echo $_SESSION['login_user']?>
 			</div>
 			<?php
-	        $rows = $wpdb->get_results("SELECT `connectionid`, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName`, `createdDate`, `lastConnected`,`menteeId`,`mentorId` FROM Connections INNER JOIN Users on Connections.mentorId=Users.ID INNER JOIN Users Users2 on Connections.menteeId=Users2.ID WHERE `mentorId` = $profileId OR `menteeId` = $profileId ");
+	        $rows = $wpdb->get_results("SELECT `connectionid`, users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName`, `createdDate`, `lastConnected`,`menteeId`,`mentorId` FROM connections INNER JOIN users on connections.mentorId=users.ID INNER JOIN users users2 on connections.menteeId=users2.ID WHERE `mentorId` = $profileId OR `menteeId` = $profileId ");
 
-	        $myFeedbacks = $wpdb->get_results("SELECT * FROM `Feedbacks` WHERE `ReceiverId` = $profileId");
-	        $TCFeedBacks = $wpdb->get_results("SELECT * FROM `TC_Feedbacks` WHERE `profileId` = $profileId");
+	        $myFeedbacks = $wpdb->get_results("SELECT * FROM `feedbacks` WHERE `ReceiverId` = $profileId");
+	        $TCFeedBacks = $wpdb->get_results("SELECT * FROM `tc_feedbacks` WHERE `profileId` = $profileId");
 
 	        $userType = '0';
 	        if($_SESSION['userType'] == '1') {
 	        	$userType = '1';
 	        }
 
-	        
-
+	       
 	?>
 
 		<div class="container">

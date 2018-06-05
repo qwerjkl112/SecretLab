@@ -86,7 +86,7 @@ function profile_create() {
                         <label><input type="checkbox" name="tcAffiliation[]" value="4">Prefer not to answer</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" onclick="otherToggle(this)" name="tcAffiliation[]" value="5">Other</label>
+                        <label><input type="checkbox" onclick="otherToggle(this);" name="tcAffiliation[]" value="5">Other</label>
                     </div>
                     <div>
                         <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
@@ -164,7 +164,8 @@ function profile_create() {
                         <label><input type="checkbox" name="resource[]" value="4">General Professional Help</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="5" onclick="otherToggle(this);">Other</label>
+                        <label><input type="checkbox" onclick="otherToggle(this);" name="resource[]"
+                            value="5">Other</label>
                     </div> 
                     <div>
                         <input type="text" name="resource_other" id="resource_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
@@ -257,9 +258,6 @@ function profile_create() {
                     <label for="otherInfo" class="col-sm-2 col-form-label">Is there any other information you would like to share?</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" rows="5" name="otherInfo" id="otherInfo"></textarea>
-                    </div>
-                    <div class="col-xs-3">
-                        <input type="text" name="resource" class="form-control" id="resource" style="display:none">
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ if(isset($_POST['delete_connection'])){
 
 function deleteConnection($connectionId){
     global $wpdb;
-    $table_name = "Connections";
+    $table_name = "connections";
     $result = $wpdb->get_row("SELECT * FROM $table_name WHERE `connectionId` = $connectionId");
 
 	$wpdb->delete(
@@ -30,7 +30,7 @@ function deleteConnection($connectionId){
     // );
 
     $wpdb->delete(
-            "Feedbacks", //table
+            "feedbacks", //table
             array('connectionid' => $connectionId), 
             array('%d') //data format  
     );

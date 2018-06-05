@@ -15,7 +15,7 @@ if(isset($_POST['delete_potential_connections'])){
 function createConnection($mentorId, $menteeId){
     global $wpdb;
     $myDate = date('m/d/Y');
-    $table_name = "Connections";
+    $table_name = "connections";
 	$wpdb->insert(
             $table_name, //table
             array('mentorId' => $mentorId, 'menteeId' => $menteeId, 'createdDate' => $myDate, 'lastConnected' => $myDate), 
@@ -30,7 +30,7 @@ function createConnection($mentorId, $menteeId){
     //     "
     // );
 
-    $check = $wpdb->get_results("SELECT * FROM `PotentialConnections` WHERE `mentorId` =  $mentorId AND `menteeId` = $menteeId");
+    $check = $wpdb->get_results("SELECT * FROM `potentialconnections` WHERE `mentorId` =  $mentorId AND `menteeId` = $menteeId");
     if(sizeof($check) > 0) {
         deletePotentialConnection($mentorId, $menteeId);
     }
@@ -39,5 +39,5 @@ function createConnection($mentorId, $menteeId){
 
 function deletePotentialConnection($mentorId, $menteeId) {
     global $wpdb;
-    $wpdb->query(" DELETE FROM `PotentialConnections` WHERE mentorId = $mentorId AND menteeId = $menteeId ");
+    $wpdb->query(" DELETE FROM `potentialconnections` WHERE mentorId = $mentorId AND menteeId = $menteeId ");
 }

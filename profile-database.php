@@ -57,19 +57,16 @@ if(isset($_POST['register'])){
             $resourceBitMask += pow(2, (int) $resource[$i]);
         }
     }
-     echo "tc bitmask to " . $tcAffiliationBitMask . "";
-     echo "interest bitmask to " . $interestBitMask . "";
-     echo "resource bitmask to " . $resourceBitMask . "";
-     echo "afflication " . $tcAffiliation_other . "";
-     echo "interest " . $interest_other . "";
-     echo "resource " . $resource_other . "";
+     echo "tc bitmask to " . $tcAffiliationBitMask . "<br>";
+     echo "interest bitmask to " . $interestBitMask . "<br>";
+     echo "resource bitmask to " . $resourceBitMask . "<br>";
 
 
 
 
     //insert
     global $wpdb;
-    $table_name = "Users";
+    $table_name = "users";
 
     $wpdb->insert(
             $table_name, //table
