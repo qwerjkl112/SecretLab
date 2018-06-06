@@ -4,11 +4,21 @@ if(isset($_POST['findMatch'])){
 	findPotentialMatches();
 }
 
+if(isset($_POST['clearMatch'])){
+    clearPotentialMatches();
+}
+
+function clearPotentialMatches(){
+    global $wpdb;
+    $table_name = "potentialconnections";
+    $wpdb->query("DELETE FROM $table_name");
+}
+
 function findPotentialMatches(){
 	global $wpdb;
     $table_name = "users";
-    $menteesList = $wpdb->get_results("SELECT `TCAffiliationBitMask`, `InterestsBitMask`, `ResourcesBitMask`, `ID` FROM $table_name WHERE `usertype` = 0 ");
-    $mentorsList = $wpdb->get_results("SELECT `TCAffiliationBitMask`, `InterestsBitMask`, `ResourcesBitMask`, `ID` FROM $table_name WHERE `usertype` = 1 ");
+    $menteesList = $wpdb->get_results("SELECT `TCAffiliationBitMask`, `InterestsBitMask`, `ResourcesBitMask`, `ID` FROM $table_name WHERE `usertype` = 0 AND `status` = 'Approved Member'");
+    $mentorsList = $wpdb->get_results("SELECT `TCAffiliationBitMask`, `InterestsBitMask`, `ResourcesBitMask`, `ID` FROM $table_name WHERE `usertype` = 1 AND `status` = 'Approved Member'");
 
     $arrScore  = array();
     $arrMentor = array();

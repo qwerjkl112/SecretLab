@@ -25,6 +25,11 @@ if(isset($_POST['register'])){
     $otherInfo = $_POST["otherInfo"];
     $employmentType = $_POST["employmentType"];
     $degree = $_POST["degree"];
+    $yearsEmployed = $_POST["yearsEmployed"];
+    $currentEducation = $_POST["currentEducation"];
+    $college = $_POST["college"];
+    $locationCollege = $_POST["locationCollege"];
+    $graduationDate = $_POST["graduationDate"];
 
     $tcAffiliation_other = $_POST["tcAffiliation_other"];
     $interest_other = $_POST["interest_other"];
@@ -98,7 +103,12 @@ if(isset($_POST['register'])){
                 'otherDegree' => $otherDegree,
                 'TCAffiliationBitMask'=> $tcAffiliationBitMask,
                 'InterestsBitMask' => $interestBitMask,
-                'ResourcesBitMask' =>$resourceBitMask),
+                'ResourcesBitMask' =>$resourceBitMask,
+                'yearsEmployed' => $yearsEmployed,
+                'currentEducation' => $currentEducation,
+                'college' => $college,
+                'locationCollege' => $locationCollege,
+                'graduationDate' => $graduationDate),
             array('%s', '%s') //data format  
     );
 

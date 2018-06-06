@@ -21,7 +21,7 @@ function potential_connections_table() {
     <table class="table">
       <thead>
         <tr>
-          <th>Potential Connection Id</th>
+          <th>Id:</th>
           <th>Connection</th>
           <th>Match Score</th>
           <th>Actions</th>
@@ -31,7 +31,10 @@ function potential_connections_table() {
         <?php foreach ($rows as $row) { ?>
         <tr class="active">
           <td>
-            id: <?php echo $row->PotentialConnectionsId; ?>
+            connection id: <?php echo $row->PotentialConnectionsId; ?><br>
+            mentor id: <?php echo $row->mentorId; ?>
+            <br>
+            mentee id: <?php echo $row->menteeId; ?>
           </td>
           <td> 
             Mentor Name:
@@ -75,6 +78,7 @@ function potential_connections_table() {
   <form method="post" action="">
     <div>
       <input type='submit' name='findMatch' value="Generate" class='button'>
+      <input type='submit' name='clearMatch' value="Clear" class='button'>
     </div>
   </form>
 

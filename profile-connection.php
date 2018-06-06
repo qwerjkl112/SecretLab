@@ -104,7 +104,6 @@ function profile_connection() {
 			    <p class="mb-1">Feedback: <?php echo $feedback->Description; ?></p>
 			    <small>From:  <?php echo $feedback->receiver; ?></small>
 			    <small>Date:  <?php echo $feedback->dateCommented; ?></small>
-
 		  	</a>				
 		<?php } ?>
 		</div>
