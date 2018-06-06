@@ -5,7 +5,7 @@ function potential_connections_table() {
 
   global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT *, users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName` FROM `potentialconnections` INNER JOIN users on potentialconnections.mentorId=users.ID INNER JOIN users users2 on potentialconnections.menteeId=users2.ID ");
+        $rows = $wpdb->get_results("SELECT *, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName` FROM `PotentialConnections` INNER JOIN Users on PotentialConnections.mentorId=Users.ID INNER JOIN Users Users2 on PotentialConnections.menteeId=Users2.ID ");
   
   ?>
   <b>Create Connection</b>
@@ -17,13 +17,16 @@ function potential_connections_table() {
       <input type='submit' name='create_connection' value='Create Connection' class='button'>
   </form>
   <br>
+
   <div class="container">
-    <table class="table">
+    <label>Search:</label>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <table class="table" id="potential_connections_tb" >
       <thead>
         <tr>
-          <th>Id:</th>
+          <th>Potential Connections Id</th>
           <th>Connection</th>
-          <th>Match Score</th>
+          <th onclick="sortMatches()">Match Score</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -31,10 +34,7 @@ function potential_connections_table() {
         <?php foreach ($rows as $row) { ?>
         <tr class="active">
           <td>
-            connection id: <?php echo $row->PotentialConnectionsId; ?><br>
-            mentor id: <?php echo $row->mentorId; ?>
-            <br>
-            mentee id: <?php echo $row->menteeId; ?>
+            id: <?php echo $row->PotentialConnectionsId; ?>
           </td>
           <td> 
             Mentor Name:
@@ -78,10 +78,74 @@ function potential_connections_table() {
   <form method="post" action="">
     <div>
       <input type='submit' name='findMatch' value="Generate" class='button'>
-      <input type='submit' name='clearMatch' value="Clear" class='button'>
     </div>
   </form>
+  <script>
+    function sortMatches() {
+      console.log('hello');
+      var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;;
+      table = document.getElementById("potential_connections_tb");
+      switching = true;
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      dir = "asc"; 
+      while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.getElementsByTagName("TR");
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("TD")[2];
+          x = x.getElementsByTagName("span")[0];
+          y = rows[i + 1].getElementsByTagName("TD")[2];
+          y = y.getElementsByTagName("span")[0];
+          //check if the two rows should switch place:
+          console.log(x.innerHTML);
+          if (dir == "asc") {
+            if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                console.log('sorting');
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+          } else if (dir == "desc") {
+              if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                console.log('sorting');
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount ++; 
+        }
 
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+    $( document ).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#potential_connections_tb tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+  
+  </script>
 <?php
 }
 
