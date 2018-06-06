@@ -347,6 +347,241 @@ function profile_create() {
             </div>
         </form>
     </div>
+
+<script>
+
+$( document ).ready(function() {
+    var _userType_selector = $("#userType");
+    var _mentor_form = $("#mentor_form");
+    var _mentee_form = $("#mentee_form");
+
+    if (_userType_selector.val() === "1") {
+        _mentor_form.css('display', 'block');
+        _mentee_form.css('display', 'none');
+        $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
+    }
+    else {
+        _mentee_form.css('display', 'block');
+        _mentor_form.css('display', 'none');
+        $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
+    }
+
+    _userType_selector.change(function() {
+        var value = _userType_selector.val();
+        if(value === "1") {
+            // User selected type Mentor
+            _mentor_form.css('display', 'block');
+            _mentee_form.css('display', 'none');
+            $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
+        } else if (value === "0") {
+            // User selected type Mentee
+            _mentee_form.css('display', 'block');
+            _mentor_form.css('display', 'none');
+            $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
+        }
+    });
+
+    $('#currentEducation').change(function(){
+        if ($('#currentEducation').val() === 'In High School' || $('#currentEducation').val() === 'In college'){
+            $('#education_form').css('display','block');
+        }
+        else{
+            $('#education_form').css('display','none');
+        }
+    })
+});
+ function otherToggle (event) {
+     var other_input = document.getElementById(event.name.replace('[]','') + '_other');
+     if (event.checked) {
+         other_input.style.display = "inline-block";
+         other_input.setAttribute('required',true);
+     }
+     else {
+         other_input.style.display = "none";
+         other_input.removeAttribute('required');
+     }
+ }
+ $('#registration-form').bootstrapValidator({
+     fields: {
+         firstname: {
+             validators: {
+                     stringLength: {
+                     min: 2,
+                 },
+                     notEmpty: {
+                     message: 'Please supply your first name'
+                 }
+             }
+         },
+         lastname: {
+             validators: {
+                 stringLength: {
+                     min: 2,
+                 },
+                 notEmpty: {
+                     message: 'Please supply your last name'
+                 }
+             }
+         },
+         email: {
+             validators: {
+                 notEmpty: {
+                     message: 'Please supply your email address'
+                 },
+                 emailAddress: {
+                     message: 'Please supply a valid email address'
+                 }
+             }
+         },
+         phonenumber: {
+             validators: {
+                 notEmpty: {
+                     message: 'Please supply your phone number'
+                 },
+                 phone: {
+                     country: 'US',
+                     message: 'Please supply a vaild phone number with area code'
+                 }
+             }
+         },
+         username: {
+             validators: {
+                 stringLength: {
+                     min: 5,
+                 },
+                 notEmpty: {
+                     message: 'Please supply a username'
+                 }
+             }
+         },
+         password: {
+             validators: {
+                 stringLength: {
+                     min: 8,
+                 },
+                 notEmpty: {
+                     message: 'Password must be at least 8 characters'
+                 }
+             }
+         },
+         'interest[]': {
+             validators: {
+                 choice: {
+                     min: 1,
+                     message: 'Please choose at least 1 interest'
+                 }
+             }
+         },
+         'resource[]': {
+             validators: {
+                 choice: {
+                     min: 1,
+                     message: 'Please choose at least 1 resource'
+                 }
+             }
+         },
+         'tcAffiliation[]': {
+             validators: {
+                 choice: {
+                     min: 1,
+                     message: 'Please choose at least 1 option'
+                 }
+             }
+         },
+         companyName: {
+             validators: {
+                 stringLength: {
+                     min: 5,
+                 },
+                 notEmpty: {
+                     message: 'Please supply your company name'
+                 }
+             }
+         },
+         companyAddress: {
+             validators: {
+                 stringLength: {
+                     min: 5,
+                 },
+                 notEmpty: {
+                     message: 'Please supply your company address'
+                 }
+             }
+         },
+         jobTitle: {
+             validators: {
+                 stringLength: {
+                     min: 5,
+                 },
+                 notEmpty: {
+                     message: 'Please supply your job title'
+                 }
+             }
+         },
+         professions: {
+             validators: {
+                 stringLength: {
+                     min: 5,
+                 },
+                 notEmpty: {
+                     message: 'Please supply your professions'
+                 }
+             }
+         },
+         education: {
+             validators: {
+                 stringLength: {
+                     min: 5,
+                 },
+                 notEmpty: {
+                     message: 'Please supply your education'
+                 }
+             }
+         },
+         jobResponisibility: {
+             validators: {
+                 stringLength: {
+                     min: 10,
+                     max: 200,
+                     message:'Please enter at least 10 characters and no more than 200'
+                 },
+                 notEmpty: {
+                     message: 'Please supply a description of your job responsibilities'
+                 }
+             }
+         },
+         otherInfo: {
+             validators: {
+                 stringLength: {
+                     min: 10,
+                     max: 200,
+                     message:'Please enter at least 10 characters and no more than 200'
+                 },
+                 notEmpty: {
+                     message: 'Please supply other info'
+                 }
+             }
+         }
+     }})
+     .on('success.form.bv', function(e) {
+         $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+             $('#contact_form').data('bootstrapValidator').resetForm();
+
+         // Prevent form submission
+         e.preventDefault();
+
+         // Get the form instance
+         var $form = $(e.target);
+
+         // Get the BootstrapValidator instance
+         var bv = $form.data('bootstrapValidator');
+
+         // Use Ajax to submit form data
+         $.post($form.attr('action'), $form.serialize(), function(result) {
+             console.log(result);
+         }, 'json');
+     })
+</script>
     
     <?php
 }
