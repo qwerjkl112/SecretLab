@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `Connections`
 --
 
-CREATE TABLE `Connections` (
+CREATE TABLE `connections` (
   `connectionId` int(11) NOT NULL,
   `mentorId` int(11) NOT NULL,
   `menteeId` int(11) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `Connections` (
 -- Dumping data for table `Connections`
 --
 
-INSERT INTO `Connections` (`connectionId`, `mentorId`, `menteeId`, `createdDate`, `lastConnected`) VALUES
+INSERT INTO `connections` (`connectionId`, `mentorId`, `menteeId`, `createdDate`, `lastConnected`) VALUES
 (43, 26, 25, '05/03/2018', '05/09/2018'),
 (49, 26, 19, '05/16/2018', '06/05/2018'),
 (50, 26, 16, '05/16/2018', '05/24/2018');
@@ -43,7 +43,7 @@ INSERT INTO `Connections` (`connectionId`, `mentorId`, `menteeId`, `createdDate`
 -- Table structure for table `Feedbacks`
 --
 
-CREATE TABLE `Feedbacks` (
+CREATE TABLE `feedbacks` (
   `feedbackId` int(11) NOT NULL,
   `SenderId` int(11) NOT NULL,
   `ReceiverId` int(11) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `Feedbacks` (
 -- Dumping data for table `Feedbacks`
 --
 
-INSERT INTO `Feedbacks` (`feedbackId`, `SenderId`, `ReceiverId`, `Rating`, `Description`, `dateCommented`, `connectionId`) VALUES
+INSERT INTO `feedbacks` (`feedbackId`, `SenderId`, `ReceiverId`, `Rating`, `Description`, `dateCommented`, `connectionId`) VALUES
 (28, 26, 25, 5, 'sdf', '05/09/2018', 43),
 (30, 26, 19, 5, 'dsaf', '05/16/2018', 49),
 (31, 16, 26, 5, 'Great experience', '05/24/2018', 50),
@@ -71,7 +71,7 @@ INSERT INTO `Feedbacks` (`feedbackId`, `SenderId`, `ReceiverId`, `Rating`, `Desc
 -- Table structure for table `PotentialConnections`
 --
 
-CREATE TABLE `PotentialConnections` (
+CREATE TABLE `potentialconnections` (
   `PotentialConnectionsId` int(11) NOT NULL,
   `mentorId` int(11) NOT NULL,
   `menteeId` int(11) NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE `PotentialConnections` (
 -- Dumping data for table `PotentialConnections`
 --
 
-INSERT INTO `PotentialConnections` (`PotentialConnectionsId`, `mentorId`, `menteeId`, `matchScore`) VALUES
+INSERT INTO `potentialconnections` (`PotentialConnectionsId`, `mentorId`, `menteeId`, `matchScore`) VALUES
 (51, 33, 25, 85),
 (52, 33, 19, 78);
 
@@ -92,7 +92,7 @@ INSERT INTO `PotentialConnections` (`PotentialConnectionsId`, `mentorId`, `mente
 -- Table structure for table `TC_Feedbacks`
 --
 
-CREATE TABLE `TC_Feedbacks` (
+CREATE TABLE `tc_feedbacks` (
   `feedbackId` int(11) NOT NULL,
   `profileId` int(11) NOT NULL,
   `Description` varchar(500) DEFAULT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE `TC_Feedbacks` (
 -- Dumping data for table `TC_Feedbacks`
 --
 
-INSERT INTO `TC_Feedbacks` (`feedbackId`, `profileId`, `Description`, `createdDate`) VALUES
+INSERT INTO `tc_feedbacks` (`feedbackId`, `profileId`, `Description`, `createdDate`) VALUES
 (1, 21, 'as', '05/01/2018'),
 (2, 20, 'Please Review Us with Feedback\r\n', '05/01/2018'),
 (3, 21, 'Hey Please Email Us', '05/01/2018'),
@@ -188,7 +188,7 @@ INSERT INTO `users` (`ID`, `firstname`, `lastname`, `username`, `password`, `ema
 -- Table structure for table `UserType`
 --
 
-CREATE TABLE `UserType` (
+CREATE TABLE `usertype` (
   `typeId` int(11) NOT NULL,
   `Description` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -197,7 +197,7 @@ CREATE TABLE `UserType` (
 -- Dumping data for table `UserType`
 --
 
-INSERT INTO `UserType` (`typeId`, `Description`) VALUES
+INSERT INTO `usertype` (`typeId`, `Description`) VALUES
 (0, 'Mentee'),
 (1, 'Mentor'),
 (2, 'Admin');
@@ -209,7 +209,7 @@ INSERT INTO `UserType` (`typeId`, `Description`) VALUES
 --
 -- Indexes for table `Connections`
 --
-ALTER TABLE `Connections`
+ALTER TABLE `connections`
   ADD PRIMARY KEY (`connectionId`),
   ADD KEY `mentorId` (`mentorId`),
   ADD KEY `menteeId` (`menteeId`);
@@ -217,19 +217,19 @@ ALTER TABLE `Connections`
 --
 -- Indexes for table `Feedbacks`
 --
-ALTER TABLE `Feedbacks`
+ALTER TABLE `feedbacks`
   ADD PRIMARY KEY (`feedbackId`);
 
 --
 -- Indexes for table `PotentialConnections`
 --
-ALTER TABLE `PotentialConnections`
+ALTER TABLE `potentialconnections`
   ADD PRIMARY KEY (`PotentialConnectionsId`);
 
 --
 -- Indexes for table `TC_Feedbacks`
 --
-ALTER TABLE `TC_Feedbacks`
+ALTER TABLE `tc_feedbacks`
   ADD PRIMARY KEY (`feedbackId`);
 
 --
@@ -237,15 +237,12 @@ ALTER TABLE `TC_Feedbacks`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `userType` (`userType`),
-  ADD KEY `interest` (`interest`(255)),
-  ADD KEY `resource` (`resource`(255)),
-  ADD KEY `tcAffiliation` (`tcAffiliation`(255));
+  ADD KEY `userType` (`userType`)
 
 --
 -- Indexes for table `UserType`
 --
-ALTER TABLE `UserType`
+ALTER TABLE `usertype`
   ADD PRIMARY KEY (`typeId`);
 
 --
@@ -255,25 +252,25 @@ ALTER TABLE `UserType`
 --
 -- AUTO_INCREMENT for table `Connections`
 --
-ALTER TABLE `Connections`
+ALTER TABLE `connections`
   MODIFY `connectionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `Feedbacks`
 --
-ALTER TABLE `Feedbacks`
+ALTER TABLE `feedbacks`
   MODIFY `feedbackId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `PotentialConnections`
 --
-ALTER TABLE `PotentialConnections`
+ALTER TABLE `potentialconnections`
   MODIFY `PotentialConnectionsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `TC_Feedbacks`
 --
-ALTER TABLE `TC_Feedbacks`
+ALTER TABLE `tc_feedbacks`
   MODIFY `feedbackId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
@@ -289,7 +286,7 @@ ALTER TABLE `users`
 --
 -- Constraints for table `Connections`
 --
-ALTER TABLE `Connections`
+ALTER TABLE `connections`
   ADD CONSTRAINT `connections_ibfk_1` FOREIGN KEY (`mentorId`) REFERENCES `Users` (`ID`),
   ADD CONSTRAINT `connections_ibfk_2` FOREIGN KEY (`menteeId`) REFERENCES `Users` (`ID`);
 
