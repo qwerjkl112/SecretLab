@@ -10,7 +10,7 @@ function profile_create() {
     <div class="wrap">
         <h2>Add New Profile</h2>
         <?php if (isset($message)): ?><div class="updated"><p><?php echo $message; ?></p></div><?php endif; ?>
-        <form method="post" action=".." id="registration-form" novalidate="">
+        <form method="post" action="../list" id="registration-form" novalidate="">
             <p>Register</p>
             <!-- BASIC INFO -->
             <div class="form-group row">
@@ -88,7 +88,7 @@ function profile_create() {
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="resource[]" value="4">General Professional Help</label>
-                    </div>
+                    </div> 
                     <div class="checkbox">
                         <label><input type="checkbox" name="resource[]" value="5" onclick="otherToggle(this);">Other</label>
                     </div> 
@@ -116,13 +116,13 @@ function profile_create() {
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="tcAffiliation[]" value="4">Prefer not to answer</label>
-                    </div>
+                    </div> 
                     <div class="checkbox">
-                        <label><input type="checkbox" onclick="otherToggle(this);" name="tcAffiliation[]" value="5">Other</label>
+                        <label><input type="checkbox" onclick="otherToggle(this)" name="tcAffiliation[]" value="5">Other</label>
                     </div>
                     <div>
                         <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div>
+                    </div> 
                 </div>
             </div> 
 
@@ -167,15 +167,17 @@ function profile_create() {
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" value="12">Technology</label>
-                    </div>
+                    </div> 
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" onclick="otherToggle(this);" value="13">Other</label>
                     </div>
                     <div>
                         <input type="text" name="interest_other" id="interest_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div>
+                    </div> 
                 </div>
             </div>
+                        
+            
 
                 <!-- MENTOR QUESTIONS -->
             <div id="mentor_form">
@@ -207,7 +209,7 @@ function profile_create() {
                 <div class="form-group row">
                     <label for="yearsEmployed" class="col-sm-2 col-form-label">Years in current employeer</label>
                     <div class="col-sm-10">
-                        <select name="yearsEmployed" class="form-control" id="yearsEmployed" >
+                        <select name="yearsEmployed" class="form-control" id="yearsEmployed" required>
                             <option><1 year</option>
                             <option>1 - 3 years</option>
                             <option>3 - 5 years</option>
@@ -220,7 +222,7 @@ function profile_create() {
                 <div class="form-group row">
                     <label for="yearsProfession" class="col-sm-2 col-form-label">Years in current profession</label>
                     <div class="col-sm-10">
-                        <select name="yearsProfession" class="form-control" id="yearsProfession" >
+                        <select name="yearsProfession" class="form-control" id="yearsProfession" required>
                             <option><1 year</option>
                             <option>1 - 3 years</option>
                             <option>3 - 5 years</option>
@@ -240,7 +242,7 @@ function profile_create() {
                 <div class="form-group row">
                     <label for="numCandidate" class="col-sm-2 col-form-label">How many Career Candidates would you like to be paired with?</label>
                     <div class="col-sm-10">
-                        <select name="numCandidate" class="form-control" id="numCandidate">
+                        <select name="numCandidate" class="form-control" id="numCandidate" required>
                             <option>1 - 2</option>
                             <option>3 - 4</option>
                         </select>
@@ -249,7 +251,7 @@ function profile_create() {
                 <div class="form-group row">
                     <label for="prevJobs" class="col-sm-2 col-form-label">Did you have any jobs in the past? Please list past companies and titles</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" name="prevJobs" id="prevJobs"></textarea>
+                        <textarea class="form-control" rows="5" name="prevJobs" id="prevJobs" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -261,19 +263,19 @@ function profile_create() {
                 <div class="form-group row">
                     <label for="otherDegree" class="col-sm-2 col-form-label">Do you have any other degrees? Please list the degree and school you attended.</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" name="otherDegree" id="otherDegree"></textarea>
+                        <textarea class="form-control" rows="5" name="otherDegree" id="otherDegree" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="pursuingDegree" class="col-sm-2 col-form-label">Are you currently pursuing a degree? If so, in what and from which institution?</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" name="pursuingDegree" id="pursuingDegree"></textarea>
+                        <textarea class="form-control" rows="5" name="pursuingDegree" id="pursuingDegree" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="otherInfo" class="col-sm-2 col-form-label">Is there any other information you would like to share?</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" name="otherInfo" id="otherInfo"></textarea>
+                        <textarea class="form-control" rows="5" name="otherInfo" id="otherInfo" required></textarea>
                     </div>
                 </div>
             </div>
@@ -282,7 +284,7 @@ function profile_create() {
                 <div class="form-group row">
                     <label for="employmentType" class="col-sm-2 col-form-label">Are you: </label>
                     <div class="col-sm-10">
-                        <select name="employmentType" class="form-control" id="employmentType">
+                        <select name="employmentType" class="form-control" id="employmentType" required>
                             <option>Looking for employment</option>
                             <option>Currently employed, looking to make a change</option>
                             <option>Not looking but interested in networking</option>
@@ -294,7 +296,7 @@ function profile_create() {
                 <div class="form-group row">
                     <label for="currentEducation" class="col-sm-2 col-form-label">Are you: </label>
                     <div class="col-sm-10">
-                        <select name="currentEducation" class="form-control" id="currentEducation">
+                        <select name="currentEducation" class="form-control" id="currentEducation" required>
                             <option>In High School</option>
                             <option>In college</option>
                             <option>In the workforce/post college</option>
@@ -324,12 +326,12 @@ function profile_create() {
                     </div>
                 </div>
 
-                </div>
+                
                
                 <div class="form-group row">
                     <label for="degree" class="col-sm-2 col-form-label">What is the highest grade or level of school you have completed? Example: If you are currently in college, you would select High School or GED</label>
                     <div class="col-sm-10">
-                        <select name="degree" class="form-control" id="degree">
+                        <select name="degree" class="form-control" id="degree" required>
                             <option>Did not graduate High School</option>
                             <option>High School</option>
                             <option>Associates Degree</option>
@@ -347,242 +349,241 @@ function profile_create() {
             </div>
         </form>
     </div>
-
-<script>
-
-$( document ).ready(function() {
-    var _userType_selector = $("#userType");
-    var _mentor_form = $("#mentor_form");
-    var _mentee_form = $("#mentee_form");
-
-    if (_userType_selector.val() === "1") {
-        _mentor_form.css('display', 'block');
-        _mentee_form.css('display', 'none');
-        $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
-    }
-    else {
-        _mentee_form.css('display', 'block');
-        _mentor_form.css('display', 'none');
-        $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
-    }
-
-    _userType_selector.change(function() {
-        var value = _userType_selector.val();
-        if(value === "1") {
-            // User selected type Mentor
-            _mentor_form.css('display', 'block');
-            _mentee_form.css('display', 'none');
-            $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
-        } else if (value === "0") {
-            // User selected type Mentee
-            _mentee_form.css('display', 'block');
-            _mentor_form.css('display', 'none');
-            $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
-        }
-    });
-
-    $('#currentEducation').change(function(){
-        if ($('#currentEducation').val() === 'In High School' || $('#currentEducation').val() === 'In college'){
-            $('#education_form').css('display','block');
-        }
-        else{
-            $('#education_form').css('display','none');
-        }
-    })
-});
- function otherToggle (event) {
-     var other_input = document.getElementById(event.name.replace('[]','') + '_other');
-     if (event.checked) {
-         other_input.style.display = "inline-block";
-         other_input.setAttribute('required',true);
-     }
-     else {
-         other_input.style.display = "none";
-         other_input.removeAttribute('required');
-     }
- }
- $('#registration-form').bootstrapValidator({
-     fields: {
-         firstname: {
-             validators: {
-                     stringLength: {
-                     min: 2,
-                 },
-                     notEmpty: {
-                     message: 'Please supply your first name'
-                 }
-             }
-         },
-         lastname: {
-             validators: {
-                 stringLength: {
-                     min: 2,
-                 },
-                 notEmpty: {
-                     message: 'Please supply your last name'
-                 }
-             }
-         },
-         email: {
-             validators: {
-                 notEmpty: {
-                     message: 'Please supply your email address'
-                 },
-                 emailAddress: {
-                     message: 'Please supply a valid email address'
-                 }
-             }
-         },
-         phonenumber: {
-             validators: {
-                 notEmpty: {
-                     message: 'Please supply your phone number'
-                 },
-                 phone: {
-                     country: 'US',
-                     message: 'Please supply a vaild phone number with area code'
-                 }
-             }
-         },
-         username: {
-             validators: {
-                 stringLength: {
-                     min: 5,
-                 },
-                 notEmpty: {
-                     message: 'Please supply a username'
-                 }
-             }
-         },
-         password: {
-             validators: {
-                 stringLength: {
-                     min: 8,
-                 },
-                 notEmpty: {
-                     message: 'Password must be at least 8 characters'
-                 }
-             }
-         },
-         'interest[]': {
-             validators: {
-                 choice: {
-                     min: 1,
-                     message: 'Please choose at least 1 interest'
-                 }
-             }
-         },
-         'resource[]': {
-             validators: {
-                 choice: {
-                     min: 1,
-                     message: 'Please choose at least 1 resource'
-                 }
-             }
-         },
-         'tcAffiliation[]': {
-             validators: {
-                 choice: {
-                     min: 1,
-                     message: 'Please choose at least 1 option'
-                 }
-             }
-         },
-         companyName: {
-             validators: {
-                 stringLength: {
-                     min: 5,
-                 },
-                 notEmpty: {
-                     message: 'Please supply your company name'
-                 }
-             }
-         },
-         companyAddress: {
-             validators: {
-                 stringLength: {
-                     min: 5,
-                 },
-                 notEmpty: {
-                     message: 'Please supply your company address'
-                 }
-             }
-         },
-         jobTitle: {
-             validators: {
-                 stringLength: {
-                     min: 5,
-                 },
-                 notEmpty: {
-                     message: 'Please supply your job title'
-                 }
-             }
-         },
-         professions: {
-             validators: {
-                 stringLength: {
-                     min: 5,
-                 },
-                 notEmpty: {
-                     message: 'Please supply your professions'
-                 }
-             }
-         },
-         education: {
-             validators: {
-                 stringLength: {
-                     min: 5,
-                 },
-                 notEmpty: {
-                     message: 'Please supply your education'
-                 }
-             }
-         },
-         jobResponisibility: {
-             validators: {
-                 stringLength: {
-                     min: 10,
-                     max: 200,
-                     message:'Please enter at least 10 characters and no more than 200'
-                 },
-                 notEmpty: {
-                     message: 'Please supply a description of your job responsibilities'
-                 }
-             }
-         },
-         otherInfo: {
-             validators: {
-                 stringLength: {
-                     min: 10,
-                     max: 200,
-                     message:'Please enter at least 10 characters and no more than 200'
-                 },
-                 notEmpty: {
-                     message: 'Please supply other info'
-                 }
-             }
-         }
-     }})
-     .on('success.form.bv', function(e) {
-         $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-             $('#contact_form').data('bootstrapValidator').resetForm();
-
-         // Prevent form submission
-         e.preventDefault();
-
-         // Get the form instance
-         var $form = $(e.target);
-
-         // Get the BootstrapValidator instance
-         var bv = $form.data('bootstrapValidator');
-
-         // Use Ajax to submit form data
-         $.post($form.attr('action'), $form.serialize(), function(result) {
-             console.log(result);
-         }, 'json');
-     });
-</script>
+    <script>
     
+        $( document ).ready(function() {
+            var _userType_selector = $("#userType");
+            var _mentor_form = $("#mentor_form");
+            var _mentee_form = $("#mentee_form");
+
+            if (_userType_selector.val() === "1") {
+                _mentor_form.css('display', 'block');
+                _mentee_form.css('display', 'none');
+                $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
+            }
+            else {
+                _mentee_form.css('display', 'block');
+                _mentor_form.css('display', 'none');
+                $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
+            }
+
+            _userType_selector.change(function() {
+                var value = _userType_selector.val();
+                if(value === "1") {
+                    // User selected type Mentor
+                    _mentor_form.css('display', 'block');
+                    _mentee_form.css('display', 'none');
+                    $('label[for="resource"]').html("Please check which topic areas you are most interested in working on with your Career Mentors ");
+                } else if (value === "0") {
+                    // User selected type Mentee
+                    _mentee_form.css('display', 'block');
+                    _mentor_form.css('display', 'none');
+                    $('label[for="resource"]').html("What are the career resources that you're looking to get out of the program?");
+                }
+            });
+
+            $('#currentEducation').change(function(){
+                if ($('#currentEducation').val() === 'In High School' || $('#currentEducation').val() === 'In college'){
+                    $('#education_form').css('display','block');
+                }
+                else{
+                    $('#education_form').css('display','none');
+                }
+            })
+        });
+        function otherToggle (event) {
+            var other_input = document.getElementById(event.name.replace('[]','') + '_other');
+            if (event.checked) {
+                other_input.style.display = "inline-block";
+                other_input.setAttribute('required',true);
+            }
+            else {
+                other_input.style.display = "none";
+                other_input.removeAttribute('required');
+            }
+        }
+        $('#registration-form').bootstrapValidator({
+            fields: {
+                firstname: {
+                    validators: {
+                            stringLength: {
+                            min: 2,
+                        },
+                            notEmpty: {
+                            message: 'Please supply your first name'
+                        }
+                    }
+                },
+                lastname: {
+                    validators: {
+                        stringLength: {
+                            min: 2,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your last name'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your email address'
+                        },
+                        emailAddress: {
+                            message: 'Please supply a valid email address'
+                        }
+                    }
+                },
+                phonenumber: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your phone number'
+                        },
+                        phone: {
+                            country: 'US',
+                            message: 'Please supply a vaild phone number with area code'
+                        }
+                    }
+                },
+                username: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply a username'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        stringLength: {
+                            min: 8,
+                        },
+                        notEmpty: {
+                            message: 'Password must be at least 8 characters'
+                        }
+                    }
+                },
+                'interest[]': {
+                    validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 interest'
+                        }
+                    }
+                },
+                'resource[]': {
+                    validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 resource'
+                        }
+                    }
+                },
+                'tcAffiliation[]': {
+                    validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 option'
+                        }
+                    }
+                },
+                companyName: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your company name'
+                        }
+                    }
+                },
+                companyAddress: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your company address'
+                        }
+                    }
+                },
+                jobTitle: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your job title'
+                        }
+                    }
+                },
+                professions: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your professions'
+                        }
+                    }
+                },
+                education: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your education'
+                        }
+                    }
+                },
+                jobResponisibility: {
+                    validators: {
+                        stringLength: {
+                            min: 10,
+                            max: 200,
+                            message:'Please enter at least 10 characters and no more than 200'
+                        },
+                        notEmpty: {
+                            message: 'Please supply a description of your job responsibilities'
+                        }
+                    }
+                },
+
+                otherInfo: {
+                    validators: {
+                        stringLength: {
+                            min: 10,
+                            max: 200,
+                            message:'Please enter at least 10 characters and no more than 200'
+                        },
+                        notEmpty: {
+                            message: 'Please supply other info'
+                        }
+                    }
+                }
+            }})
+            .on('success.form.bv', function(e) {
+                $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                    $('#contact_form').data('bootstrapValidator').resetForm();
+                console.log("oppo")
+                // Prevent form submission
+                e.preventDefault();
+
+                // Get the form instance
+                var $form = $(e.target);
+
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                    console.log(result);
+                }, 'json');
+            })
+    </script>
     <?php
 }
 
