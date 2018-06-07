@@ -20,7 +20,7 @@ function profiles_list() {
         <?php
         global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, UserType.`description` AS `userType`, Interests.`description` as `interest`, Resources.`description` as `resources`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN UserType on Users.userType=UserType.typeId INNER JOIN Interests on Users.interest=Interests.interest_id INNER JOIN Resources on Users.resource=Resources.resourcesId");
+        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, UserType.`description` AS `userType`, `interest`, `resource`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN UserType on Users.userType=UserType.typeId");
         ?>
 
         <b>Create Connection</b>
@@ -60,7 +60,7 @@ function profiles_list() {
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->interest; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->resources; ?></td>   
+                    <td class="manage-column ss-list-width"><?php echo $row->resource; ?></td>   
                     <td class="manage-column ss-list-width"><?php echo $row->status; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->jobTitle; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->jobResponisibility; ?></td> 

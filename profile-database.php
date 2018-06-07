@@ -39,10 +39,16 @@ if(isset($_POST['register'])){
     $interestBitMask = 0;
     $resourceBitMask = 0;
 
+    $interest_list = implode(",\n", $interest);
+    $resource_list = implode(",\n", $resource);
+    $tcAffiliation_list = implode(",\n", $tcAffiliation);
+
     if(!empty($tcAffiliation)){
         $N = count($tcAffiliation);
         for($i = 0; $i < $N; $i++) {
-            if((int) $tcAffiliation[$i] == 4) { $tcAffiliationBitMask = 0; break;}
+            if((int) $tcAffiliation[$i] == 4) { $tcAffiliationBitMask = 0; 
+                // $interest_list .= ",\n" . $interest_other;
+                break;}
             if((int) $tcAffiliation[$i] == 5) { break;}
             $tcAffiliationBitMask += pow(2, (int) $tcAffiliation[$i]);
 
@@ -51,20 +57,25 @@ if(isset($_POST['register'])){
     if(!empty($interest)){
         $N = count($interest);
         for($i = 0; $i < $N; $i++) {
-            if((int) $interest[$i] == 13) { break;}
+            if((int) $interest[$i] == 13) { 
+                // $resource_list .= ",\n" . $resource_other;
+                break;}
             $interestBitMask += pow(2, (int) $interest[$i]);
         }
     }
     if(!empty($resource)){
         $N = count($resource);
         for($i = 0; $i < $N; $i++) {
-            if((int) $resource[$i] == 5) { break;}
+            if((int) $resource[$i] == 5) { 
+                // $tcAffiliation_list .= ",\n" . $tcAffiliation_other;
+                break;}
             $resourceBitMask += pow(2, (int) $resource[$i]);
         }
     }
-     echo "tc bitmask to " . $tcAffiliationBitMask . "<br>";
-     echo "interest bitmask to " . $interestBitMask . "<br>";
-     echo "resource bitmask to " . $resourceBitMask . "<br>";
+     // echo "tc bitmask to " . $tcAffiliationBitMask . "<br>";
+     // echo "interest bitmask to " . $interestBitMask . "<br>";
+     // echo "resource bitmask to " . $resourceBitMask . "<br>";
+
 
 
 
@@ -90,9 +101,9 @@ if(isset($_POST['register'])){
                 'companyName' => $companyName, 
                 'jobTitle' => $jobTitle, 
                 'jobResponisibility' => $jobResponisibility, 
-                'interest' => $interest[0], 
-                'resource' => $resource[0], 
-                'tcAffiliation' => $tcAffiliation[0], 
+                'interest' => $interest_list, 
+                'resource' => $resource_list, 
+                'tcAffiliation' => $tcAffiliation_list, 
                 'yearsProfession' => $yearsProfession, 
                 'numCandidate' => $numCandidate,                
                 'prevJobs' => $prevJobs, 
