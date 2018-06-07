@@ -30,6 +30,10 @@ function profile_page() {
             $username = $_SESSION['login_user'];
             $userid = 0;
         }
+        else{
+            echo "<div id='loginmsg'>Please Log in first!</div>";
+            exit();
+        }
         global $wpdb;
         $row = $wpdb->get_row("SELECT *, `interest`, usertype.`description` AS `userType` FROM Users INNER JOIN usertype on users.userType=usertype.typeId WHERE username = '$username' OR ID = $userid");
         ?>

@@ -1,8 +1,13 @@
 <?php
 
 if(isset($_POST['deactivate_user'])){
+    $profileId = $_POST["profileId"];
+    deactivateUser($profileId);
+    
+}
+if(isset($_POST['delete_user'])){
 	$profileId = $_POST["profileId"];
-	deactivateUser($profileId);
+	deleteUser($profileId);
 	
 }
 
@@ -19,6 +24,15 @@ if(isset($_POST['request_feedback'])){
     
 }
 
+if(isset($_POST['admin_create'])){
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm_password"];
+    if($password === $confirm_password){
+        admin_create($username, $password);
+    }
+}
+
 function deactivateUser($profileId){
     global $wpdb;
 	$wpdb->query(
@@ -30,6 +44,18 @@ function deactivateUser($profileId){
     );
 
     echo "<div class='alert alert-success'> <strong>Success!</strong> Member has been deactivated! </div>";
+}
+
+function deleteUser($profileId){
+    global $wpdb;
+    $wpdb->query(
+        "
+        DELETE FROM `users`
+        WHERE ID = $profileId
+        "
+    );
+
+    echo "<div class='alert alert-success'> <strong>Success!</strong> Member has been deleted! </div>";
 }
 	
 
@@ -57,4 +83,16 @@ function requestFeedback($profileId, $description){
     );
 
     echo "<div class='alert alert-success'> <strong>Success!</strong> Your feedback Request has been submitted </div>";
+}
+
+function admin_create($username, $password){
+    global $wpdb;
+    $table_name = "users";
+    $wpdb->insert(
+            $table_name, //table
+            array('firstname' => "admin", 'lastname' => "admin",'username' => $username, 'password' => $password, 'userType' => 2, 'status' => "admin"), 
+            array('%s', '%s', '%s', '%s', '%s') //data format  
+    );
+
+    echo "<div class='alert alert-success'> <strong>Success!</strong> Admin Created </div>";
 }
