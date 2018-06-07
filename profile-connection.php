@@ -42,9 +42,9 @@ function profile_connection() {
 		          Connection Id:
 		          <a href="#"><?php echo $row->connectionid; ?></a><br>
 		          Mentor Name:
-		          <a href="#"><?php echo $row->mentorName; ?></a><br>
+		          <a href="../profile?user_id=<?php echo $row->mentorId;?>"><?php echo $row->mentorName; ?></a><br>
 		          Mentee Name:
-		          <a href="#"><?php echo $row->menteeName; ?></a><br>
+		          <a href="../profile?user_id=<?php echo $row->menteeId;?>"><?php echo $row->menteeName; ?></a><br>
 		        </td>
 		        <td> 
 		          Date Connected:

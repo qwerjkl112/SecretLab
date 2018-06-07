@@ -54,7 +54,8 @@ function profiles_list() {
             <?php foreach ($rows as $row) { ?>
                 <tr <?php if($row->status === 'Pending Review'){ echo "class='danger'"; }
                 else if($row->status === 'Deactivated User'){ echo "class='warning'";} ?>>
-                    <td class="manage-column ss-list-width"><?php echo $row->ID; ?></td>  
+                    <td class="manage-column ss-list-width">
+                        <a href="../profile?user_id=<?php echo $row->ID; ?>"><?php echo $row->ID; ?></a></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>  
