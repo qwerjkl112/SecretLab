@@ -119,7 +119,11 @@ if(isset($_POST['register'])){
                 'currentEducation' => $currentEducation,
                 'college' => $college,
                 'locationCollege' => $locationCollege,
-                'graduationDate' => $graduationDate),
+                'graduationDate' => $graduationDate,
+                'tcAffiliation_other' => $tcAffiliation_other,
+                'interest_other' => $interest_other,
+                'resource_other' => $resource_other,
+            ),
             array('%s', '%s') //data format  
     );
 

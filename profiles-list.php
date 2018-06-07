@@ -20,7 +20,7 @@ function profiles_list() {
         <?php
         global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, UserType.`description` AS `userType`, `interest`, `resource`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN UserType on Users.userType=UserType.typeId");
+        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, usertype.`description` AS `userType`, `interest`, `resource`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN usertype on users.userType=usertype.typeId");
         ?>
 
         <b>Create Connection</b>
