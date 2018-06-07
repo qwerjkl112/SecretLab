@@ -5,7 +5,7 @@ session_start();
 function profile_login() {
 	
 	if(isset($_SESSION['login_user'])){ ?><div class="updated"><p>you are logged in as <?php echo $_SESSION['login_user']; ?></p></div><?php }?>
-	<form method="post" action="../my-connection">
+	<form method="post" action="../">
 	  <div class="form-group">
 	    <label for="username">Username</label>
 	    <input type="text" class="form-control" name="username" placeholder="Username">  
