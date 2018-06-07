@@ -22,7 +22,7 @@ function connections_table() {
 		    <tbody>
 		      <?php foreach ($rows as $row) { 
 		      	$cid = $row->connectionid; ?>
-		      <tr <?php 
+		      <tr id="<?php echo $row->connectionid; ?>_row" <?php 
 		      		if(strtotime($row->lastConnected) < strtotime("-30 day"))
 		      		echo "class='warning'"; ?>>
 		        <td> 
@@ -53,11 +53,28 @@ function connections_table() {
 		          	<span class="glyphicon glyphicon-info-sign" ></span> View Comments </button>
 			      </form>
 		         </td>
-		      </tr>
+					</tr>
 			<?php } ?>
 		    </tbody>
 		  </table>
 		</div>
+
+		<script>
+			$(document).ready( function () {
+				if ($("#comments_display")) {
+					var comments = $("#comments_display");
+					comments.css("display","block");
+					var connect_id = $("#comments_display").attr("name");
+					var connection_row = $('#'+connect_id+'_row');
+					var comment_row = $('<tr></tr>');
+					comment_row.append('<td id="comment_info" colspan="4"></td>');
+					connection_row.after(comment_row);
+					$('#comment_info').append(comments);
+				}
+
+			} )
+		
+		</script>
 
 <?php
 }
