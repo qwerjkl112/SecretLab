@@ -9,9 +9,9 @@ if(isset($_POST['connection_detail'])){
 function connections_details($connectionId) {
 
 	global $wpdb;
-    $table_name = "Connections";
+    $table_name = "connections";
 
-    $myFeedbacks = $wpdb->get_results("SELECT *, Users.`firstname` AS `sender`, Users2.`firstname` AS `receiver` FROM `Feedbacks` INNER JOIN Users on Feedbacks.SenderId=Users.ID INNER JOIN Users Users2 on Feedbacks.ReceiverId=Users2.ID WHERE `connectionId` = $connectionId");
+    $myFeedbacks = $wpdb->get_results("SELECT *, users.`firstname` AS `sender`, users2.`firstname` AS `receiver` FROM `feedbacks` INNER JOIN users on feedbacks.SenderId=users.ID INNER JOIN users users2 on feedbacks.receiverId=users2.ID WHERE `connectionId` = $connectionId");
 
 	?>
 		<div id="comments_display" name="<?php echo $connectionId; ?>" style="display:none" class="list-group">
