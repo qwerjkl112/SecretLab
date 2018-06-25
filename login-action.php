@@ -16,6 +16,7 @@ function chckusername($username, $password){
     	$_SESSION['login_user'] = $username;
         $_SESSION['id'] = $result->ID;
         $_SESSION['userType'] = $result->userType;
+        $_SESSION['loggedin'] = 1;
     }
     else{
         echo "<div id='loginmsg'>Wrong Username/Password Credential</div>";
