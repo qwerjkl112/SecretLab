@@ -62,12 +62,12 @@ function profiles_list() {
                 <th class="manage-column ss-list-width" onclick="sortTable(1)">Username</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(2)">Full Name</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(3)">Type of Member</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(6)">Status</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(7)">Job Title</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(8)">Job Responsibility</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(9)">Deactivate User</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(10)">Approve User</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(11)">Request Feedback</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(4)">Status</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(5)">Job Title</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(6)">Job Responsibility</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(7)">Deactivate User</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(8)">Approve User</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(9)">Request Feedback</th>
 
             </tr>
             <?php foreach ($rows as $row) { ?>
