@@ -10,7 +10,7 @@ function profile_create() {
     <div class="wrap">
         <h2>Add New Profile</h2>
         <?php if (isset($message)): ?><div class="updated"><p><?php echo $message; ?></p></div><?php endif; ?>
-        <form method="post" action="../list" id="registration-form" novalidate="">
+        <form method="post" action="../confirm-page" id="registration-form" novalidate="">
             <p><font color="red"><b>*All Fields Required</b></font></p>
             <!-- BASIC INFO -->
             <div class="form-group row">
@@ -46,6 +46,13 @@ function profile_create() {
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
                     <input type="password" name="password" class="form-control" id="password" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="passwordConfirm" class="col-sm-2 col-form-label">Confirm Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" required>
                 </div>
             </div>
 
@@ -403,6 +410,11 @@ function profile_create() {
             }
         }
         $('#registration-form').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
             fields: {
                 firstname: {
                     validators: {
@@ -457,8 +469,23 @@ function profile_create() {
                 },
                 password: {
                     validators: {
+                        identical: {
+                            field: 'passwordConfirm',
+                            message: 'Password does not match'
+                        },
                         stringLength: {
                             min: 8,
+                        },
+                        notEmpty: {
+                            message: 'Password must be at least 8 characters'
+                        }
+                    }
+                },
+                passwordConfirm: {
+                    validators: {
+                        identical: {
+                            field: 'password',
+                            message: 'Password does not match'
                         },
                         notEmpty: {
                             message: 'Password must be at least 8 characters'
