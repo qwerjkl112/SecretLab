@@ -70,16 +70,31 @@ function profiles_list() {
                     <td class="manage-column ss-list-width"><?php echo $row->jobResponisibility; ?></td> 
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">
-                        <button type="submit" class="btn btn-default" name="deactivate_user">
+                        
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-                        <span class="glyphicon glyphicon-remove" ></span> Deactivate User </button>
+                        <?php 
+                            if($row->status !== 'Deactivated User') {
+                                echo '<button type="submit" class="btn btn-default" name="deactivate_user">';
+                                echo '<span class="glyphicon glyphicon-remove" ></span> Deactivate User </button>';
+                            }
+                        ?>
                         </form>
                     </td>
                     <td>
                       <form action="" method="post">
-                        <button type="submit" class="btn btn-default" name="approve_user">
+                        
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-                        <span class="glyphicon glyphicon-ok" ></span> Approve User </button>
+                        <?php 
+                            if($row->status !== 'Approved Member'){
+                                    echo '<button type="submit" class="btn btn-default" name="approve_user">';
+                                if($row->status === 'Deactivated User') {
+                                    echo '<span class="glyphicon glyphicon-ok" ></span> Reactivate User </button>';
+                                }
+                                else {
+                                    echo '<span class="glyphicon glyphicon-ok" ></span> Approve User </button>';
+                                }
+                            }
+                        ?>
                       </form>
                     </td>
                     <td>

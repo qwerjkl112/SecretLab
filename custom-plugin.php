@@ -74,6 +74,7 @@ require_once(ROOTDIR . 'profile-page.php');
 require_once(ROOTDIR . 'profile-login.php');
 require_once(ROOTDIR . 'register-modal.php');
 require_once(ROOTDIR . 'login-action.php');
+require_once(ROOTDIR . 'profile-logout.php');
 require_once(ROOTDIR . 'connections.php');
 require_once(ROOTDIR . 'potential-connection.php');
 require_once(ROOTDIR . 'profile-connection.php');
