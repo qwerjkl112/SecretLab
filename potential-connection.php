@@ -5,9 +5,10 @@ function potential_connections_table() {
 
   global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT *, users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName` FROM `potentialconnections` INNER JOIN users on potentialconnections.mentorId=users.ID INNER JOIN users users2 on potentialconnections.menteeId=users2.ID ");
+        $rows = $wpdb->get_results("SELECT *, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName` FROM `PotentialConnections` INNER JOIN Users on PotentialConnections.mentorId=Users.ID INNER JOIN Users Users2 on PotentialConnections.menteeId=Users2.ID ");
   
   ?>
+  <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
   <b>Create Connection</b>
   <form method="post" class="form-inline" action="../connections">
       <div class="form-group col-xs-6">
@@ -19,14 +20,18 @@ function potential_connections_table() {
   <br>
 
   <div class="container">
-    <label>Search:</label>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <div class="form-group row">
+        <div class="col-xs-3" margin-bottom="10px">
+          <input class="form-control" id="myInput" type="text" placeholder="Type text to filter...">
+        </div>
+        <button type="button" id="export_connectionsList" class="btn btn-primary btn-md"> Export </button>
+    </div>
     <table class="table" id="potential_connections_tb" >
       <thead>
         <tr>
           <th>Potential Connections Id</th>
           <th>Connection</th>
-          <th onclick="sortMatches()">Match Score</th>
+          <th onclick="sortMatches()" id="match_col">Match Score</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -34,10 +39,7 @@ function potential_connections_table() {
         <?php foreach ($rows as $row) { ?>
         <tr class="active">
           <td>
-            connection id: <?php echo $row->PotentialConnectionsId; ?><br>
-            Mentor Id = <a href="../profile?user_id=<?php echo $row->mentorId; ?>"><?php echo $row->mentorId; ?></a>
-            <br>
-            Mentee Id = <a href="../profile?user_id=<?php echo $row->menteeId; ?>"><?php echo $row->menteeId; ?></a>
+            id: <?php echo $row->PotentialConnectionsId; ?>
           </td>
           <td> 
             Mentor Name:
@@ -81,18 +83,27 @@ function potential_connections_table() {
   <form method="post" action="">
     <div>
       <input type='submit' name='findMatch' value="Generate" class='button'>
-      <input type='submit' name='clearMatch' value="Clear" class='button'>
     </div>
   </form>
   <script>
     function sortMatches() {
-      console.log('hello');
-      var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;;
+      var table, rows, header, switching, i, x, y, shouldSwitch, switchcount = 0;;
       table = document.getElementById("potential_connections_tb");
       switching = true;
       /*Make a loop that will continue until
       no switching has been done:*/
       dir = "asc"; 
+      if (document.getElementById("current_filter_icon")) {
+          prev_col = document.getElementById("current_filter_icon").parentElement
+          arrow = prev_col.removeChild(document.getElementById("current_filter_icon"));
+      } else {
+          arrow = document.createElement("span");
+          arrow.setAttribute('id', "current_filter_icon")
+      }
+      arrow.setAttribute('class', "glyphicon glyphicon-triangle-top")
+
+      header = table.querySelector('#match_col');
+      header.appendChild(arrow);
       while (switching) {
         //start by saying: no switching is done:
         switching = false;
@@ -136,17 +147,24 @@ function potential_connections_table() {
 
         if (switchcount == 0 && dir == "asc") {
           dir = "desc";
+          arrow.setAttribute('class', "glyphicon glyphicon-triangle-bottom")
           switching = true;
         }
       }
     }
     $( document ).ready(function() {
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#potential_connections_tb tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
+      $("#export_connectionsList").click(function () {
+        $("#potential_connections_tb").table2excel({
+            filename: "Table.xls"
+          });
+      });
+
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#potential_connections_tb tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
+      });
     });
   
   </script>
