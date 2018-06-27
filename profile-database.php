@@ -127,7 +127,7 @@ if(isset($_POST['register'])){
             array('%s', '%s') //data format  
     );
 
-    $result = $wpdb->get_row("SELECT id FROM Users WHERE username = '$username' and password = '$password'");
+    $result = $wpdb->get_row("SELECT id FROM users WHERE username = '$username' and password = '$password'");
 
     if (($result) != null) {
         $_SESSION['login_user'] = $username;
