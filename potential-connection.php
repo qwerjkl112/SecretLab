@@ -5,7 +5,7 @@ function potential_connections_table() {
 
   global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT *, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName` FROM `PotentialConnections` INNER JOIN Users on PotentialConnections.mentorId=Users.ID INNER JOIN Users Users2 on PotentialConnections.menteeId=Users2.ID ");
+        $rows = $wpdb->get_results("SELECT *, users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName` FROM `potentialconnections` INNER JOIN users on potentialconnections.mentorId=users.ID INNER JOIN users users2 on potentialconnections.menteeId=users2.ID ");
   
   ?>
   <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
@@ -39,7 +39,10 @@ function potential_connections_table() {
         <?php foreach ($rows as $row) { ?>
         <tr class="active">
           <td>
-            id: <?php echo $row->PotentialConnectionsId; ?>
+            connection id: <?php echo $row->PotentialConnectionsId; ?><br>
+            Mentor Id = <a href="../profile?user_id=<?php echo $row->mentorId; ?>"><?php echo $row->mentorId; ?></a>
+            <br>
+            Mentee Id = <a href="../profile?user_id=<?php echo $row->menteeId; ?>"><?php echo $row->menteeId; ?></a>
           </td>
           <td> 
             Mentor Name:
@@ -83,6 +86,7 @@ function potential_connections_table() {
   <form method="post" action="">
     <div>
       <input type='submit' name='findMatch' value="Generate" class='button'>
+      <input type='submit' name='clearMatch' value="Clear" class='button'>
     </div>
   </form>
   <script>

@@ -35,7 +35,7 @@ function profiles_list() {
         <?php
         global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, UserType.`description` AS `userType`, Interests.`description` as `interest`, Resources.`description` as `resources`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN UserType on Users.userType=UserType.typeId INNER JOIN Interests on Users.interest=Interests.interest_id INNER JOIN Resources on Users.resource=Resources.resourcesId");
+        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, usertype.`description` AS `userType`, `interest`, `resource`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN usertype on users.userType=usertype.typeId");
         ?>
 
         <b>Create Connection</b>
@@ -59,11 +59,9 @@ function profiles_list() {
         <table class='table table-striped' id='profile_table'>
             <tr class="info">
                 <th class="manage-column ss-list-width" onclick="sortTable(0)">ID</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(1)">Username </th>
+                <th class="manage-column ss-list-width" onclick="sortTable(1)">Username</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(2)">Full Name</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(3)">Type of Member</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(4)">Interest</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(5)">Resource</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(6)">Status</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(7)">Job Title</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(8)">Job Responsibility</th>
@@ -75,28 +73,39 @@ function profiles_list() {
             <?php foreach ($rows as $row) { ?>
                 <tr <?php if($row->status === 'Pending Review'){ echo "class='danger'"; }
                 else if($row->status === 'Deactivated User'){ echo "class='warning'";} ?>>
-                    <td class="manage-column ss-list-width"><?php echo $row->ID; ?></td>  
+                    <td class="manage-column ss-list-width">
+                       <a href="../profile?user_id=<?php echo $row->ID; ?>"><?php echo $row->ID; ?></a></td> 
                     <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->interest; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->resources; ?></td>   
                     <td class="manage-column ss-list-width"><?php echo $row->status; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->jobTitle; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->jobResponisibility; ?></td> 
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">
-                        <button type="submit" class="btn btn-default" name="deactivate_user">
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-                        <span class="glyphicon glyphicon-remove" ></span> Deactivate User </button>
+                        <?php 
+                            if($row->status !== 'Deactivated User') {
+                                echo '<button type="submit" class="btn btn-default" name="deactivate_user">';
+                                echo '<span class="glyphicon glyphicon-remove" ></span> Deactivate User </button>';
+                            }
+                        ?>
                         </form>
                     </td>
                     <td>
                       <form action="" method="post">
-                        <button type="submit" class="btn btn-default" name="approve_user">
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-                        <span class="glyphicon glyphicon-ok" ></span> Approve User </button>
-                      </form>
+                        <?php 
+                            if($row->status !== 'Approved Member'){
+                                    echo '<button type="submit" class="btn btn-default" name="approve_user">';
+                                if($row->status === 'Deactivated User') {
+                                    echo '<span class="glyphicon glyphicon-ok" ></span> Reactivate User </button>';
+                                }
+                                else {
+                                    echo '<span class="glyphicon glyphicon-ok" ></span> Approve User </button>';
+                                }
+                            }
+                        ?>                      </form>
                     </td>
                     <td>
                       <form action="" method="post">
