@@ -26,6 +26,7 @@ function profiles_list() {
         }
     </style>
     <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link type="text/css" href="<?php echo WP_PLUGIN_URL; ?>/custom-plugin/style-admin.css" rel="stylesheet" />
     
     <div id="top_bar">
@@ -58,13 +59,13 @@ function profiles_list() {
         <div id="dvData" class="wrap">
         <table class='table table-striped' id='profile_table'>
             <tr class="info">
-                <th class="manage-column ss-list-width" onclick="sortTable(0)">ID</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(1)">Username</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(2)">Full Name</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(3)">Type of Member</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(4)">Status</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(5)">Job Title</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(6)">Job Responsibility</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(0)">ID <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(1)">Username <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(2)">Full Name <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(3)">Type of Member <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(4)">Status <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(5)">Job Title <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(6)">Job Responsibility <span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(7)">Deactivate User</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(8)">Approve User</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(9)">Request Feedback</th>
@@ -131,17 +132,16 @@ function profiles_list() {
             //Set the sorting direction to ascending:
             dir = "asc"; 
             if (document.getElementById("current_filter_icon")) {
-                prev_col = document.getElementById("current_filter_icon").parentElement
-                arrow = prev_col.removeChild(document.getElementById("current_filter_icon"));
+                prev_sort= document.getElementById("current_filter_icon")
+                prev_sort.removeAttribute('id');
+                prev_sort.setAttribute('class', "fa fa-sort");
+            } 
 
-            } else {
-                arrow = document.createElement("span");
-                arrow.setAttribute('id', "current_filter_icon")
-            }
-            arrow.setAttribute('class', "glyphicon glyphicon-triangle-top")
-
-            header = table.getElementsByTagName("TH")[n];;
-            header.appendChild(arrow);
+            header = table.getElementsByTagName("TH")[n];
+            arrow_icon = header.getElementsByTagName("span")[0]
+            console.log(header);
+            arrow_icon.setAttribute('id', 'current_filter_icon');
+            arrow_icon.setAttribute('class', 'fa fa-sort-asc')
             /*Make a loop that will continue until
             no switching has been done:*/
             while (switching) {
@@ -184,7 +184,7 @@ function profiles_list() {
                     /*If no switching has been done AND the direction is "asc",
                     set the direction to "desc" and run the while loop again.*/
                     if (switchcount == 0 && dir == "asc") {
-                        arrow.setAttribute('class', "glyphicon glyphicon-triangle-bottom")
+                        arrow_icon.setAttribute('class', 'fa fa-sort-desc')
                         dir = "desc";
                         switching = true;
                     }

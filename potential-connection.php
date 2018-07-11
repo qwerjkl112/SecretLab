@@ -9,6 +9,7 @@ function potential_connections_table() {
   
   ?>
   <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <b>Create Connection</b>
   <form method="post" class="form-inline" action="../connections">
       <div class="form-group col-xs-6">
@@ -31,7 +32,7 @@ function potential_connections_table() {
         <tr>
           <th>Potential Connections Id</th>
           <th>Connection</th>
-          <th onclick="sortMatches()" id="match_col">Match Score</th>
+          <th onclick="sortMatches()" id="match_col">Match Score <span class="fa fa-sort"></span> </th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -98,16 +99,16 @@ function potential_connections_table() {
       no switching has been done:*/
       dir = "asc"; 
       if (document.getElementById("current_filter_icon")) {
-          prev_col = document.getElementById("current_filter_icon").parentElement
-          arrow = prev_col.removeChild(document.getElementById("current_filter_icon"));
-      } else {
-          arrow = document.createElement("span");
-          arrow.setAttribute('id', "current_filter_icon")
-      }
-      arrow.setAttribute('class', "glyphicon glyphicon-triangle-top")
+        prev_sort= document.getElementById("current_filter_icon")
+        prev_sort.removeAttribute('id');
+        prev_sort.setAttribute('class', "fa fa-sort");
+      } 
 
       header = table.querySelector('#match_col');
-      header.appendChild(arrow);
+      arrow_icon = header.getElementsByTagName("span")[0]
+      arrow_icon.setAttribute('id', 'current_filter_icon');
+      arrow_icon.setAttribute('class', 'fa fa-sort-asc');
+
       while (switching) {
         //start by saying: no switching is done:
         switching = false;
@@ -124,17 +125,14 @@ function potential_connections_table() {
           y = rows[i + 1].getElementsByTagName("TD")[2];
           y = y.getElementsByTagName("span")[0];
           //check if the two rows should switch place:
-          console.log(x.innerHTML);
           if (dir == "asc") {
             if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                console.log('sorting');
                 //if so, mark as a switch and break the loop:
                 shouldSwitch = true;
                 break;
             }
           } else if (dir == "desc") {
               if (Number(x.innerHTML) > Number(y.innerHTML)) {
-                console.log('sorting');
                 //if so, mark as a switch and break the loop:
                 shouldSwitch = true;
                 break;
@@ -151,7 +149,7 @@ function potential_connections_table() {
 
         if (switchcount == 0 && dir == "asc") {
           dir = "desc";
-          arrow.setAttribute('class', "glyphicon glyphicon-triangle-bottom")
+          arrow_icon.setAttribute('class', 'fa fa-sort-desc')
           switching = true;
         }
       }
