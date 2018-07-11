@@ -143,7 +143,7 @@ function profile_create() {
                         <label><input type="checkbox" name="interest[]" value="1">Non Profit</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="2">Human resource</label>
+                        <label><input type="checkbox" name="interest[]" value="2">Human Resources</label>
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" value="3">Retail</label>
@@ -161,7 +161,7 @@ function profile_create() {
                         <label><input type="checkbox" name="interest[]" value="7">Publishing</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="8">Journaling</label>
+                        <label><input type="checkbox" name="interest[]" value="8">Journalism</label>
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" value="9">Advertising</label>
@@ -475,9 +475,10 @@ function profile_create() {
                         },
                         stringLength: {
                             min: 8,
+                            message: 'Minimum 8 characters',
                         },
                         notEmpty: {
-                            message: 'Password must be at least 8 characters'
+                            message: 'Minimum 8 characters'
                         }
                     }
                 },
@@ -487,8 +488,12 @@ function profile_create() {
                             field: 'password',
                             message: 'Password does not match'
                         },
+                        stringLength: {
+                            min: 8,
+                            message: 'Minimum 8 characters',
+                        },
                         notEmpty: {
-                            message: 'Password must be at least 8 characters'
+                            message: 'Minimum 8 characters'
                         }
                     }
                 },
