@@ -4,7 +4,8 @@ function register_confirm() { ?>
     <div class="wrap">
         <h2>Thank you for submitting your application!</h2>
         <p>
-            A confirmation email will be sent to your email address shortly. Please confirm so that we can begin reviewing your application.
+            You will recieve an email from us informing you whether you have been accepted. <br> <br>
+            For more information about your future connections, go to <a href="../my-connection" > My Connection </a>
         </p> 
         <br> <br>
         <form action="<?php echo esc_url( home_url())?>">
