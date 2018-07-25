@@ -39,6 +39,9 @@ if(isset($_POST['register'])){
     $interestBitMask = 0;
     $resourceBitMask = 0;
 
+    $tcAffiliationString = 0;
+    $interestString = 0;
+    $resourceString = 0;
     $interest_list = implode(",\n", $interest);
     $resource_list = implode(",\n", $resource);
     $tcAffiliation_list = implode(",\n", $tcAffiliation);
@@ -46,12 +49,32 @@ if(isset($_POST['register'])){
     if(!empty($tcAffiliation)){
         $N = count($tcAffiliation);
         for($i = 0; $i < $N; $i++) {
-            if((int) $tcAffiliation[$i] == 4) { $tcAffiliationBitMask = 0; 
-                // $interest_list .= ",\n" . $interest_other;
-                break;}
-            if((int) $tcAffiliation[$i] == 5) { break;}
+            switch ((int) $tcAffiliation[$i]) {
+                case 1:
+                    array_push($tcAffiliationString, "9/11 Family Member");
+                    break;
+                case 2:
+                    array_push($tcAffiliationString, "First Responder/First Responder Family Member");
+                    break;
+                case 3:
+                    array_push($tcAffiliationString, "Military");
+                    break;
+                case 4:
+                    array_push($tcAffiliationString, "Volunteer");
+                    $tcAffiliationBitMask = 0;
+                    break;
+                case 5: 
+                    array_push($tcAffiliationString, $tcAffiliation_other);
+                
+                default:
+                    # code...
+                    break;
+            }
+            // if((int) $tcAffiliation[$i] == 4) { $tcAffiliationBitMask = 0; 
+            //     // $interest_list .= ",\n" . $interest_other;
+            //     break;}
+            // if((int) $tcAffiliation[$i] == 5) { break;}
             $tcAffiliationBitMask += pow(2, (int) $tcAffiliation[$i]);
-
         }
     }
     if(!empty($interest)){

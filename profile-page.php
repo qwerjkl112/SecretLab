@@ -3,8 +3,7 @@ function profile_page() {
 
     ?>
     <div class="wrap">
-        <h2>My Profile</h2>
-        <style>
+            <style>
             input[readonly] { 
                 background-color: transparent;
                 color:black;
@@ -185,9 +184,9 @@ function profile_page() {
                     </div>
                 </div>
 
-                <div class="panel panel-primary">
+                <div class="panel panel-primary hidden">
                     <div class="panel-heading" id="profession_info">
-                        <h3 class="panel-title"> Employment </h3>
+                        <h3 class="panel-title" > Employment </h3>
                     </div>
                     <div class="panel-body">
                         <div class="form-group row">
@@ -260,7 +259,7 @@ function profile_page() {
                     </div>
                 </div>
 
-                <div class="panel panel-primary">
+                <div class="panel panel-primary hidden">
                     <div class="panel-heading" id="education_info">
                         <h3 class="panel-title"> Education </h3>
                     </div>
