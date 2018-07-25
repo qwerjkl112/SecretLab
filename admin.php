@@ -66,13 +66,13 @@ function admin_list() {
         </table>
     </div>
 
-   <!--  <div>
+    <div>
         <h2>test Email</h2>
         <form action"" method="post">
             <button type="submit" class="btn btn-default" name="email_user">
             <input type="hidden">
             <span class="glyphicon glyphicon-envelope"></span> Email User</button>
-    </div> -->
+    </div>
     <?php
     }
     else{
