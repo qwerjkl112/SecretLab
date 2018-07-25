@@ -39,9 +39,9 @@ if(isset($_POST['register'])){
     $interestBitMask = 0;
     $resourceBitMask = 0;
 
-    $tcAffiliationString = 0;
-    $interestString = 0;
-    $resourceString = 0;
+    $tcAffiliationString = [];
+    $interestString = [];
+    $resourceString = [];
     $interest_list = implode(",\n", $interest);
     $resource_list = implode(",\n", $resource);
     $tcAffiliation_list = implode(",\n", $tcAffiliation);
@@ -50,24 +50,24 @@ if(isset($_POST['register'])){
         $N = count($tcAffiliation);
         for($i = 0; $i < $N; $i++) {
             switch ((int) $tcAffiliation[$i]) {
-                case 1:
+                case 0:
                     array_push($tcAffiliationString, "9/11 Family Member");
                     break;
-                case 2:
+                case 1:
                     array_push($tcAffiliationString, "First Responder/First Responder Family Member");
                     break;
-                case 3:
+                case 2:
                     array_push($tcAffiliationString, "Military");
                     break;
-                case 4:
+                case 3:
                     array_push($tcAffiliationString, "Volunteer");
-                    $tcAffiliationBitMask = 0;
+                    break;
+                case 4:
+                    array_push($tcAffiliationString, "Prefer not to answer");
                     break;
                 case 5: 
                     array_push($tcAffiliationString, $tcAffiliation_other);
-                
                 default:
-                    # code...
                     break;
             }
             // if((int) $tcAffiliation[$i] == 4) { $tcAffiliationBitMask = 0; 
@@ -80,18 +80,83 @@ if(isset($_POST['register'])){
     if(!empty($interest)){
         $N = count($interest);
         for($i = 0; $i < $N; $i++) {
-            if((int) $interest[$i] == 13) { 
-                // $resource_list .= ",\n" . $resource_other;
-                break;}
+            switch ((int) $interest[$i]) {
+                case 0:
+                    array_push($interestString, "Finance");
+                    break;
+                case 1:
+                    array_push($interestString, "Non Profit");
+                    break;
+                case 2:
+                    array_push($interestString, "Human Resource");
+                    break;
+                case 3:
+                    array_push($interestString, "Retail");
+                    break;
+                case 4:
+                    array_push($interestString, "Law");
+                    break;
+                case 5:
+                    array_push($interestString, "Media");
+                    break;
+                case 6:
+                    array_push($interestString, "Education");
+                    break;
+                case 7:
+                    array_push($interestString, "Publishing");
+                    break;
+                case 8:
+                    array_push($interestString, "Journalism");
+                    break;
+                case 9:
+                    array_push($interestString, "Advertising");
+                    break;
+                case 10:
+                    array_push($interestString, "Marketing");
+                    break;
+                case 11:
+                    array_push($interestString, "PR");
+                    break;
+                case 12:
+                    array_push($interestString, "Technology");
+                    break;
+                case 13:
+                    array_push($interestString, $interest_other);
+                    break;
+            }
+            // if((int) $interest[$i] == 13) { 
+            //     // $resource_list .= ",\n" . $resource_other;
+            //     break;}
             $interestBitMask += pow(2, (int) $interest[$i]);
         }
     }
     if(!empty($resource)){
         $N = count($resource);
         for($i = 0; $i < $N; $i++) {
-            if((int) $resource[$i] == 5) { 
-                // $tcAffiliation_list .= ",\n" . $tcAffiliation_other;
-                break;}
+            switch ((int) $tcAffiliation[$i]) {
+                case 0:
+                    array_push($resourceString, "Resume Writing");
+                    break;
+                case 1:
+                    array_push($resourceString, "Networking");
+                    break;
+                case 2:
+                    array_push($resourceString, "Career Advancement");
+                    break;
+                case 3:
+                    array_push($resourceString, "Career Change");
+                    break;
+                case 4:
+                    array_push($resourceString, "General Professional Help");
+                    break;
+                case 5: 
+                    array_push($resourceString, $resource_other);
+                    break;
+            }
+
+            // if((int) $resource[$i] == 5) { 
+            //     // $tcAffiliation_list .= ",\n" . $tcAffiliation_other;
+            //     break;}
             $resourceBitMask += pow(2, (int) $resource[$i]);
         }
     }
@@ -99,8 +164,10 @@ if(isset($_POST['register'])){
      // echo "interest bitmask to " . $interestBitMask . "<br>";
      // echo "resource bitmask to " . $resourceBitMask . "<br>";
 
-
-
+ 
+    $resourceString = implode(",\n" , $resourceString);
+    $interestString = implode(",\n" , $interestString);
+    $tcAffiliationString = implode(",\n" , $tcAffiliationString);
 
 
     //insert
@@ -124,9 +191,9 @@ if(isset($_POST['register'])){
                 'companyName' => $companyName, 
                 'jobTitle' => $jobTitle, 
                 'jobResponisibility' => $jobResponisibility, 
-                'interest' => $interest_list, 
-                'resource' => $resource_list, 
-                'tcAffiliation' => $tcAffiliation_list, 
+                'interest' => $interestString, 
+                'resource' => $resourceString, 
+                'tcAffiliation' => $tcAffiliationString, 
                 'yearsProfession' => $yearsProfession, 
                 'numCandidate' => $numCandidate,                
                 'prevJobs' => $prevJobs, 

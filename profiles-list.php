@@ -80,7 +80,7 @@ function profiles_list() {
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->status; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->jobTitle; ?></td>  
+                    <td class="manage-column ss-list-width"><?php echo $row->interest; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->jobResponisibility; ?></td> 
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">

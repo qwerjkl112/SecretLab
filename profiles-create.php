@@ -143,7 +143,7 @@ function profile_create() {
                         <label><input type="checkbox" name="interest[]" value="1">Non Profit</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="2">Human resource</label>
+                        <label><input type="checkbox" name="interest[]" value="2">Human Resource</label>
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" value="3">Retail</label>
@@ -161,7 +161,7 @@ function profile_create() {
                         <label><input type="checkbox" name="interest[]" value="7">Publishing</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="8">Journaling</label>
+                        <label><input type="checkbox" name="interest[]" value="8">Journalism</label>
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" value="9">Advertising</label>
