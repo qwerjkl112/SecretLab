@@ -43,8 +43,8 @@ function email_user() {
     $txt = "Hello world!";
     $headers = "this is headers";
 
-    if($suc = mail($to,$subject,$txt,$headers)){
-    echo "<div class='alert alert-success'> <strong>Success!</strong> Email sent, statu is $suc </div>"; 
+    if(mail($to,$subject,$txt)){
+    echo "<div class='alert alert-success'> <strong>Success!</strong> Email sent, statu is good </div>"; 
     }
     else {
 
@@ -52,6 +52,8 @@ function email_user() {
 
     }
 }
+
+
 
 function deactivateUser($profileId){
     global $wpdb;
