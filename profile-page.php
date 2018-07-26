@@ -95,7 +95,7 @@ function profile_page() {
                                     <label><input type="checkbox" name="interest" value="1" disabled required <?php echo ($row->interest == 'Non Profit') ? 'checked' : '' ?>>Non Profit</label>
                                 </div>
                                 <div class="checkbox">
-                                    <label><input type="checkbox" name="interest" value="2" disabled required <?php echo ($row->interest == 'Human resource') ? 'checked' : '' ?>>Human resource</label>
+                                    <label><input type="checkbox" name="interest" value="2" disabled required <?php echo ($row->interest == 'Human Resources') ? 'checked' : '' ?>>Human Resources</label>
                                 </div>
                                 <div class="checkbox">
                                     <label><input type="checkbox" name="interest" value="3" disabled required <?php echo ($row->interest == 'Retail') ? 'checked' : '' ?>>Retail</label>
@@ -113,7 +113,7 @@ function profile_page() {
                                     <label><input type="checkbox" name="interest" value="7" disabled required <?php echo ($row->interest == 'Publishing') ? 'checked' : '' ?>>Publishing</label>
                                 </div>
                                 <div class="checkbox">
-                                    <label><input type="checkbox" name="interest" value="8" disabled required <?php echo ($row->interest == 'Journaling') ? 'checked' : '' ?>>Journaling</label>
+                                    <label><input type="checkbox" name="interest" value="8" disabled required <?php echo ($row->interest == 'Journalism') ? 'checked' : '' ?>>Journalism</label>
                                 </div>
                                 <div class="checkbox">
                                     <label><input type="checkbox" name="interest" value="9" disabled required <?php echo ($row->interest == 'Advertising') ? 'checked' : '' ?>>Advertising</label>
