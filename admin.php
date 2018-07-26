@@ -68,9 +68,9 @@ function admin_list() {
 
     <div>
         <h2>test Email</h2>
-        <form action"" method="post">
+        <form action="" method="post">
             <button type="submit" class="btn btn-default" name="email_user">
-            <input type="hidden">
+            <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
             <span class="glyphicon glyphicon-envelope"></span> Email User</button>
     </div>
     <?php

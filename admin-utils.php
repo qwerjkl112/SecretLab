@@ -34,14 +34,16 @@ if(isset($_POST['admin_create'])){
 }
 
 if(isset($_POST['email_user'])){
+    $to = $_POST[$email];
+    $subject = $_POST[$subject];
+    $txt = $_POST[$txt];
     email_user();
 }
 
-function email_user() {
+function email_user($to, $subject, $txt) {
     $to = "gfrank94@hotmail.com";
-    $subject = "Hi Frank";
-    $txt = "Hello world!";
-    $headers = "this is headers";
+    $subject = "bye Frank";
+    $txt = "From TC";
 
     if(mail($to,$subject,$txt)){
     echo "<div class='alert alert-success'> <strong>Success!</strong> Email sent, statu is good </div>"; 

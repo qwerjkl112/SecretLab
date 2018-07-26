@@ -36,7 +36,7 @@ function profiles_list() {
         <?php
         global $wpdb;
         $table_name = "users";
-        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, usertype.`description` AS `userType`, `interest`, `resource`, `status`, `jobTitle`, `jobResponisibility` from $table_name INNER JOIN usertype on users.userType=usertype.typeId");
+        $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, usertype.`description` AS `userType`, `interest`, `resource`, `status`, `tcAffiliation`, `jobResponisibility` from $table_name INNER JOIN usertype on users.userType=usertype.typeId");
         ?>
 
         <b>Create Connection</b>
@@ -64,11 +64,12 @@ function profiles_list() {
                 <th class="manage-column ss-list-width" onclick="sortTable(2)">Full Name <span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(3)">Type of Member <span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(4)">Status <span class="fa fa-sort"></span></th>
-                <th class="manage-column ss-list-width" onclick="sortTable(5)">Job Title <span class="fa fa-sort"></span></th>
-                <th class="manage-column ss-list-width" onclick="sortTable(6)">Job Responsibility <span class="fa fa-sort"></span></th>
-                <th class="manage-column ss-list-width" onclick="sortTable(7)">Deactivate User</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(8)">Approve User</th>
-                <th class="manage-column ss-list-width" onclick="sortTable(9)">Request Feedback</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(5)">Interest <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(6)">Resource <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(7)">TC Affliation <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(8)">Deactivate User</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(9)">Approve User</th>
+                <th class="manage-column ss-list-width" onclick="sortTable(10)">Request Feedback</th>
 
             </tr>
             <?php foreach ($rows as $row) { ?>
@@ -80,7 +81,9 @@ function profiles_list() {
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->status; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->jobTitle; ?></td>  
+                    <td class="manage-column ss-list-width"><?php echo $row->interest; ?></td>  
+                    <td class="manage-column ss-list-width"><?php echo $row->resource; ?></td>  
+                    <td class="manage-column ss-list-width"><?php echo $row->tcAffiliation; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->jobResponisibility; ?></td> 
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">
