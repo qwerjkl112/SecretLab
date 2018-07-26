@@ -143,7 +143,7 @@ function profile_create() {
                         <label><input type="checkbox" name="interest[]" value="1">Non Profit</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="interest[]" value="2">Human Resource</label>
+                        <label><input type="checkbox" name="interest[]" value="2">Human Resources</label>
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" value="3">Retail</label>
@@ -297,6 +297,10 @@ function profile_create() {
                             <option>Not looking but interested in networking</option>
                             <option>Other</option>
                         </select>
+                        <br>
+                        <div>
+                            <input type="text" name="employmentType_other" id="employmentType_other" style="display:none" class="form-control-plaintext" placeholder="Other"></input>
+                        </div> 
                     </div>
                 </div> 
 
@@ -309,6 +313,10 @@ function profile_create() {
                             <option>In the workforce/post college</option>
                             <option>Other</option>
                         </select>
+                        <br>
+                        <div>
+                            <input type="text" name="currentEducation_other" id="currentEducation_other" style="display:none" class="form-control-plaintext" placeholder="Other"></input>
+                        </div> 
                     </div>
                 </div> 
 
@@ -397,6 +405,20 @@ function profile_create() {
                     $('#education_form').css('display','none');
                 }
             })
+
+            var selected_callback = function(event){
+                var other_input = $("#"+event.target.name + '_other');
+                if ($('#'+event.target.id).val() === 'Other') {
+                    other_input.attr('required', true);
+                    other_input.show();
+                }
+                else{
+                    other_input.removeAttr('required');
+                    other_input.hide();
+                }
+            }
+            $('#employmentType').change(selected_callback);
+            $("#currentEducation").change(selected_callback);
         });
         function otherToggle (event) {
             var other_input = document.getElementById(event.name.replace('[]','') + '_other');
@@ -475,9 +497,10 @@ function profile_create() {
                         },
                         stringLength: {
                             min: 8,
+                            message: 'Minimum 8 characters',
                         },
                         notEmpty: {
-                            message: 'Password must be at least 8 characters'
+                            message: 'Minimum 8 characters'
                         }
                     }
                 },
@@ -487,8 +510,12 @@ function profile_create() {
                             field: 'password',
                             message: 'Password does not match'
                         },
+                        stringLength: {
+                            min: 8,
+                            message: 'Minimum 8 characters',
+                        },
                         notEmpty: {
-                            message: 'Password must be at least 8 characters'
+                            message: 'Minimum 8 characters'
                         }
                     }
                 },
@@ -595,7 +622,6 @@ function profile_create() {
             .on('success.form.bv', function(e) {
                 $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
                     $('#contact_form').data('bootstrapValidator').resetForm();
-                console.log("oppo")
                 // Prevent form submission
                 e.preventDefault();
 

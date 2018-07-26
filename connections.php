@@ -8,7 +8,7 @@ function connections_table() {
         $table_name = "users";
         $rows = $wpdb->get_results("SELECT users.`firstname` AS `mentorName`, users2.`firstname` AS `menteeName`, `connectionid`, `mentorId`, `menteeId`, `createdDate`, `lastConnected` FROM `connections` INNER JOIN users on connections.mentorId=users.ID INNER JOIN users users2 on connections.menteeId=users2.ID ");
 	?>
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<div class="container">
 		  <table class="table table-striped">
 		    <thead>
@@ -70,9 +70,22 @@ function connections_table() {
 					comment_row.append('<td id="comment_info" colspan="4"></td>');
 					connection_row.after(comment_row);
 					$('#comment_info').append(comments);
+					var form = connection_row.find('[name=connection_detail]').parent();
+					form.hide();
+					var cell = form.parent();
+					cell.append('<button class="btn btn-default" id="hide_comment" onClick=\'hideComments(this)\' style=\'{display: none}\'><span class="fa fa-close"></span> Hide Comments </button>')
 				}
-
 			} )
+
+			function hideComments(e){
+				var connection_row = e.parentElement
+				var detail_form = connection_row.querySelector('[name=connection_detail]').parentElement;
+				detail_form.style.display = "block";
+				
+				var comment_row = connection_row.parentElement.nextSibling
+				comment_row.remove();
+				e.remove();
+			}
 		
 		</script>
 
