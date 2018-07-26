@@ -50,7 +50,7 @@ CREATE TABLE Connections (
     FOREIGN KEY (menteeId) REFERENCES `Users` (`ID`)
 );
 
-CREATE TABLE Interests (
+CREATE TABLE interests (
 interest_id int PRIMARY KEY, 
 Description varchar(255)
 );
@@ -63,12 +63,12 @@ CREATE TABLE PotentialConnections (
 	matchScore INT NOT NULL
 );
 
-CREATE TABLE TCAffiliation (
+CREATE TABLE tcaffiliation (
 	tcaffiliationId int PRIMARY KEY,
 	Description varchar(300)
 );
 
-CREATE TABLE Resources (
+CREATE TABLE resources (
 	resourcesId int PRIMARY KEY,
 	Description varchar(300)
 );
@@ -84,13 +84,13 @@ CREATE TABLE Feedbacks (
 
 
 
-INSERT INTO `Resources` (`resourcesId`, `Description`) VALUES ('0', 'Resume Writing'), ('1', 'Networking'),('2', 'Career Advancement'),('3', 'Career Change'),('4', 'General Professional Help'),('5', 'Other');
+INSERT INTO `resources` (`resourcesId`, `Description`) VALUES ('0', 'Resume Writing'), ('1', 'Networking'),('2', 'Career Advancement'),('3', 'Career Change'),('4', 'General Professional Help'),('5', 'Other');
 
-INSERT INTO `TCAffiliation` (`tcaffiliationId`, `Description`) VALUES 
+INSERT INTO `tcaffiliation` (`tcaffiliationId`, `Description`) VALUES 
 ('0', '9/11 Family Member'), ('1', 'First Responder/First Responder Family Member'),
 ('2', 'Military'), ('3', 'Volunteer'),('4', 'Prefer not to answer'),('5', 'Other');
 
-INSERT INTO `Interests` (`interest_id`, `Description`) VALUES ('0', 'Finance'), 
+INSERT INTO `interests` (`interest_id`, `Description`) VALUES ('0', 'Finance'), 
 ('1', 'Non Profit'), ('2', 'Human Resources'), ('3', 'Retail'), ('4', 'Law'), ('5', 'Media'), 
 ('6', 'Education'), ('7', 'Publishing'), ('8', 'Journaling'), ('9', 'Advertising'), 
 ('10', 'Marketing'), ('11', 'PR'), ('12', 'Technology'), ('13', 'Other');

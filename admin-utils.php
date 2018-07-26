@@ -33,6 +33,28 @@ if(isset($_POST['admin_create'])){
     }
 }
 
+if(isset($_POST['email_user'])){
+    email_user();
+}
+
+function email_user() {
+    $to = "gfrank94@hotmail.com";
+    $subject = "Hi Frank";
+    $txt = "Hello world!";
+    $headers = "this is headers";
+
+    if(mail($to,$subject,$txt)){
+    echo "<div class='alert alert-success'> <strong>Success!</strong> Email sent, statu is good </div>"; 
+    }
+    else {
+
+    echo "<div class='alert alert-danger'> <strong>Failure!</strong> Email not sent </div>";
+
+    }
+}
+
+
+
 function deactivateUser($profileId){
     global $wpdb;
 	$wpdb->query(
