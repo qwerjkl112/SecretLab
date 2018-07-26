@@ -2,7 +2,6 @@
 require_once ( 'update-profile-action.php' );
 
 function profile_page() {
-
     ?>
     <div class="wrap">
             <style>
@@ -52,7 +51,6 @@ function profile_page() {
 
             </div>
         </div>
-<<<<<<< HEAD
     <form method="post" action="">
             <div id="profile__body">
                 <div class="panel-group">
@@ -249,10 +247,5 @@ function profile_page() {
 
     </div>
     <?php
-<<<<<<< HEAD
 }
 add_shortcode('profile', 'profile_page');
-=======
-    }
-add_shortcode('profile', 'profile_page');
->>>>>>> 83b00d206d4596c5c2f8ec98126a6c133fbc8bf1
