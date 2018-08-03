@@ -66,7 +66,7 @@ function profiles_list() {
                 <th class="manage-column ss-list-width" onclick="sortTable(4)">Status <span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(5)">Interest <span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(6)">Resource <span class="fa fa-sort"></span></th>
-                <th class="manage-column ss-list-width" onclick="sortTable(7)">TC Affliation <span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(7)">Tuesday Children All<span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(8)">Deactivate User</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(9)">Approve User</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(10)">Request Feedback</th>
