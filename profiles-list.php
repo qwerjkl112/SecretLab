@@ -81,10 +81,9 @@ function profiles_list() {
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>  
                     <td class="manage-column ss-list-width"><?php echo $row->status; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->interest; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->resource; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->tcAffiliation; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->jobResponisibility; ?></td> 
+                    <td class="manage-column ss-list-width" name="interestCell"><?php echo $row->interest; ?></td>  
+                    <td class="manage-column ss-list-width" name="resourceCell"><?php echo $row->resource; ?></td>  
+                    <td class="manage-column ss-list-width" name="afflicationCell"><?php echo $row->tcAffiliation; ?></td>  
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
@@ -197,6 +196,28 @@ function profiles_list() {
 
 
         $( document ).ready(function() {
+            $('#profile_table tr').each(function() {
+                var cell = $(this).find("[name='interestCell']").html(); 
+                if (cell){
+                    cell = cell.replace(",", ",<br>");
+                    $(this).find("[name='interestCell']").html(cell); 
+                }
+            });
+            $('#profile_table tr').each(function() {
+                var cell = $(this).find("[name='resourceCell']").html(); 
+                if (cell){
+                    cell = cell.replace(",", ",<br>");
+                    $(this).find("[name='resourceCell']").html(cell); 
+                }
+            });
+            $('#profile_table tr').each(function() {
+                var cell = $(this).find("[name='afflicationCell']").html(); 
+                if (cell){
+                    cell = cell.replace(",", ",<br>");
+                    $(this).find("[name='afflicationCell']").html(cell); 
+                }
+            });
+
             $("#export_profileList").click(function () {
                 $("#profile_table").table2excel({
                     filename: "Table.xls"
