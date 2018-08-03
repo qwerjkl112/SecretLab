@@ -3,7 +3,7 @@
 function register_confirm() { ?>
     <div class="wrap">
         <h2>Thank you for submitting your application!</h2>
-        <p>
+        <p style="font-size: 18px;">
             You will recieve an email from us informing you whether you have been accepted. <br> <br>
             For more information about your future connections, go to <a href="../my-connection" > My Connection </a>
         </p> 
