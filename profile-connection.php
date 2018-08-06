@@ -79,23 +79,22 @@ function profile_connection() {
 						}
 						?>
 		        <td>
-		          <br>
 		          <form action="" method="post">
 		          	<span> Rating: </span>
 		          	<input type="radio" name="Rating" value="1"/>
-			        <label>1</label>
-			        <input type="radio" name="Rating" value="2"/>
-			        <label>2</label>
-			        <input type="radio" name="Rating" value="3"/>
-			        <label>3</label>
-			        <input type="radio" name="Rating" value="4"/>
-			        <label>4</label>
-			        <input type="radio" name="Rating" value="5"/>
-			        <label>5</label>
-			        <div class="form-group">
-					  <label for="comment">Feedback:</label>
-					  <textarea class="form-control" rows="2" id="comment" name="Description"></textarea>
-					</div>
+			        	<label>1</label>
+			        	<input type="radio" name="Rating" value="2"/>
+			        	<label>2</label>
+			        	<input type="radio" name="Rating" value="3"/>
+			        	<label>3</label>
+			        	<input type="radio" name="Rating" value="4"/>
+			        	<label>4</label>
+			        	<input type="radio" name="Rating" value="5"/>
+			        	<label>5</label>
+			        	<div class="form-group">
+					  			<label for="comment">Feedback:</label>
+					  			<textarea class="form-control" rows="2" id="comment" name="Description"></textarea>
+								</div>
 		          	<button type="submit" class="btn btn-default" name="leave_feedback">
 		          	<input type="hidden" name="connectionid" <?php echo "value=".$row->connectionid;?>>
 		          	<input type="hidden" name="SenderId" <?php echo "value=".$profileId;?>>
@@ -113,14 +112,21 @@ function profile_connection() {
 		          	<span class="glyphicon glyphicon-comment" ></span> Leave Feedback </button>
 
 
-			        <br>
+				        <br>
 
 		          </form>
 
 		        </td>
 		        <td>
-		        	<button type="submit" class="btn btn-default" name="email">
-		        		<span class="glyphicon glyphicon-envelope" ></span> Email </button>
+							<div id="email_form">
+								<form>
+									<label>Message:</label>
+									<textarea class="form-control" rows="2" id="comment" name="Message"></textarea>
+									<br>
+									<button class="btn btn-default" id="email_btn" name="email">
+									  <span class="glyphicon glyphicon-envelope" ></span> Email </button>
+								</form>
+							</div>
 
 		        </td>
 		      </tr>
