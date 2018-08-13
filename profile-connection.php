@@ -1,6 +1,7 @@
 <?php
 
 require_once ( 'create-feedback-action.php' );
+require_once ('admin-utils.php');
 
 function profile_connection() {
 	global $wpdb;
@@ -119,11 +120,14 @@ function profile_connection() {
 		        </td>
 		        <td>
 							<div id="email_form">
-								<form>
+								<form action="" method="post">
 									<label>Message:</label>
-									<textarea class="form-control" rows="2" id="comment" name="Message"></textarea>
+									<textarea class="form-control" rows="2" id="comment" name="txt"></textarea>
 									<br>
-									<button class="btn btn-default" id="email_btn" name="email">
+									<input type="hidden" name="subject" value="Testing Subject" >
+									<input type="hidden" name="email" value="<?php echo $row->email ?>">
+
+									<button class="btn btn-default" id="email_btn" name="email_user">
 									  <span class="glyphicon glyphicon-envelope" ></span> Email </button>
 								</form>
 							</div>
