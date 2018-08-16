@@ -133,7 +133,7 @@ if(isset($_POST['register'])){
     if(!empty($resource)){
         $N = count($resource);
         for($i = 0; $i < $N; $i++) {
-            switch ((int) $tcAffiliation[$i]) {
+            switch ((int) $resource[$i]) {
                 case 0:
                     array_push($resourceString, "Resume Writing");
                     break;
