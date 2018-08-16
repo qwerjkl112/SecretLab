@@ -1,7 +1,8 @@
 <?php
 
+require_once ( 'potential-connection-runner.php' );
+
 if (isset($_POST['updateProfile'])) {
-    echo $_POST["username"];
     $profileId = $_POST["profileId"];
     $resource = $_POST["resource"];
     $interest = $_POST["interest"];
@@ -38,7 +39,7 @@ if (isset($_POST['updateProfile'])) {
                 case 4:
                     array_push($tcAffiliationString, "Prefer not to answer");
                     break;
-                case 5: 
+                case 5:
                     array_push($tcAffiliationString, $tcAffiliation_other);
                 default:
                     break;
@@ -99,7 +100,7 @@ if (isset($_POST['updateProfile'])) {
     if(!empty($resource)){
         $N = count($resource);
         for($i = 0; $i < $N; $i++) {
-            switch ((int) $tcAffiliation[$i]) {
+            switch ((int) $resource[$i]) {
                 case 0:
                     array_push($resourceString, "Resume Writing");
                     break;
@@ -115,15 +116,13 @@ if (isset($_POST['updateProfile'])) {
                 case 4:
                     array_push($resourceString, "General Professional Help");
                     break;
-                case 5: 
+                case 5:
                     array_push($resourceString, $resource_other);
                     break;
             }
             $resourceBitMask += pow(2, (int) $resource[$i]);
         }
     }
-
- 
     $resourceString = implode(",\n" , $resourceString);
     $interestString = implode(",\n" , $interestString);
     $tcAffiliationString = implode(",\n" , $tcAffiliationString);
@@ -131,13 +130,14 @@ if (isset($_POST['updateProfile'])) {
 }
 
 function updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other){
-    if (isset($_POST['update'])) {
+    if (isset($_POST['updateProfile'])) {
     $table_name = "users";
+    global $wpdb;
     $wpdb->update(
             $table_name, //table
             array(
-            'tcAffiliation' => $tcAffiliationString, 
-            'interest' => $interestString, 
+            'tcAffiliation' => $tcAffiliationString,
+            'interest' => $interestString,
             'resource' => $resourceString,
             'TCAffiliationBitMask'=> $tcAffiliationBitMask,
             'InterestsBitMask' => $interestBitMask,
@@ -148,4 +148,6 @@ function updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $res
             ),
             array('id' => $profileId));
     }
+    clearPotentialMatches();
+    findPotentialMatches();
 }
