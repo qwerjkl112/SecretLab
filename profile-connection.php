@@ -24,119 +24,107 @@ function profile_connection() {
 					//$user_rows = $wpdb->get_results("SELECT `connectionid`, Users.`firstname` AS `mentorName`, Users2.`firstname` AS `menteeName`, `createdDate`, `lastConnected`,`menteeId`,`mentorId` FROM Connections INNER JOIN Users on Connections.mentorId=Users.ID INNER JOIN Users Users2 on Connections.menteeId=Users2.ID WHERE `mentorId` = $profileId OR `menteeId` = $profileId ");
 					$myFeedbacks = $wpdb->get_results("SELECT * FROM `Feedbacks` WHERE `ReceiverId` = $profileId");
 	        $TCFeedBacks = $wpdb->get_results("SELECT * FROM `TC_Feedbacks` WHERE `profileId` = $profileId");
-	?>
+			?>
+		<style>
+			.wrap {
+				height: 80% !important;
+				overflow: scroll;
+			}
+		</style>
 
 		<div class="container">
-		  <table class="table table-striped">
-		    <thead>
-		      <tr>
-						<?php
-						if ($userType == 0){ ?>
-								<th>First Name</th>
-								<th>Last name</th>
-								<th>Last Checked In</th>
-								<th>Phone Number</th>
-								<th>Job Title</th>
-								<th>Company</th>
-								<th>Feedback</th>
-								<th>Email</th>
-						<?php
-						}
-						else { ?>
-								<th>First Name</th>
-								<th>Last name</th>
-								<th>Last Checked In</th>
-								<th>Phone Number</th>
-								<th>Status</th>
-								<th>Interest</th>
-								<th>Relation</th>
-								<th>Feedback</th>
-								<th>Email</th>
-						<?php
-						}
-						?>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <?php foreach ($rows as $row) { ?>
-		      <tr>
-		        <td class="manage-column ss-list-width"><?php echo $row->firstname; ?></td>
-						<td class="manage-column ss-list-width"><?php echo $row->lastname; ?></td>
-						<td class="manage-column ss-list-width"><?php echo $row->lastConnected; ?></td>
-						<td class="manage-column ss-list-width"><?php echo $row->phonenumber; ?></td>
-						<?php
-						if ($userType == 0){
-							?>
-							<td class='manage-column ss-list-width'><?php echo $row->jobTitle; ?></td>
-							<td class='manage-column ss-list-width'><?php echo $row->companyName; ?></td>
+			<h2>My Connections</h2>
+			<br>
+			<b>Filter</b>
+			<form class="form-inline">
+					<div class="form-group">
+						<input class="form-control" id="myInput" type="text" placeholder="Type text to filter...">
+					</div>
+			</form>
+			<div class="wrap">
+			  <table id="my_connection_tb" class="table table-striped">
+			    <thead>
+			      <tr>
 							<?php
-						}
-						else {
-							?>
-							<td class='manage-column ss-list-width'><?php echo $row->resource; ?></td>
-							<td class='manage-column ss-list-width'><?php echo $row->interest; ?></td>
-							<td class='manage-column ss-list-width'><?php echo $row->tcAffiliation; ?></td>
+							if ($userType == 0){ ?>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Last Checked In</th>
+									<th>Phone Number</th>
+									<th>Job Title</th>
+									<th>Company</th>
+									<th>Feedback</th>
+									<th>Email</th>
 							<?php
-						}
-						?>
-		        <td>
-		          <form action="" method="post">
-		          	<span> Rating: </span>
-		          	<input type="radio" name="Rating" value="1"/>
-			        	<label>1</label>
-			        	<input type="radio" name="Rating" value="2"/>
-			        	<label>2</label>
-			        	<input type="radio" name="Rating" value="3"/>
-			        	<label>3</label>
-			        	<input type="radio" name="Rating" value="4"/>
-			        	<label>4</label>
-			        	<input type="radio" name="Rating" value="5"/>
-			        	<label>5</label>
-			        	<div class="form-group">
-					  			<label for="comment">Feedback:</label>
-					  			<textarea class="form-control" rows="2" id="comment" name="Description"></textarea>
-								</div>
-		          	<button type="submit" class="btn btn-default" name="leave_feedback">
-		          	<input type="hidden" name="connectionid" <?php echo "value=".$row->connectionid;?>>
-		          	<input type="hidden" name="SenderId" <?php echo "value=".$profileId;?>>
-		          	<input type="hidden" name="ReceiverId"
-		          	<?php
-		          		if($userType == '1') {
-		          			echo "value=".$row->menteeId;
-		          		}
-		          		else {
-		          			echo "value=".$row->mentorId;
-		          		}
-		          	?>
-		          		>
-
-		          	<span class="glyphicon glyphicon-comment" ></span> Leave Feedback </button>
-
-
-				        <br>
-
-		          </form>
-
-		        </td>
-		        <td>
-							<div id="email_form">
-								<form action="" method="post">
-									<label>Message:</label>
-									<textarea class="form-control" rows="2" id="comment" name="txt"></textarea>
-									<br>
-									<input type="hidden" name="subject" value="Testing Subject" >
-									<input type="hidden" name="email" value="<?php echo $row->email ?>">
-
-									<button class="btn btn-default" id="email_btn" name="email_user">
-									  <span class="glyphicon glyphicon-envelope" ></span> Email </button>
-								</form>
-							</div>
-
-		        </td>
-		      </tr>
-			<?php } ?>
-		    </tbody>
-		  </table>
+							}
+							else { ?>
+									<th>First Name</th>
+									<th>Last name</th>
+									<th>Last Checked In</th>
+									<th>Phone Number</th>
+									<th>Status</th>
+									<th>Interest</th>
+									<th>Relation</th>
+									<th>Feedback</th>
+									<th>Email</th>
+							<?php
+							}
+							?>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <?php foreach ($rows as $row) { ?>
+			      <tr>
+			        <td class="manage-column ss-list-width"><?php echo $row->firstname; ?></td>
+							<td class="manage-column ss-list-width"><?php echo $row->lastname; ?></td>
+							<td class="manage-column ss-list-width"><?php echo $row->lastConnected; ?></td>
+							<td class="manage-column ss-list-width"><?php echo $row->phonenumber; ?></td>
+							<?php
+							if ($userType == 0){
+								?>
+								<td class='manage-column ss-list-width'><?php echo $row->jobTitle; ?></td>
+								<td class='manage-column ss-list-width'><?php echo $row->companyName; ?></td>
+								<?php
+							}
+							else {
+								?>
+								<td class='manage-column ss-list-width'><?php echo $row->resource; ?></td>
+								<td class='manage-column ss-list-width'><?php echo $row->interest; ?></td>
+								<td class='manage-column ss-list-width'><?php echo $row->tcAffiliation; ?></td>
+								<?php
+							}
+							?>
+			        <td>
+								<button class="btn btn-default open-feedbackModal"
+												data-toggle="modal"
+												data-target="#feedbackModal"
+												data-connection-id="<?php echo $row->connectionid ?>"
+												data-sender-id="<?php echo $profileId ?>"
+												data-receiver-name="<?php echo $row->firstname.' '.$row->lastname; ?>"
+												data-receiver-id="<?php
+													if($userType == '1') {
+														echo $row->menteeId;
+													}
+													else {
+														echo $row->mentorId;
+													} ?>">
+									<span class="glyphicon glyphicon-comment" ></span>
+									Leave Feedback </button>
+			        </td>
+			        <td>
+								<button class="btn btn-default open-emailModal"
+												data-toggle="modal" data-target="#emailModal"
+												data-recepient-name="<?php echo $row->firstname.' '.$row->lastname; ?>"
+												data-recepient-email="<?php echo $row->email ?>">
+									<span class="glyphicon glyphicon-envelope" ></span>
+									Email
+								</button>
+			        </td>
+			      </tr>
+				<?php } ?>
+			    </tbody>
+			  </table>
+			</div>
 		</div>
 
 		<div class="list-group">
@@ -167,6 +155,174 @@ function profile_connection() {
 			</div>
 		<?php } ?>
 		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="emailModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h4 class="email-modal-title"></h4>
+					</div>
+					<div class="modal-body">
+						<form action="" method="post" id="emailForm">
+							<div class="form-group">
+								<label>Message:</label>
+								<textarea class="form-control" rows="10" id="email_message" name="txt" required></textarea>
+							</div>
+							<br>
+
+							<button type="submit" class="btn btn-primary" id="email_btn" name="email_user">
+								<input type="hidden" name="subject" value="Testing Subject" >
+								<input type="hidden" name="email" id="email_input">
+								Send
+							</button>
+							<button type="button" class="btn btn-default" id="email_close_btn" data-dismiss="modal">Close</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="feedbackModal" role="dialog">
+			<div class="modal-dialog">
+
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h4 class="feedback-modal-title"></h4>
+					</div>
+					<div class="modal-body">
+						<form action="" method="post" id="feedbackForm">
+							<label for="Rating" class="control-label"> Rating: </label>
+							<div class="form-group">
+								<label class="radio-inline">
+	                <input type="radio" name="Rating" value="1" required/> 1
+		            </label>
+								<label class="radio-inline">
+	                <input type="radio" name="Rating" value="2" required/> 2
+		            </label>
+								<label class="radio-inline">
+	                <input type="radio" name="Rating" value="3" required/> 3
+		            </label>
+								<label class="radio-inline">
+	                <input type="radio" name="Rating" value="4" required/> 4
+		            </label>
+								<label class="radio-inline">
+	                <input type="radio" name="Rating" value="5" required/> 5
+		            </label>
+							</div>
+
+							<br>
+
+							<div class="form-group">
+								<label for="feedback_message">Feedback:</label>
+								<textarea class="form-control" rows="8" id="feedback_message" name="Description" required></textarea>
+							</div>
+
+							<button type="submit" class="btn btn-primary" name="leave_feedback">
+							<input type="hidden" name="connectionid" id="connection_input">
+							<input type="hidden" name="SenderId" id="sender_input">
+							<input type="hidden" name="ReceiverId" id="receiver_input">
+
+							Submit</button>
+							<button type="button" class="btn btn-default" id="feedback_close_btn" data-dismiss="modal">Close</button>
+
+							<br>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+			$(document).ready(function() {
+		    $('#feedbackForm').bootstrapValidator({
+					excluded: [':disabled'],
+	        fields: {
+						'Rating': {
+							validators: {
+								notEmpty: {
+                  message: 'Please select a rating'
+                }
+							}
+						},
+            'Description': {
+              validators: {
+              	notEmpty: {
+              		message: 'Please write a message'
+                },
+								stringLength: {
+                  max: 3000
+                },
+              }
+          	}
+	        }
+    		});
+
+				$('#emailForm').bootstrapValidator({
+					excluded: [':disabled'],
+					fields: {
+						'txt': {
+							validators: {
+								notEmpty: {
+									message: 'Please write a message'
+								},
+								stringLength: {
+									max: 3000
+								},
+							}
+						},
+
+					}
+				});
+
+			});
+
+
+			$("#myInput").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#my_connection_tb tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+
+			$(document).on("click", ".open-emailModal", function () {
+		     var name = $(this).data('recepient-name');
+				 var email = $(this).data('recepient-email');
+		     $(".modal-header .email-modal-title").html("Email Message to " + name);
+				 $(".modal-body #email_input").val(email);
+			});
+
+			$("#emailModal").on("hidden.bs.modal", function(){
+    			$("#email_message").val("");
+					$('#emailForm').bootstrapValidator("resetForm",true);
+			});
+
+			$(document).on("click", ".open-feedbackModal", function () {
+			     var name = $(this).data('receiver-name');
+					 var connection_id = $(this).data('connection-id');
+					 var sender_id = $(this).data('sender-id');
+					 var receiver_id = $(this).data('receiver-id');
+
+			     $(".modal-header .feedback-modal-title").html("Feedback about " + name);
+					 $(".modal-body #connection_input").val(connection_id);
+					 $(".modal-body #sender_input").val(sender_id);
+					 $(".modal-body #receiver_input").val(receiver_id);
+			});
+
+			$("#feedbackModal").on("hidden.bs.modal", function(){
+				$('input[name="Rating"]').prop('checked', false);
+				$("#feedback_message").val("");
+				$('#feedbackForm').bootstrapValidator("resetForm",true);
+			});
+
+		</script>
 	<?php
 	}
 	else{
