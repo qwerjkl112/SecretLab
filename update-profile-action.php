@@ -7,6 +7,7 @@ if (isset($_POST['updateProfile'])) {
     $resource = $_POST["resource"];
     $interest = $_POST["interest"];
     $tcAffiliation = $_POST["tcAffiliation"];
+    $otherInfo = $_POST["otherInfo"];
 
     $tcAffiliation_other = $_POST["tcAffiliation_other"];
     $interest_other = $_POST["interest_other"];
@@ -126,10 +127,10 @@ if (isset($_POST['updateProfile'])) {
     $resourceString = implode(",\n" , $resourceString);
     $interestString = implode(",\n" , $interestString);
     $tcAffiliationString = implode(",\n" , $tcAffiliationString);
-   	updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other);
+   	updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other, $otherInfo);
 }
 
-function updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other){
+function updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other, $otherInfo){
     if (isset($_POST['updateProfile'])) {
     $table_name = "users";
     global $wpdb;
@@ -144,7 +145,8 @@ function updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $res
             'ResourcesBitMask' =>$resourceBitMask,
             'tcAffiliation_other' => $tcAffiliation_other,
             'interest_other' => $interest_other,
-            'resource_other' => $resource_other
+            'resource_other' => $resource_other,
+            'otherInfo' => $otherInfo
             ),
             array('id' => $profileId));
     }

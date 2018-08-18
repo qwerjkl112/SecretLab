@@ -24,8 +24,11 @@ function profile_edit() { ?>
         global $wpdb;
         $row = $wpdb->get_row("SELECT *, `interest`, usertype.`description` AS `userType` FROM users INNER JOIN usertype on users.userType=usertype.typeId WHERE username = '$username' OR ID = $userid");
     ?>
+    <link type="text/css" href="<?php echo WP_PLUGIN_URL; ?>/custom-plugin/style-admin.css" rel="stylesheet" />
     <div class="wrap">
-        <form action="<?php echo esc_url( home_url())."/profile" ?>" method="post">
+        <h2>Edit Profile</h2>
+        <br>
+        <form action="<?php echo esc_url( home_url())."/profile" ?>" method="post" id="editProfileForm">
             <!-- BASIC INFO -->
             <div class="form-group row">
 
@@ -45,63 +48,6 @@ function profile_edit() { ?>
                 <label for="username" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-10">
                     <input type="text" readonly name = "username" class="form-control" id="username" placeholder="Username" value="<?php echo $row->username; ?>">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="otherInfo" class="col-sm-2 col-form-label">Is there any other information you would like to share?</label>
-                <div class="col-sm-10">
-                    <textarea class="form-control" rows="5" name="otherInfo" id="otherInfo" value=""><?php echo $row->otherInfo; ?></textarea>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
-                <div class="col-sm-10">
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="0" <?php echo (strpos($row->resource, 'Resume Writing') !== false) ? 'checked' : '' ?>>Resume Writing</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="1" <?php echo (strpos($row->resource, 'Networking') !== false) ? 'checked' : '' ?>>Networking</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="2" <?php echo (strpos($row->resource, 'Career Advancement') !== false) ?  'checked' : '' ?>>Career Advancement</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="3" <?php echo (strpos($row->resource, 'Career Change') !== false) ? 'checked' : '' ?>>Career Change</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" value="4" <?php echo (strpos($row->resource, 'General Professional Help') !== false) ? 'checked' : '' ?>>General Professional Help</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="resource[]" onclick="toggle(this);" value="5" <?php echo (strpos($row->tcAffiliation, 'Other') !== false) ? 'checked' : '' ?>>Other</label>
-                        <input type="text" name="resource_other" class="form-control" id="resource_other" style="display:none">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="tcAffiliation" class="col-sm-2 col-form-label">Please tell us your affiliation with Tuesday's Children.</label>
-                <div class="col-sm-10">
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="0" <?php echo (strpos($row->tcAffiliation, '9/11 Family Member') !== false) ? 'checked' : '' ?>>9/11 Family Member</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="1" <?php echo (strpos($row->tcAffiliation, 'First Responder/First Responder Family Member') !== false) ? 'checked' : '' ?>>First Responder/First Responder Family Member</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="2" <?php echo (strpos($row->tcAffiliation, 'Military') !== false) ? 'checked' : '' ?>>Military</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="3" <?php echo (strpos($row->tcAffiliation, 'Volunteer') !== false) ? 'checked' : '' ?>>Volunteer</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" value="4" <?php echo (strpos($row->tcAffiliation, 'Prefer not to answer') !== false) ? 'checked' : '' ?>>Prefer not to answer</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="tcAffiliation[]" onclick="toggle(this);"  value="5" <?php echo (strpos($row->tcAffiliation, 'Other') !== false) ? 'checked' : '' ?>>Other</label>
-                        <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div>
                 </div>
             </div>
 
@@ -153,6 +99,64 @@ function profile_edit() { ?>
                     </div>
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="tcAffiliation" class="col-sm-2 col-form-label">Please tell us your affiliation with Tuesday's Children.</label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation[]" value="0" <?php echo (strpos($row->tcAffiliation, '9/11 Family Member') !== false) ? 'checked' : '' ?>>9/11 Family Member</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation[]" value="1" <?php echo (strpos($row->tcAffiliation, 'First Responder/First Responder Family Member') !== false) ? 'checked' : '' ?>>First Responder/First Responder Family Member</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation[]" value="2" <?php echo (strpos($row->tcAffiliation, 'Military') !== false) ? 'checked' : '' ?>>Military</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation[]" value="3" <?php echo (strpos($row->tcAffiliation, 'Volunteer') !== false) ? 'checked' : '' ?>>Volunteer</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation[]" value="4" <?php echo (strpos($row->tcAffiliation, 'Prefer not to answer') !== false) ? 'checked' : '' ?>>Prefer not to answer</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="tcAffiliation[]" onclick="toggle(this);"  value="5" <?php echo (strpos($row->tcAffiliation, 'Other') !== false) ? 'checked' : '' ?>>Other</label>
+                        <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="resource" class="col-sm-2 col-form-label">Please check which topic areas you are most interested in working on with your Career Candidates</label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="0" <?php echo (strpos($row->resource, 'Resume Writing') !== false) ? 'checked' : '' ?>>Resume Writing</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="1" <?php echo (strpos($row->resource, 'Networking') !== false) ? 'checked' : '' ?>>Networking</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="2" <?php echo (strpos($row->resource, 'Career Advancement') !== false) ?  'checked' : '' ?>>Career Advancement</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="3" <?php echo (strpos($row->resource, 'Career Change') !== false) ? 'checked' : '' ?>>Career Change</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" value="4" <?php echo (strpos($row->resource, 'General Professional Help') !== false) ? 'checked' : '' ?>>General Professional Help</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="resource[]" onclick="toggle(this);" value="5" <?php echo (strpos($row->tcAffiliation, 'Other') !== false) ? 'checked' : '' ?>>Other</label>
+                        <input type="text" name="resource_other" class="form-control" id="resource_other" style="display:none">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="otherInfo" class="col-sm-2 col-form-label">Is there any other information you would like to share?</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="5" name="otherInfo" id="otherInfo" value=""><?php echo $row->otherInfo; ?></textarea>
+                </div>
+            </div>
+
             <input type="hidden" name="profileId" value="<?php echo $profileId; ?>">
             <div>
                 <button type="submit" name='updateProfile' display="margin: auto" class="btn btn-primary btn-lg">Submit</button>
@@ -163,17 +167,58 @@ function profile_edit() { ?>
         <script type="text/javascript">
             $( document ).ready(function() {
                 document.getElementById('otherInfo').value = '<?php echo ($row->otherInfo)?>';
+
+                $('#editProfileForm').bootstrapValidator({
+        	        fields: {
+                    otherInfo: {
+                      validators: {
+                        stringLength: {
+                            min: 10,
+                            max: 200,
+                            message:'Please enter at least 10 characters and no more than 200'
+                        },
+                        notEmpty: {
+                            message: 'Please supply other info'
+                        }
+                      }
+                    },
+                    'interest[]': {
+                      validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 interest'
+                        }
+                      }
+                    },
+                    'resource[]': {
+                      validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 resource'
+                        }
+                      }
+                    },
+                    'tcAffiliation[]': {
+                      validators: {
+                        choice: {
+                            min: 1,
+                            message: 'Please choose at least 1 option'
+                        }
+                      }
+                    }
+          		    }
+                });
             });
             function toggle (event) {
-                var other_input = document.getElementById(event.name + '_other');
-                if (event.checked) {
-                    other_input.style.display = "inline-block";
-                    other_input.setAttribute('required',true);
-                }
-                else {
-                    other_input.style.display = "none";
-                    other_input.removeAttribute('required');
-                }
+              var other_input = document.getElementById(event.name.replace('[]','') + '_other');
+              if (event.checked) {
+                  other_input.style.display = "inline-block";
+                  other_input.setAttribute('required',true);
+              }
+              else {
+                  other_input.style.display = "none";
+                  other_input.removeAttribute('required');
+              }
             }
         </script>
 
