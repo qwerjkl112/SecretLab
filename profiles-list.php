@@ -7,7 +7,7 @@ require_once ( 'admin-utils.php' );
 function profiles_list() {
     if(isset($_SESSION['login_user'])){ ?>
     <div class="alert alert-success">
-        <strong>Weclome</strong> <?php echo $_SESSION['login_user']; ?>
+        <strong>Welcome</strong> <?php echo $_SESSION['login_user']; ?>
     </div>
     <?php }
     ?>
@@ -24,11 +24,15 @@ function profiles_list() {
             width: 100%;
             overflow: scroll;
         }
+        .wrap {
+          height: 80% !important;
+          overflow: scroll;
+        }
     </style>
     <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link type="text/css" href="<?php echo WP_PLUGIN_URL; ?>/custom-plugin/style-admin.css" rel="stylesheet" />
-    
+
     <div id="top_bar">
         <h2>Members</h2>
         <div class="tablenav top">
@@ -39,23 +43,29 @@ function profiles_list() {
         $rows = $wpdb->get_results("SELECT `ID`, `username` , `firstname`, `lastname`, usertype.`description` AS `userType`, `interest`, `resource`, `status`, `tcAffiliation`, `jobResponisibility` from $table_name INNER JOIN usertype on users.userType=usertype.typeId");
         ?>
 
-        <b>Create Connection</b>
-        <form method="post" class="form-inline" action="../connections">
-            <div class="form-group col-xs-6">
-                <input type="text" class="form-control" name="mentorId" placeholder="MentorID"> 
-                <input type="text" class="form-control" name="menteeId" placeholder="MenteeID">
-            </div>
-            <input type='submit' name='create_connection' value='Create Connection' class='button'>
-        </form>
-        <br>
-        <div class="form-group row">
-            <div class="col-xs-3" margin-bottom="10px">
-                <input class="form-control" id="myInput" type="text" placeholder="Type text to filter...">
-            </div>
-            <button type="button" id="export_profileList" class="btn btn-primary btn-md"> Export </button>
-
+        <div style="display:flex; justify-content:space-between">
+          <div>
+            <b>Filter</b>
+            <form class="form-inline">
+                <div class="form-group">
+                  <input class="form-control" id="myInput" type="text" placeholder="Type text to filter...">
+                  <input type="submit" id="export_profileList" value="Export" class="form-control">
+                </div>
+            </form>
+          </div>
+          <div>
+            <b>Create Connection</b>
+            <form method="post" class="form-inline" action="../connections">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="mentorId" placeholder="MentorID">
+                  <input class="form-control" type="text" name="menteeId" placeholder="MenteeID">
+                  <input type='submit' name='create_connection' value='Create Connection' class="form-control">
+                </div>
+            </form>
+          </div>
         </div>
     </div>
+    <br>
         <div id="dvData" class="wrap">
         <table class='table table-striped' id='profile_table'>
             <tr class="info">
@@ -66,7 +76,7 @@ function profiles_list() {
                 <th class="manage-column ss-list-width" onclick="sortTable(4)">Status <span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(5)">Interest <span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(6)">Resource <span class="fa fa-sort"></span></th>
-                <th class="manage-column ss-list-width" onclick="sortTable(7)">Tuesday Children All<span class="fa fa-sort"></span></th>
+                <th class="manage-column ss-list-width" onclick="sortTable(7)">Tuesday Children Affiliation<span class="fa fa-sort"></span></th>
                 <th class="manage-column ss-list-width" onclick="sortTable(8)">Deactivate User</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(9)">Approve User</th>
                 <th class="manage-column ss-list-width" onclick="sortTable(10)">Request Feedback</th>
@@ -76,18 +86,18 @@ function profiles_list() {
                 <tr <?php if($row->status === 'Pending Review'){ echo "class='danger'"; }
                 else if($row->status === 'Deactivated User'){ echo "class='warning'";} ?>>
                     <td class="manage-column ss-list-width">
-                       <a href="../profile?user_id=<?php echo $row->ID; ?>"><?php echo $row->ID; ?></a></td> 
-                    <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->status; ?></td>  
-                    <td class="manage-column ss-list-width" name="interestCell"><?php echo $row->interest; ?></td>  
-                    <td class="manage-column ss-list-width" name="resourceCell"><?php echo $row->resource; ?></td>  
-                    <td class="manage-column ss-list-width" name="afflicationCell"><?php echo $row->tcAffiliation; ?></td>  
+                       <a href="../profile?user_id=<?php echo $row->ID; ?>"><?php echo $row->ID; ?></a></td>
+                    <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>
+                    <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>
+                    <td class="manage-column ss-list-width"><?php echo $row->userType; ?></td>
+                    <td class="manage-column ss-list-width"><?php echo $row->status; ?></td>
+                    <td class="manage-column ss-list-width"><?php echo str_replace(",",",<br>",$row->interest); ?></td>
+                    <td class="manage-column ss-list-width"><?php echo str_replace(",",",<br>",$row->resource); ?></td>
+                    <td class="manage-column ss-list-width"><?php echo str_replace(",",",<br>",$row->tcAffiliation); ?></td>
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-                        <?php 
+                        <?php
                             if($row->status !== 'Deactivated User') {
                                 echo '<button type="submit" class="btn btn-default" name="deactivate_user">';
                                 echo '<span class="glyphicon glyphicon-remove" ></span> Deactivate User </button>';
@@ -98,7 +108,7 @@ function profiles_list() {
                     <td>
                       <form action="" method="post">
                         <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-                        <?php 
+                        <?php
                             if($row->status !== 'Approved Member'){
                                     echo '<button type="submit" class="btn btn-default" name="approve_user">';
                                 if($row->status === 'Deactivated User') {
@@ -108,7 +118,8 @@ function profiles_list() {
                                     echo '<span class="glyphicon glyphicon-ok" ></span> Approve User </button>';
                                 }
                             }
-                        ?>                      </form>
+                        ?>
+                      </form>
                     </td>
                     <td>
                       <form action="" method="post">
@@ -126,18 +137,18 @@ function profiles_list() {
         </table>
         </div>
     <script>
-        
+
         function sortTable(n) {
             var table, rows, header, switching, i, x, y, shouldSwitch, dir, arrow, switchcount = 0;
             table = document.getElementById("profile_table");
             switching = true;
             //Set the sorting direction to ascending:
-            dir = "asc"; 
+            dir = "asc";
             if (document.getElementById("current_filter_icon")) {
                 prev_sort= document.getElementById("current_filter_icon")
                 prev_sort.removeAttribute('id');
                 prev_sort.setAttribute('class', "fa fa-sort");
-            } 
+            }
 
             header = table.getElementsByTagName("TH")[n];
             arrow_icon = header.getElementsByTagName("span")[0]
@@ -181,7 +192,7 @@ function profiles_list() {
                     rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                     switching = true;
                     //Each time a switch is done, increase this count by 1:
-                    switchcount ++;      
+                    switchcount ++;
                 } else {
                     /*If no switching has been done AND the direction is "asc",
                     set the direction to "desc" and run the while loop again.*/
@@ -196,31 +207,9 @@ function profiles_list() {
 
 
         $( document ).ready(function() {
-            $('#profile_table tr').each(function() {
-                var cell = $(this).find("[name='interestCell']").html(); 
-                if (cell){
-                    cell = cell.replace(",", ",<br>");
-                    $(this).find("[name='interestCell']").html(cell); 
-                }
-            });
-            $('#profile_table tr').each(function() {
-                var cell = $(this).find("[name='resourceCell']").html(); 
-                if (cell){
-                    cell = cell.replace(",", ",<br>");
-                    $(this).find("[name='resourceCell']").html(cell); 
-                }
-            });
-            $('#profile_table tr').each(function() {
-                var cell = $(this).find("[name='afflicationCell']").html(); 
-                if (cell){
-                    cell = cell.replace(",", ",<br>");
-                    $(this).find("[name='afflicationCell']").html(cell); 
-                }
-            });
-
             $("#export_profileList").click(function () {
                 $("#profile_table").table2excel({
-                    filename: "Table.xls"
+                    filename: "User_Table.xls"
                 });
             });
 
@@ -231,7 +220,7 @@ function profiles_list() {
                 });
             });
         });
-    
+
     </script>
     <?php
 }
