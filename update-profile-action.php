@@ -1,11 +1,13 @@
 <?php
 
+require_once ( 'potential-connection-runner.php' );
+
 if (isset($_POST['updateProfile'])) {
-    echo $_POST["username"];
     $profileId = $_POST["profileId"];
     $resource = $_POST["resource"];
     $interest = $_POST["interest"];
     $tcAffiliation = $_POST["tcAffiliation"];
+    $otherInfo = $_POST["otherInfo"];
 
     $tcAffiliation_other = $_POST["tcAffiliation_other"];
     $interest_other = $_POST["interest_other"];
@@ -38,7 +40,7 @@ if (isset($_POST['updateProfile'])) {
                 case 4:
                     array_push($tcAffiliationString, "Prefer not to answer");
                     break;
-                case 5: 
+                case 5:
                     array_push($tcAffiliationString, $tcAffiliation_other);
                 default:
                     break;
@@ -99,7 +101,7 @@ if (isset($_POST['updateProfile'])) {
     if(!empty($resource)){
         $N = count($resource);
         for($i = 0; $i < $N; $i++) {
-            switch ((int) $tcAffiliation[$i]) {
+            switch ((int) $resource[$i]) {
                 case 0:
                     array_push($resourceString, "Resume Writing");
                     break;
@@ -115,37 +117,39 @@ if (isset($_POST['updateProfile'])) {
                 case 4:
                     array_push($resourceString, "General Professional Help");
                     break;
-                case 5: 
+                case 5:
                     array_push($resourceString, $resource_other);
                     break;
             }
             $resourceBitMask += pow(2, (int) $resource[$i]);
         }
     }
-
- 
     $resourceString = implode(",\n" , $resourceString);
     $interestString = implode(",\n" , $interestString);
     $tcAffiliationString = implode(",\n" , $tcAffiliationString);
-   	updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other);
+   	updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other, $otherInfo);
 }
 
-function updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other){
-    if (isset($_POST['update'])) {
+function updateProfile($profileId, $tcAffiliationBitMask, $interestBitMask, $resourceBitMask, $resourceString, $interestString, $tcAffiliationString, $tcAffiliation_other, $interest_other, $resource_other, $otherInfo){
+    if (isset($_POST['updateProfile'])) {
     $table_name = "users";
+    global $wpdb;
     $wpdb->update(
             $table_name, //table
             array(
-            'tcAffiliation' => $tcAffiliationString, 
-            'interest' => $interestString, 
+            'tcAffiliation' => $tcAffiliationString,
+            'interest' => $interestString,
             'resource' => $resourceString,
             'TCAffiliationBitMask'=> $tcAffiliationBitMask,
             'InterestsBitMask' => $interestBitMask,
             'ResourcesBitMask' =>$resourceBitMask,
             'tcAffiliation_other' => $tcAffiliation_other,
             'interest_other' => $interest_other,
-            'resource_other' => $resource_other
+            'resource_other' => $resource_other,
+            'otherInfo' => $otherInfo
             ),
             array('id' => $profileId));
     }
+    clearPotentialMatches();
+    findPotentialMatches();
 }
