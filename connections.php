@@ -15,7 +15,7 @@ function connections_table() {
 		      <tr>
 		        <th>Connection</th>
 		        <th>Last Checked In</th>
-		        <th>Delete</th>
+		        <th>Deactivate Connection</th>
 		        <th>Details</th>
 		      </tr>
 		    </thead>
