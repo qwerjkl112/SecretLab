@@ -8,10 +8,12 @@ function profile_create() {
 
     <link type="text/css" href="<?php echo WP_PLUGIN_URL; ?>/custom-plugin/style-admin.css" rel="stylesheet" />
     <div class="wrap">
-        <h2>Add New Profile</h2>
+        <h2>Register</h2>
+        <br>
         <?php if (isset($message)): ?><div class="updated"><p><?php echo $message; ?></p></div><?php endif; ?>
         <form method="post" action="../confirm-page" id="registration-form" novalidate="">
             <p><font color="red"><b>*All Fields Required</b></font></p>
+
             <!-- BASIC INFO -->
             <div class="form-group row">
                 <label for="userType" class="col-sm-2 col-form-label">I am applying for </label>
@@ -70,13 +72,13 @@ function profile_create() {
                 </div>
             </div>
 
-            
+
             <div class="form-group row">
                 <label for="phonenumber" class="col-sm-2 col-form-label">Phone Number</label>
                 <div class="col-sm-10">
                     <input type="tel" name="phonenumber" class="form-control" id="phonenumber" placeholder="Phone Number" required>
                 </div>
-            </div> 
+            </div>
 
             <div class="form-group row">
                 <label for="resource" class="col-sm-2 col-form-label"></label>
@@ -95,19 +97,19 @@ function profile_create() {
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="resource[]" value="4">General Professional Help</label>
-                    </div> 
+                    </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="resource[]" value="5" onclick="otherToggle(this);">Other</label>
-                    </div> 
+                    </div>
                     <div>
                         <input type="text" name="resource_other" id="resource_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div> 
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="tcAffiliation" class="col-sm-2 col-form-label">Please tell us your affiliation with Tuesday's Children.</label>
-                
+
                 <div class="col-sm-10">
                     <div class="checkbox">
                         <label><input type="checkbox" name="tcAffiliation[]" value="0">9/11 Family Member</label>
@@ -123,15 +125,15 @@ function profile_create() {
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="tcAffiliation[]" value="4">Prefer not to answer</label>
-                    </div> 
+                    </div>
                     <div class="checkbox">
                         <label><input type="checkbox" onclick="otherToggle(this)" name="tcAffiliation[]" value="5">Other</label>
                     </div>
                     <div>
                         <input type="text" name="tcAffiliation_other" id="tcAffiliation_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div> 
+                    </div>
                 </div>
-            </div> 
+            </div>
 
             <div class="form-group row">
                 <label for="interest" class="col-sm-2 col-form-label">Interest</label>
@@ -174,17 +176,17 @@ function profile_create() {
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" value="12">Technology</label>
-                    </div> 
+                    </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="interest[]" onclick="otherToggle(this);" value="13">Other</label>
                     </div>
                     <div>
                         <input type="text" name="interest_other" id="interest_other" class="form-control-plaintext" placeholder="Other" style="display:none"></input>
-                    </div> 
+                    </div>
                 </div>
             </div>
-                        
-            
+
+
 
                 <!-- MENTOR QUESTIONS -->
             <div id="mentor_form">
@@ -212,7 +214,7 @@ function profile_create() {
                         <textarea class="form-control" name="jobResponisibility" rows="5" id="jobResponisibility" required></textarea>
                     </div>
                 </div>
-                
+
                 <div class="form-group row">
                     <label for="yearsEmployed" class="col-sm-2 col-form-label">Years in current employeer</label>
                     <div class="col-sm-10">
@@ -224,8 +226,8 @@ function profile_create() {
                             <option>10+</option>
                         </select>
                     </div>
-                </div> 
-            
+                </div>
+
                 <div class="form-group row">
                     <label for="yearsProfession" class="col-sm-2 col-form-label">Years in current profession</label>
                     <div class="col-sm-10">
@@ -237,7 +239,7 @@ function profile_create() {
                             <option>10+</option>
                         </select>
                     </div>
-                </div> 
+                </div>
 
                 <div class="form-group row">
                     <label for="professions" class="col-sm-2 col-form-label">Profession Associations/ Affiliations</label>
@@ -245,7 +247,7 @@ function profile_create() {
                         <input type="text" name="professions" class="form-control" id="professions" placeholder="Professions" required>
                     </div>
                 </div>
-                
+
                 <div class="form-group row">
                     <label for="numCandidate" class="col-sm-2 col-form-label">How many Career Candidates would you like to be paired with?</label>
                     <div class="col-sm-10">
@@ -254,7 +256,7 @@ function profile_create() {
                             <option>3 - 4</option>
                         </select>
                     </div>
-                </div> 
+                </div>
                 <div class="form-group row">
                     <label for="prevJobs" class="col-sm-2 col-form-label">Did you have any jobs in the past? Please list past companies and titles</label>
                     <div class="col-sm-10">
@@ -300,9 +302,9 @@ function profile_create() {
                         <br>
                         <div>
                             <input type="text" name="employmentType_other" id="employmentType_other" style="display:none" class="form-control-plaintext" placeholder="Other"></input>
-                        </div> 
+                        </div>
                     </div>
-                </div> 
+                </div>
 
                 <div class="form-group row">
                     <label for="currentEducation" class="col-sm-2 col-form-label">Are you: </label>
@@ -316,9 +318,9 @@ function profile_create() {
                         <br>
                         <div>
                             <input type="text" name="currentEducation_other" id="currentEducation_other" style="display:none" class="form-control-plaintext" placeholder="Other"></input>
-                        </div> 
+                        </div>
                     </div>
-                </div> 
+                </div>
 
                 <div id="education_form">
                     <div class="form-group row">
@@ -341,8 +343,6 @@ function profile_create() {
                     </div>
                 </div>
 
-                
-               
                 <div class="form-group row">
                     <label for="degree" class="col-sm-2 col-form-label">What is the highest grade or level of school you have completed? Example: If you are currently in college, you would select High School or GED</label>
                     <div class="col-sm-10">
@@ -357,15 +357,17 @@ function profile_create() {
                             <option>Prefer not to answer</option>
                         </select>
                     </div>
-                </div>  
+                </div>
             </div>
+
             <div>
-                <button type="submit" name='register' value='register' display="margin: auto" class="btn btn-primary btn-lg">Submit</button>
-            </div>
+                <button type="submit" name='register' value='register' style="margin: auto; float:right" class="btn btn-primary btn-lg">Submit</button>
+            </div
+
         </form>
     </div>
     <script>
-    
+
         $( document ).ready(function() {
             var _userType_selector = $("#userType");
             var _mentor_form = $("#mentor_form");
@@ -432,11 +434,6 @@ function profile_create() {
             }
         }
         $('#registration-form').bootstrapValidator({
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
             fields: {
                 firstname: {
                     validators: {
