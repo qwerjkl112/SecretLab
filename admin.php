@@ -12,18 +12,18 @@ function admin_list() {
 
     <h2>Create a new admin</h2>
 
-    <form method="post" action="../">
+    <form method="post" action="../" id="adminForm">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Username">  
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
       </div>
       <div class="form-group">
         <label for="password">Confirm Password</label>
-        <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+        <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
       </div>
       <div>
         <input type='submit' name='admin_create' class='button'>
@@ -44,16 +44,16 @@ function admin_list() {
         <table class='table table-striped' id='profile_table'>
             <tr class="info">
                 <th class="manage-column ss-list-width">ID</th>
-                <th class="manage-column ss-list-width"">Username</th>
-                <th class="manage-column ss-list-width"">Full Name</th>
-                <th class="manage-column ss-list-width"">Delete User</th>
+                <th class="manage-column ss-list-width">Username</th>
+                <th class="manage-column ss-list-width">Full Name</th>
+                <th class="manage-column ss-list-width">Delete User</th>
             </tr>
             <?php foreach ($rows as $row) { ?>
                 <tr>
                     <td class="manage-column ss-list-width">
-                        <a href="../profile?user_id=<?php echo $row->ID; ?>"><?php echo $row->ID; ?></a></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>  
-                    <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>  
+                        <a href="../profile?user_id=<?php echo $row->ID; ?>"><?php echo $row->ID; ?></a></td>
+                    <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>
+                    <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>
                     <td class="manage-column ss-list-width">
                         <form action="" method="post">
                         <button type="submit" class="btn btn-default" name="delete_user">
@@ -65,14 +65,54 @@ function admin_list() {
             <?php } ?>
         </table>
     </div>
-
-    <div>
-        <h2>test Email</h2>
-        <form action="" method="post">
-            <button type="submit" class="btn btn-default" name="email_user">
-            <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-            <span class="glyphicon glyphicon-envelope"></span> Email User</button>
-    </div>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $('#adminForm').bootstrapValidator({
+              fields: {
+                username: {
+                    validators: {
+                        stringLength: {
+                            min: 5,
+                        },
+                        notEmpty: {
+                            message: 'Please supply a username'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        identical: {
+                            field: 'confirm_password',
+                            message: 'Password does not match'
+                        },
+                        stringLength: {
+                            min: 8,
+                            message: 'Minimum 8 characters',
+                        },
+                        notEmpty: {
+                            message: 'Minimum 8 characters'
+                        }
+                    }
+                },
+                confirm_password: {
+                    validators: {
+                        identical: {
+                            field: 'password',
+                            message: 'Password does not match'
+                        },
+                        stringLength: {
+                            min: 8,
+                            message: 'Minimum 8 characters',
+                        },
+                        notEmpty: {
+                            message: 'Minimum 8 characters'
+                        }
+                    }
+                }
+              }
+            });
+        });
+    </script>
     <?php
     }
     else{
