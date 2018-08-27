@@ -55,17 +55,50 @@ function admin_list() {
                     <td class="manage-column ss-list-width"><?php echo $row->username; ?></td>
                     <td class="manage-column ss-list-width"><?php echo $row->firstname; echo " " . $row->lastname;?></td>
                     <td class="manage-column ss-list-width">
-                        <form action="" method="post">
-                        <button type="submit" class="btn btn-default" name="delete_user">
-                        <input type="hidden" name="profileId" <?php echo "value=".$row->ID;?>>
-                        <span class="glyphicon glyphicon-remove" ></span> Delete User </button>
-                        </form>
+                      <button class="btn btn-default open-deleteUserModal"
+                              data-toggle="modal"
+                              data-target="#deleteUserModal"
+                              data-profile-id="<?php echo $row->ID ?>"
+                              data-name="<?php echo $row->firstname." ".$row->lastname; ?>">
+                        <span class="glyphicon glyphicon-remove" ></span>
+                        Delete User </button>
                     </td>
                 </tr>
             <?php } ?>
         </table>
     </div>
+
+    <div class="modal fade" id="deleteUserModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+          <div class="modal-header">
+            <span class="glyphicon glyphicon-warning-sign"></span> <strong> Delete User Account </strong>
+          </div>
+					<div class="modal-body">
+            <div id="delete_user_msg"></div>
+          </div>
+          <div class="modal-footer">
+            <form action="" method="post">
+              <button type="submit" class="btn btn-primary" name="delete_user">
+                <input type="hidden" name="profileId" id="profile_input">
+                Confirm
+              </button>
+              <button type="button" class="btn btn-default" id="deleteUser_close_btn" data-dismiss="modal">Close</button>
+            </form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
     <script type="text/javascript">
+        $(document).on("click", ".open-deleteUserModal", function () {
+             var profile_id = $(this).data('profile-id');
+             var name = $(this).data('name');
+
+             $(".modal-body #delete_user_msg").html("Are you sure you want to delete " + name + "'s account?");
+             $(".modal-footer #profile_input").val(profile_id);
+        });
         $( document ).ready(function() {
             $('#adminForm').bootstrapValidator({
               fields: {
